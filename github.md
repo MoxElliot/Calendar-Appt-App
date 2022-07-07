@@ -6,6 +6,7 @@
 ## **Feature Branch Workflow**
     1.	Create branch for new feature: git checkout –b feature_name
         a.	feature_name should be a descriptive title (i.e. navigation-bar-component, portfolio-route, portfolio-preview-component)
+        b.  commit, then 'git push origin feature_name' to push to github
     2.	Write code, adding/committing as usual to local
         a.	Final Feature Ready Commit: git commit –m “Feature Ready”
     3.	Regularly push work to remote: git push origin feature_name
