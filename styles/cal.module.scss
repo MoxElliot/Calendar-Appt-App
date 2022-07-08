@@ -1,0 +1,8 @@
+$cal-color: #3fb427;
+
+.calContainer {
+    background-color: $cal-color;
+    border: 3px solid #ccc;
+    display: flex;
+    justify-content: center;
+}
