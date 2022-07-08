@@ -12,8 +12,8 @@ export default function InstructorDash() {
         </Head>
         <NavBar />
         <div className={instructor.instContainer}>
-            <h1> Instructor Dashboard </h1>    
             <CalandarView />
         </div>
-    </div>)
+    </div>
+    )
 }

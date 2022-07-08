@@ -1,8 +1,40 @@
 $cal-color: #3fb427;
+$calComp-color: #999999;
+$calControl-color: #123456;
 
 .calContainer {
     background-color: $cal-color;
     border: 3px solid #ccc;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    height: 70vh;
+}
+
+.weekContainer {
+    background-color: $calComp-color;
+    width: 90%;
+    height: 45%;
+    margin-top: .7rem;
+
+}
+
+.dateSlide {
+    background-color: $calComp-color;
+    margin-top: .3rem;
+    height:10%;
+    width: 30%;
+}
+
+.controlContainer {
+    display: flex;
+    width: 90%;
+    height: 35%;
+    background-color: $calComp-color;
+    margin-top: 1rem;
+}
+.lessonControl {
+    background-color: $calControl-color;
+    width: 50%;
 }
