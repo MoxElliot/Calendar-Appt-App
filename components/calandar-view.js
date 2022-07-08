@@ -2,7 +2,7 @@ import React from 'react';
 import cal from '../styles/cal.module.scss';
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const timeSlotArr = [1, 2, 3, 4];
+
 
 class CalandarView extends React.Component {
     constructor(props) {
@@ -16,16 +16,16 @@ class CalandarView extends React.Component {
         return (
             <div className={cal.calContainer}>
                 <div className={cal.dateSlide}>
-                    <div>arr</div>
+                    <div>ar0</div>
                     <div className={cal.slideText}>
                         <p>Week of August 7th</p>
                     </div>
-                    <div>arr</div>
+                    <div>aro</div>
                 </div>
                 <div className={cal.weekContainer}>
-                    <div>arr</div>
+                    <div>aro</div>
                     {weekDays}
-                    <div>arr</div>
+                    <div>ar0</div>
                 </div>
                 <div className={cal.controlContainer}>
                     <div className={cal.lessonControl}>
