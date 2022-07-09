@@ -1,18 +1,16 @@
 import React from 'react';
 import cal from '../styles/cal.module.scss';
+import LessonControl from './lesson-control';
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 
-class CalandarView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    render () {
+const CalandarView = () => {
+  
         const weekDays = weekDaysArr.map((day) =>
-            <div className={cal.dayContainer}>{day}</div>
+            <div className={cal.dayContainer} key={day.toString()}>{day}</div>
             )
+
         return (
             <div className={cal.calContainer}>
                 <div className={cal.dateSlide}>
@@ -28,13 +26,10 @@ class CalandarView extends React.Component {
                     <div>ar0</div>
                 </div>
                 <div className={cal.controlContainer}>
-                    <div className={cal.lessonControl}>
-                        lesson control
-                    </div>
+                    <LessonControl className={cal.lessonControl}/>
                 </div>
             </div>
         )
     }
-}
 
 export default CalandarView

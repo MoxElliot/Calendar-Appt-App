@@ -2,6 +2,9 @@ $cal-color: #3fb427;
 $calComponent-color: #999999;
 $calItem-color: #123456;
 $calItemInner-color: #c9328f;
+
+
+
 .calContainer {
     background-color: $cal-color;
     border: 3px solid #ccc;
@@ -26,7 +29,6 @@ $calItemInner-color: #c9328f;
             height:90%;
             flex-basis: 13%
         }
-
     }
 
     .dateSlide {
@@ -51,6 +53,28 @@ $calItemInner-color: #c9328f;
         .lessonControl {
             background-color: $calItem-color;
             width: 50%;
+            padding: .3rem;
+            #lessonControlEle {
+                padding-bottom: .5rem;
+                #lessonControlP{
+                    padding-bottom:.2rem;
+                    padding-left:.4rem;
+                    text-decoration: underline;
+                    font-weight: bold;
+                }
+            }
+            .studentSelect {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        .lessonControlBottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .lessonControlBtn {
+                align-self: flex-end;
+            }
         }
     }
 }
