@@ -1,5 +1,5 @@
 import NavBar from '../components/nav-bar';
-import CalandarView from '../components/calandar-view';
+import InstCalandarView from '../components/instructor-calandar-view';
 import Head from 'next/head';
 import instructor from '../styles/instructor.module.scss';
 
@@ -12,7 +12,7 @@ export default function InstructorCal() {
         </Head>
         <NavBar />
         <div className={instructor.instContainer}>
-            <CalandarView />
+            <InstCalandarView />
         </div>
     </div>
     )

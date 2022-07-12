@@ -1,16 +1,16 @@
 import React from 'react';
-import cal from '../styles/cal.module.scss';
+import studentCal from '../styles/studentCal.module.scss';
 
 const timeSlotsArr = ["1:00", "2:00", "3:00", "4:00", "5:00"]
 
-export default function CalandarDay() {
+export default function StudCalandarDay() {
 
     const timeSlots = timeSlotsArr.map((timeSlot) => 
-        <button className={cal.timeSlot}>{timeSlot}</button>
+        <button className={studentCal.timeSlot}>{timeSlot}</button>
     );
 
     return (
-        <div className={cal.calDay}>
+        <div className={studentCal.calDay}>
             {timeSlots}
         </div>
     )
