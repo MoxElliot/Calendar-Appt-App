@@ -29,6 +29,17 @@ $calItemInner-color: #c9328f;
             height:90%;
             flex-basis: 13%
         }
+        .calDay {
+            display:flex;
+            flex-direction: column;
+            margin-top: .3rem;
+            padding-left: .3rem;
+            padding-right: .3rem;
+
+            .timeSlot {
+                margin-bottom: .3rem;
+            }
+        }
     }
 
     .dateSlide {
@@ -44,11 +55,11 @@ $calItemInner-color: #c9328f;
             align-items: center;
         }
     }
+    
     .controlContainer {
         display: flex;
         width: 90%;
         height: 35%;
-        background-color: $calComponent-color;
         margin-top: 1rem;
         .lessonControl {
             background-color: $calItem-color;
