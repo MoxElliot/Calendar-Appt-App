@@ -13,20 +13,20 @@ $calItemInner-color: #c9328f;
     align-items: center;
     justify-content: center;
     width: 80vw;
-    height: 70vh;
+    height: 45vh;
 
     .weekContainer {
         display:flex;
         background-color: $calComponent-color;
         width: 90%;
-        height: 45%;
+        height: 80%;
         margin-top: .7rem;
         align-items: center;
         justify-content: space-evenly;
 
         .dayContainer {
             background-color: $calItem-color;
-            height:90%;
+            height:80%;
             flex-basis: 13%
         }
         .calDay {
