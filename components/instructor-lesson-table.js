@@ -13,7 +13,6 @@ const lessonDataArr = [
 export default function InstructorLessonTable () {
     return (
         <div className={instructorDash.lessonTableContainer}>
-            
             <table className={instructorDash.lessonTable}>
             <tbody>
                 <tr>

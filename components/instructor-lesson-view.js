@@ -7,9 +7,8 @@ import InstructorLessonTable from './instructor-lesson-table';
 export default function InstructorLesson () {
     return (
         <div className={instructorDash.lessonContainer}>
-            Lesson View
             <div className={instructorDash.viewSelect}>
-                <p> Lesson View </p>
+                <p className={instructorDash.lessonViewSelectHeader}> Lesson View </p>
                 <LessonViewSelect />
             </div>
             <div className={instructorDash.lessonTable}>

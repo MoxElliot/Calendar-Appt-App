@@ -17,10 +17,19 @@ $lessonComp-color: #3384aa;
         .viewSelect {
             background-color: $lessonComp-color;
             margin-bottom: .5rem;
+            display: flex;
+            flex-direction: column;
+            
+            .lessonViewSelectHeader {
+                font-weight: bold;
+                margin-bottom: .2rem;
+                
+            }
             .radioForm {
                 display:flex;
                 flex-direction: row;
-                justify-content: space-around;
+                justify-content: space-between;
+                border: 1px solid black;
             }
         }
 
