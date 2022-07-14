@@ -1,0 +1,44 @@
+$dashboard-color: #21df10;
+$lessonView-color: #df6310;
+$lessonComp-color: #3384aa;
+
+.dashContainer {
+    background-color: $dashboard-color;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    
+    .lessonContainer {
+        background-color: $lessonView-color;
+        width: 90%;
+        margin-top: 1rem;
+
+        .viewSelect {
+            background-color: $lessonComp-color;
+            margin-bottom: .5rem;
+            .radioForm {
+                display:flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+
+        .lessonTable {
+            background-color: $lessonComp-color;
+            margin-bottom: .5rem;
+              th {
+                border: 1px solid black;
+              }
+                
+              td {
+                text-align: center;
+                border: 1px solid black;
+              }
+        }
+
+        .lessonSelect {
+            background-color: $lessonComp-color;
+        }
+    }
+}
