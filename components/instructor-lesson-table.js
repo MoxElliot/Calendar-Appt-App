@@ -1,5 +1,4 @@
 import instructorDash from '../styles/instructorDash.module.scss';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 
@@ -31,7 +30,7 @@ export default function InstructorLessonTable () {
                             <td>{val.detail}</td>
                             <td>{val.attachment}</td>
                             <td>{val.name}</td>
-                            <td><Link href="https://www.discord.com" targer="blank">{val.link}</Link></td>
+                            <td><Link href="https://www.discord.com" target="_blank">{val.link}</Link></td>
                         </tr>
                     )
                 })}

@@ -4,7 +4,7 @@ import instructorCal from '../styles/instructorCal.module.scss';
 const lessonDayArr = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
-export default function LessonControl () {
+export default function LessonCalControl () {
 
     const lessonDayRadio = lessonDayArr.map(day=> {
       

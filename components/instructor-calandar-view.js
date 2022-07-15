@@ -1,7 +1,7 @@
 import React from 'react';
 import instructorCal from '../styles/instructorCal.module.scss';
 import InstCalandarDay from './instCal-day';
-import LessonControl from './lesson-control';
+import LessonCalControl from './lesson-calandar-control';
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -27,7 +27,7 @@ const InstCalandarView = () => {
                     
                 </div>
                 <div className={instructorCal.controlContainer}>
-                    <LessonControl className={instructorCal.lessonControl}/>
+                    <LessonCalControl className={instructorCal.lessonControl}/>
                 </div>
                 
             </div>
