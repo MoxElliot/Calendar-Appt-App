@@ -4,7 +4,8 @@ import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { todayDate } from '../../redux/calandarDataSlice'
+import { nextWeek } from '../../redux/calandarDataSlice'
+
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -12,18 +13,18 @@ const InstCalandarView = () => {
 
     const [showLessonDet, setShowLessonDet] = useState(false);
 
-    useEffect(() => {
-        console.log("Show Lesson Det is now:", showLessonDet);
-    }, [showLessonDet]);
+    // useEffect(() => {
+    //     console.log("Show Lesson Det is now:", showLessonDet);
+    // }, [showLessonDet]);
 
     const handleLessonDet = (e) => {
             e.preventDefault();
-            setShowLessonDet( (showLessonDet) =>{
+            setShowLessonDet((showLessonDet) =>{
               
-                if(!showLessonDet) {
-                    setShowLessonDet(true)
-                } else {
+                if(showLessonDet) {
                     setShowLessonDet(false)
+                } else {
+                    setShowLessonDet(true)
                 }
             });
     }
@@ -38,8 +39,13 @@ const InstCalandarView = () => {
         </div>
         )
 
-        const today = useSelector((state) => state.calandarData.today)
+        const today = useSelector((state) => state.calandarData.date)
+        const year = useSelector((state) => state.calandarData.year)
+        const month = useSelector((state) => state.calandarData.month)
         const dispatch = useDispatch()
+       
+        const startingDate = new Date(year, month, 1)
+        console.log("starting Date", startingDate)
 
     return (
         <div className={instructorCal.calContainer}>
@@ -49,7 +55,7 @@ const InstCalandarView = () => {
                     {today}
                 </label>
                 <button 
-                    onClick={() =>dispatch(todayDate())}
+                    onClick={() =>dispatch(nextWeek())}
                 >
                     aro
                 </button>
