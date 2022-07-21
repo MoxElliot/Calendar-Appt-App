@@ -3,6 +3,8 @@ import instructorCal from '../../styles/instructorCal.module.scss';
 import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
+import { useSelector, useDispatch } from 'react-redux';
+import { todayDate } from '../../redux/calandarDataSlice'
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -25,34 +27,41 @@ const InstCalandarView = () => {
                 }
             });
     }
-  
-        const weekDays = weekDaysArr.map((day) =>
-            <div 
-                className={instructorCal.dayContainer} 
-                key={day.toString()}
-            >
-                {day}
-                <InstCalandarDay handleLessonDet={handleLessonDet}/>
-            </div>
-            )
+    
+    const weekDays = weekDaysArr.map((day) =>
+        <div 
+            className={instructorCal.dayContainer} 
+            key={day.toString()}
+        >
+            {day}
+            <InstCalandarDay handleLessonDet={handleLessonDet}/>
+        </div>
+        )
 
-        return (
-            <div className={instructorCal.calContainer}>
-                <div className={instructorCal.dateSlide}>
-                    <button>aro</button>
-                    <label className={instructorCal.slideText}>
-                        Week of August 7th
-                    </label>
-                    <button>aro</button>
-                </div>
-                <div className={instructorCal.weekContainer}>
-                    {weekDays}
-                </div>
-                <div className={instructorCal.controlContainer}>
-                <LessonCalControl className={instructorCal.lessonControl}/>
-                <InstructorLessonDetail showLessonDet={showLessonDet}/>
-                </div>
+        const today = useSelector((state) => state.calandarData.today)
+        const dispatch = useDispatch()
+
+    return (
+        <div className={instructorCal.calContainer}>
+            <div className={instructorCal.dateSlide}>
+                <button>aro</button>
+                <label className={instructorCal.slideText}>
+                    {today}
+                </label>
+                <button 
+                    onClick={() =>dispatch(todayDate())}
+                >
+                    aro
+                </button>
             </div>
+            <div className={instructorCal.weekContainer}>
+                {weekDays}
+            </div>
+            <div className={instructorCal.controlContainer}>
+            <LessonCalControl className={instructorCal.lessonControl}/>
+            <InstructorLessonDetail showLessonDet={showLessonDet}/>
+            </div>
+        </div>
         )
     }
 
