@@ -15,12 +15,15 @@ export const calandarDataSlice = createSlice({
     },
     reducers: {
         nextWeek: (state) => {
-            state.day + 7
+            state.day += 7
+        },
+        startingDate: (state) => {
+            new Date(state.year, state.month, 1)
         },
         
     },
 });
 
-export const { nextWeek } = calandarDataSlice.actions;
+export const { nextWeek, startingDate } = calandarDataSlice.actions;
 
 export default calandarDataSlice.reducer;

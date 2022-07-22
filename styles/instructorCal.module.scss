@@ -17,6 +17,7 @@ $calItemInner-color: #c9328f;
     
     .weekContainer {
         display:flex;
+        flex-direction: row;
         background-color: $calComponent-color;
         width: 90%;
         height: 45%;

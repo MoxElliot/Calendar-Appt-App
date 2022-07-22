@@ -4,18 +4,15 @@ import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek } from '../../redux/calandarDataSlice'
+import { nextWeek, startingDate } from '../../redux/calandarDataSlice'
+import { arrow } from '@popperjs/core';
 
 
-const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const InstCalandarView = () => {
 
     const [showLessonDet, setShowLessonDet] = useState(false);
-
-    // useEffect(() => {
-    //     console.log("Show Lesson Det is now:", showLessonDet);
-    // }, [showLessonDet]);
 
     const handleLessonDet = (e) => {
             e.preventDefault();
@@ -28,24 +25,37 @@ const InstCalandarView = () => {
                 }
             });
     }
-    
-    const weekDays = weekDaysArr.map((day) =>
+        
+    const weekDays = weekDaysArr.map(function(day) {
+        const d = new Date();
+        const dayNum = d.getDay();
+
+        const dayOfWeek = () => {
+            for (let i=0; i < 7; i++) {
+                if (weekDaysArr.indexOf(day) === dayNum) {
+                return d.getDate()
+                } else {
+                    return ((weekDaysArr.indexOf(day) - dayNum) + d.getDate())
+                }
+
+            } 
+        }
+        return (
         <div 
             className={instructorCal.dayContainer} 
             key={day.toString()}
         >
-            {day}
+            {day}{dayOfWeek()}
             <InstCalandarDay handleLessonDet={handleLessonDet}/>
-        </div>
-        )
+        </div>)
+        });
 
-        const today = useSelector((state) => state.calandarData.date)
-        const year = useSelector((state) => state.calandarData.year)
-        const month = useSelector((state) => state.calandarData.month)
-        const dispatch = useDispatch()
-       
-        const startingDate = new Date(year, month, 1)
-        console.log("starting Date", startingDate)
+    const d = new Date();
+    const today =  (d.getMonth() + " " + d.getDay() + " " + d.getDate())
+  
+
+    const day = useSelector((state) => state.calandarData.day)
+    const dispatch = useDispatch()
 
     return (
         <div className={instructorCal.calContainer}>
@@ -59,6 +69,7 @@ const InstCalandarView = () => {
                 >
                     aro
                 </button>
+                <label>{day}</label>
             </div>
             <div className={instructorCal.weekContainer}>
                 {weekDays}

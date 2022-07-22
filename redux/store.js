@@ -1,12 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import newMessageDataReducer from './messageDataSlice';
-import lessonDataReducer from './lessonDataSlice';
-import calandarDataReducer from './calandarDataSlice'
+import rootReducer from './reducers/rootReducer'
 
 export const store = configureStore({
-  reducer: {
-    messageData: newMessageDataReducer,
-    lessonData: lessonDataReducer,
-    calandarData: calandarDataReducer,
-  },
+  reducer: rootReducer,
 });
