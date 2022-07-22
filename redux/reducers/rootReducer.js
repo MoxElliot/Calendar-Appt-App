@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import newMessageData from '../messageDataSlice';
-import lessonData from '../lessonDataSlice';
-import calandarData from '../calandarDataSlice'
+import messageDataSlice from '../messageDataSlice';
+import lessonDataSlice from '../lessonDataSlice';
+import calandarDataSlice from '../calandarDataSlice';
+import weekNavSlice from '../weekNavSlice'
 
 const rootReducer = combineReducers({
-    newMessageData,
-    lessonData,
-    calandarData,
+    messageData: messageDataSlice,
+    lessonData: lessonDataSlice,
+    calandarData: calandarDataSlice,
+    weekNav: weekNavSlice,
 })
 
 export default rootReducer;

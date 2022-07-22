@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import instructorCal from '../../styles/instructorCal.module.scss';
 import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek, startingDate } from '../../redux/calandarDataSlice'
-import { arrow } from '@popperjs/core';
+import { nextWeek } from '../../redux/weekNavSlice'
 
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -26,16 +25,18 @@ const InstCalandarView = () => {
             });
     }
         
-    const weekDays = weekDaysArr.map(function(day) {
-        const d = new Date();
-        const dayNum = d.getDay();
+    const today = useSelector((state) => state.weekNav.today)
+    const dispatch = useDispatch()
 
+    const weekDays = weekDaysArr.map(function(day) {
+      
+        let d = new Date();
         const dayOfWeek = () => {
             for (let i=0; i < 7; i++) {
-                if (weekDaysArr.indexOf(day) === dayNum) {
+                if (weekDaysArr.indexOf(day) === today) {
                 return d.getDate()
                 } else {
-                    return ((weekDaysArr.indexOf(day) - dayNum) + d.getDate())
+                    return ((weekDaysArr.indexOf(day) - today) + d.getDate())
                 }
 
             } 
@@ -50,13 +51,8 @@ const InstCalandarView = () => {
         </div>)
         });
 
-    const d = new Date();
-    const today =  (d.getMonth() + " " + d.getDay() + " " + d.getDate())
   
-
-    const day = useSelector((state) => state.calandarData.day)
-    const dispatch = useDispatch()
-
+        console.log(today)
     return (
         <div className={instructorCal.calContainer}>
             <div className={instructorCal.dateSlide}>
@@ -69,7 +65,7 @@ const InstCalandarView = () => {
                 >
                     aro
                 </button>
-                <label>{day}</label>
+                <label>hi</label>
             </div>
             <div className={instructorCal.weekContainer}>
                 {weekDays}
