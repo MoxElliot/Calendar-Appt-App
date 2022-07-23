@@ -1,11 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import instructorCal from '../../styles/instructorCal.module.scss';
 import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek } from '../../redux/weekNavSlice'
-
+import { nextWeek, lastWeek } from '../../redux/weekNavSlice'
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -24,23 +23,43 @@ const InstCalandarView = () => {
                 }
             });
     }
-        
-    const today = useSelector((state) => state.weekNav.today)
+
+   
+   
+
+    const today = useSelector(state => state.weekNav.today)
+    const nextMonth = useSelector(state => state.weekNav.nextMonth)
     const dispatch = useDispatch()
 
     const weekDays = weekDaysArr.map(function(day) {
-      
-        let d = new Date();
+        
+        const d = new Date();
+        const dayNum = d.getDay()
+        const getDaysInMonth = (year, month) => {
+            return new Date(year, month, 0).getDate();
+        }
+        const currentYear = d.getFullYear()
+        const daysInMonth = (m) => {
+            return getDaysInMonth(currentYear, m + 1, 0)
+        }
+       
         const dayOfWeek = () => {
             for (let i=0; i < 7; i++) {
-                if (weekDaysArr.indexOf(day) === today) {
-                return d.getDate()
+                if (weekDaysArr.indexOf(day) === dayNum) {
+                return today
                 } else {
-                    return ((weekDaysArr.indexOf(day) - today) + d.getDate())
-                }
+                    const endOfMonth = ((weekDaysArr.indexOf(day) - dayNum) + today)
+                    if (endOfMonth <= 0) {
+                        endOfMonth = daysInMonth(d.getMonth() + nextMonth)
+                        console.log("next month", nextMonth)
+                        return endOfMonth
+                    }
 
-            } 
+                    return (endOfMonth)
+                }
+            }
         }
+        
         return (
         <div 
             className={instructorCal.dayContainer} 
@@ -49,19 +68,23 @@ const InstCalandarView = () => {
             {day}{dayOfWeek()}
             <InstCalandarDay handleLessonDet={handleLessonDet}/>
         </div>)
-        });
-
-  
-        console.log(today)
+        }
+        
+        );
+        
     return (
         <div className={instructorCal.calContainer}>
             <div className={instructorCal.dateSlide}>
-                <button>aro</button>
+                <button
+                    onClick={() =>dispatch(lastWeek(7))}
+                >
+                    aro
+                </button>
                 <label className={instructorCal.slideText}>
                     {today}
                 </label>
                 <button 
-                    onClick={() =>dispatch(nextWeek())}
+                    onClick={() =>dispatch(nextWeek(7))}
                 >
                     aro
                 </button>
@@ -76,6 +99,7 @@ const InstCalandarView = () => {
             </div>
         </div>
         )
+      
     }
 
 export default InstCalandarView
