@@ -4,13 +4,14 @@ import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek, lastWeek } from '../../redux/weekNavSlice'
+import { nextWeek, lastWeek, nextMonthAdvance } from '../../redux/weekNavSlice'
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const InstCalandarView = () => {
 
     const [showLessonDet, setShowLessonDet] = useState(false);
+
 
     const handleLessonDet = (e) => {
             e.preventDefault();
@@ -24,13 +25,11 @@ const InstCalandarView = () => {
             });
     }
 
-   
-   
-
     const today = useSelector(state => state.weekNav.today)
     const nextMonth = useSelector(state => state.weekNav.nextMonth)
     const dispatch = useDispatch()
 
+    const once = false;
     const weekDays = weekDaysArr.map(function(day) {
         
         const d = new Date();
@@ -44,22 +43,18 @@ const InstCalandarView = () => {
         }
        
         const dayOfWeek = () => {
-            for (let i=0; i < 7; i++) {
-                if (weekDaysArr.indexOf(day) === dayNum) {
+            if (weekDaysArr.indexOf(day) === dayNum) {
                 return today
                 } else {
                     const endOfMonth = ((weekDaysArr.indexOf(day) - dayNum) + today)
                     if (endOfMonth <= 0) {
                         endOfMonth = daysInMonth(d.getMonth() + nextMonth)
-                        console.log("next month", nextMonth)
-                        return endOfMonth
+                        console.log("next month", nextMonth)                        
+                        endOfMonth 
                     }
-
-                    return (endOfMonth)
-                }
+                return endOfMonth
             }
         }
-        
         return (
         <div 
             className={instructorCal.dayContainer} 

@@ -33,7 +33,7 @@ const weekNavSlice = createSlice({
            state.today -= action.payload
          },
          nextMonthAdvance(state){
-            state.nextMonth += 1
+            state.nextMonth++
         } 
     },
 });
