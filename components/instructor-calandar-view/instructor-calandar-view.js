@@ -4,14 +4,14 @@ import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek, lastWeek, nextMonthAdvance } from '../../redux/weekNavSlice'
+import { nextWeek, lastWeek, advanceMonthAdvance } from '../../redux/weekNavSlice'
+
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const InstCalandarView = () => {
 
     const [showLessonDet, setShowLessonDet] = useState(false);
-
 
     const handleLessonDet = (e) => {
             e.preventDefault();
@@ -25,11 +25,12 @@ const InstCalandarView = () => {
             });
     }
 
-    const today = useSelector(state => state.weekNav.today)
-    const nextMonth = useSelector(state => state.weekNav.nextMonth)
+    const baseDay = useSelector(state => state.weekNav.baseDay)
+    const month = useSelector(state => state.weekNav.month)
+    const advanceMonth = useSelector(state => state.weekNav.advanceMonth)
     const dispatch = useDispatch()
+   
 
-    const once = false;
     const weekDays = weekDaysArr.map(function(day) {
         
         const d = new Date();
@@ -42,25 +43,53 @@ const InstCalandarView = () => {
             return getDaysInMonth(currentYear, m + 1, 0)
         }
        
-        const dayOfWeek = () => {
+        const dayOfMonth = () => {
             if (weekDaysArr.indexOf(day) === dayNum) {
-                return today
+               // console.log("baseDay", baseDay)
+                return baseDay
                 } else {
-                    const endOfMonth = ((weekDaysArr.indexOf(day) - dayNum) + today)
-                    if (endOfMonth <= 0) {
-                        endOfMonth = daysInMonth(d.getMonth() + nextMonth)
-                        console.log("next month", nextMonth)                        
-                        endOfMonth 
+                    const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
+                   // console.log("dateAdjust", dateAdjust)
+                    if (dateAdjust === 0) {
+                       // console.log("zero day", daysInMonth(d.getMonth( ) + advanceMonth))
+                        const lastDay = (daysInMonth(d.getMonth() + advanceMonth))
+                       // console.log("last day advance", advanceMonth)
+                        return lastDay;
+
+                    } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth)) {
+                        const endOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth)
+                        return endOfMonth;
                     }
-                return endOfMonth
+                    // if  (dateAdjust >= (daysInMonth(d.getMonth() + advanceMonth))) {
+                        
+                    //     dateAdjust = dateAdjust - daysInMonth(d.getMonth() + advanceMonth)
+                    //     console.log("else if", dateAdjust, advanceMonth)   
+
+                    //     if (dateAdjust <= 0) {
+                    //         dispatch(advanceMonthAdvance(1))
+                    //         dateAdjust = daysInMonth(d.getMonth() + advanceMonth)
+                           
+                    //         console.log("next month", dateAdjust, advanceMonth)                    
+                    //         return dateAdjust 
+                    //         } else {
+                    //             return dateAdjust;
+                    //         }
+                    // } 
+                return dateAdjust;
             }
         }
+        console.log("day of month", dayOfMonth())
+        if(dayOfMonth() === 1) {
+            console.log("update advancemonth")
+            advanceMonth++
+           // return dispatch(advanceMonthAdvance(1))
+        };
         return (
         <div 
             className={instructorCal.dayContainer} 
             key={day.toString()}
         >
-            {day}{dayOfWeek()}
+            {day}{dayOfMonth()}
             <InstCalandarDay handleLessonDet={handleLessonDet}/>
         </div>)
         }
@@ -71,19 +100,19 @@ const InstCalandarView = () => {
         <div className={instructorCal.calContainer}>
             <div className={instructorCal.dateSlide}>
                 <button
-                    onClick={() =>dispatch(lastWeek(7))}
+                    onClick={() =>dispatch(advanceMonthAdvance(1))}
                 >
                     aro
                 </button>
                 <label className={instructorCal.slideText}>
-                    {today}
+                    {baseDay}
                 </label>
                 <button 
                     onClick={() =>dispatch(nextWeek(7))}
                 >
                     aro
                 </button>
-                <label>hi</label>
+                <label>{month}</label>
             </div>
             <div className={instructorCal.weekContainer}>
                 {weekDays}
