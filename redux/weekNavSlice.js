@@ -43,7 +43,7 @@ const weekNavSlice = createSlice({
          },
          advanceMonthAdvance(state, action){
              state.advanceMonth += action.payload
-             state.month = monthArr[d.getMonth + state.advanceMonth]
+             state.month = monthArr[d.getMonth() + state.advanceMonth]
              console.log("Advance Month", state.advanceMonth)
         } 
     },
