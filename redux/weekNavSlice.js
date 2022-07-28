@@ -18,7 +18,8 @@ const weekNavSlice = createSlice({
     initialState: {
         baseDay: d.getDate(),
         advanceMonth: 0,
-        month: monthArr[d.getMonth()]
+        month: monthArr[d.getMonth()],
+        year: d.getFullYear(),
 
     },
     reducers: {
@@ -29,9 +30,11 @@ const weekNavSlice = createSlice({
             // console.log("Month", monthArr[d.getMonth() + state.advanceMonth], d.getMonth() + state.advanceMonth)
             // console.log("days in Month", daysInMonth(d.getMonth() + state.advanceMonth))
             // console.log("next week number", state.baseDay + action.payload)
-            if (state.baseDay + action.payload > daysInMonth(d.getMonth() + state.advanceMonth)) {
-                state.baseDay = state.baseDay + action.payload - daysInMonth(d.getMonth() + state.advanceMonth);
+            if (state.baseDay + action.payload > daysInMonth(d.getMonth() + state.advanceMonth )) {
+                state.baseDay = state.baseDay + action.payload - daysInMonth(d.getMonth() + state.advanceMonth );
                 // console.log("in IF state baseDay", state.baseDay)
+                // console.log("in IF state plus payload", state.baseDay + action.payload)
+                // console.log("in if d.getMonth plust state advance month", d.getMonth() + state.advanceMonth)
              } else {
                 state.baseDay +=action.payload;
                 // console.log("in ELSE state baseDay", state.baseDay)
@@ -49,13 +52,17 @@ const weekNavSlice = createSlice({
              state.month = monthArr[d.getMonth() + state.advanceMonth]
              console.log("get plus ad", d.getMonth() + state.advanceMonth)
              console.log("Advance Month", state.advanceMonth)
-        } 
+        } ,
+        advanceYear(state, action){
+            if(state.month === "Jan")
+            state.year += action.payload
+        }
     },
 });
 
 
 const { actions, reducer } = weekNavSlice
-export const { nextWeek, lastWeek, advanceMonthAdvance } = actions
+export const { nextWeek, lastWeek, advanceMonthAdvance, advanceYear } = actions
 export default reducer
 
 //Actions
