@@ -42,48 +42,36 @@ const InstCalandarView = () => {
         const daysInMonth = (m) => {
             return getDaysInMonth(currentYear, m + 1, 0)
         }
-       
         const dayOfMonth = () => {
             if (weekDaysArr.indexOf(day) === dayNum) {
-               // console.log("baseDay", baseDay)
+            //    console.log("baseDay", baseDay)
                 return baseDay
                 } else {
                     const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                   // console.log("dateAdjust", dateAdjust)
+                //    console.log("dateAdjust", dateAdjust)
                     if (dateAdjust === 0) {
-                       // console.log("zero day", daysInMonth(d.getMonth( ) + advanceMonth))
+                    //    console.log("zero day", daysInMonth(d.getMonth( ) + advanceMonth))
                         const lastDay = (daysInMonth(d.getMonth() + advanceMonth))
-                       // console.log("last day advance", advanceMonth)
+                        
+                    //    console.log("last day advance", advanceMonth)
                         return lastDay;
 
                     } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth)) {
                         const endOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth)
                         return endOfMonth;
                     }
-                    // if  (dateAdjust >= (daysInMonth(d.getMonth() + advanceMonth))) {
-                        
-                    //     dateAdjust = dateAdjust - daysInMonth(d.getMonth() + advanceMonth)
-                    //     console.log("else if", dateAdjust, advanceMonth)   
-
-                    //     if (dateAdjust <= 0) {
-                    //         dispatch(advanceMonthAdvance(1))
-                    //         dateAdjust = daysInMonth(d.getMonth() + advanceMonth)
-                           
-                    //         console.log("next month", dateAdjust, advanceMonth)                    
-                    //         return dateAdjust 
-                    //         } else {
-                    //             return dateAdjust;
-                    //         }
-                    // } 
                 return dateAdjust;
             }
         }
-        console.log("day of month", dayOfMonth())
-        if(dayOfMonth() === 1) {
-            console.log("update advancemonth")
-            advanceMonth++
-           // return dispatch(advanceMonthAdvance(1))
-        };
+        // console.log("day of month", dayOfMonth())
+        useEffect(() => {
+            if(dayOfMonth() === 1) {
+                console.log("update advancemonth")
+                // advanceMonth++
+                dispatch(advanceMonthAdvance(1))
+            };
+        }, [dayOfMonth()]);
+
         return (
         <div 
             className={instructorCal.dayContainer} 

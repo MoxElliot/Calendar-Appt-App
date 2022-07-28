@@ -17,24 +17,24 @@ const weekNavSlice = createSlice({
     name: 'weekNav',
     initialState: {
         baseDay: d.getDate(),
-        advanceMonth: 1,
+        advanceMonth: 0,
         month: monthArr[d.getMonth()]
 
     },
     reducers: {
         nextWeek(state, action){
-            console.log("state baseDay", state.baseDay)
-            console.log("state advance", state.advanceMonth)
+            // console.log("state baseDay", state.baseDay)
+            // console.log("state advance", state.advanceMonth)
 
-            console.log("Month", monthArr[d.getMonth() + state.advanceMonth], d.getMonth() + state.advanceMonth)
-            console.log("days in Month", daysInMonth(d.getMonth() + state.advanceMonth))
-            console.log("next week number", state.baseDay + action.payload)
+            // console.log("Month", monthArr[d.getMonth() + state.advanceMonth], d.getMonth() + state.advanceMonth)
+            // console.log("days in Month", daysInMonth(d.getMonth() + state.advanceMonth))
+            // console.log("next week number", state.baseDay + action.payload)
             if (state.baseDay + action.payload > daysInMonth(d.getMonth() + state.advanceMonth)) {
                 state.baseDay = state.baseDay + action.payload - daysInMonth(d.getMonth() + state.advanceMonth);
-                console.log("in IF state baseDay", state.baseDay)
+                // console.log("in IF state baseDay", state.baseDay)
              } else {
                 state.baseDay +=action.payload;
-                console.log("in ELSE state baseDay", state.baseDay)
+                // console.log("in ELSE state baseDay", state.baseDay)
              }
            
         },
@@ -42,8 +42,12 @@ const weekNavSlice = createSlice({
            state.baseDay -= action.payload
          },
          advanceMonthAdvance(state, action){
+            if((d.getMonth() + state.advanceMonth) >= 11) {
+                state.advanceMonth -= 12;
+            }
              state.advanceMonth += action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
+             console.log("get plus ad", d.getMonth() + state.advanceMonth)
              console.log("Advance Month", state.advanceMonth)
         } 
     },
