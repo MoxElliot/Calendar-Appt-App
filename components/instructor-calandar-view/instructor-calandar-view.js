@@ -5,6 +5,7 @@ import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesso
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear } from '../../redux/weekNavSlice'
+import { end, start } from '@popperjs/core';
 
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -44,17 +45,34 @@ const InstCalandarView = () => {
             return getDaysInMonth(currentYear, m + 1, 0)
         }
         const dayOfWeek = () => {
+            
             if (weekDaysArr.indexOf(day) === dayNum) {
+                    //console.log("baseday", baseDay)
+                    if(baseDay===0) {
+                        const lastDay = daysInMonth(d.getMonth() + advanceMonth - 1)
+                        return lastDay
+                    }
+                    // console.log("index of this day", weekDaysArr.indexOf(day))
+                    // console.log("day Num", dayNum)
                 return baseDay
                 } else {
                     const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
                     console.log("dateAdjust", dateAdjust)
-                    console.log("greater than days in this month",daysInMonth(d.getMonth() + advanceMonth - 1))
-                    if (dateAdjust < 0) {
+                    console.log(dispatchCheck)
+                    console.log("baseday", baseDay)
+                    console.log("index of this day", weekDaysArr.indexOf(day))
+                    console.log("day Num", dayNum)
+                    if(dateAdjust > (daysInMonth(d.getMonth() + advanceMonth)) && dispatchCheck === 1) {
+                        const endOfMonth = dateAdjust - (daysInMonth(d.getMonth() + advanceMonth))
+                       // console.log("endOfMonth", endOfMonth)
+                        return endOfMonth
+                    } else if (dateAdjust <= 0) { 
                         const negDay = ( dateAdjust + (daysInMonth(d.getMonth() + advanceMonth - 1)))
+                        //console.log("neg day", negDay)
                         return negDay;
-                    } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth - 1)) {
+                    } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth - 1) && dispatchCheck === 0) {
                         const startOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth - 1)
+                      //  console.log("start of Month", startOfMonth)
                         if (startOfMonth === 0) {
                             startOfMonth++
                         }
@@ -70,11 +88,12 @@ const InstCalandarView = () => {
        
         useEffect(() => {
             //console.log("In use Effect", dayOfWeek())
-            if(dayOfWeek() === 1) {
+            if(dayOfWeek() === 2) {
                 if(dispatchCheck > 0){
                     dispatch(advanceMonthAdvance(1));
-                    dispatch(advanceYear(1));}
-                else if (dispatchCheck < 0) {
+                    dispatch(advanceYear(1));
+                    dispatchCheck=0;
+                } else if (dispatchCheck < 0) {
                     dispatch(reverseMonthAdvance(1));
                 
                 }

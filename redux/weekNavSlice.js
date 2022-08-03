@@ -24,11 +24,19 @@ const weekNavSlice = createSlice({
     },
     reducers: {
         nextWeek(state, action){
-            if (state.baseDay + action.payload > daysInMonth(d.getMonth() + state.advanceMonth )) {
-                state.baseDay = state.baseDay + action.payload - daysInMonth(d.getMonth() + state.advanceMonth );
-             } else {
-                state.baseDay +=action.payload;
-             }
+            // console.log("base day plus 7", state.baseDay + action.payload)
+            // console.log("advance month", state.advanceMonth)
+            // console.log("days in this month", daysInMonth(d.getMonth() + state.advanceMonth ))
+            state.baseDay +=action.payload;
+
+            if(state.baseDay >= daysInMonth(d.getMonth() + state.advanceMonth)) {
+                // console.log("days in month", daysInMonth(d.getMonth() + state.advanceMonth ))
+                // console.log("baseday", state.baseDay)
+                // console.log("today", d.getDate())
+                state.baseDay = state.baseDay - daysInMonth(d.getMonth() + state.advanceMonth)
+            }
+                
+             
            
         },
         lastWeek(state, action){
@@ -44,6 +52,9 @@ const weekNavSlice = createSlice({
             }
              state.advanceMonth += action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
+            //  if(state.baseDay >(d.getMonth() + (state.advanceMonth  ))) {
+            //  state.baseDay = state.baseDay - (d.getMonth() + (state.advanceMonth -1 ))
+            // }
         } ,
         reverseMonthAdvance(state, action){
             if((d.getMonth() + state.advanceMonth) >= 11) {
