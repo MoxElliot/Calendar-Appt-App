@@ -24,39 +24,35 @@ const weekNavSlice = createSlice({
     },
     reducers: {
         nextWeek(state, action){
-            // console.log("base day plus 7", state.baseDay + action.payload)
-            // console.log("advance month", state.advanceMonth)
-            // console.log("days in this month", daysInMonth(d.getMonth() + state.advanceMonth ))
             state.baseDay +=action.payload;
-
+            console.log("next Week")
             if(state.baseDay >= daysInMonth(d.getMonth() + state.advanceMonth)) {
-                // console.log("days in month", daysInMonth(d.getMonth() + state.advanceMonth ))
-                // console.log("baseday", state.baseDay)
-                // console.log("today", d.getDate())
                 state.baseDay = state.baseDay - daysInMonth(d.getMonth() + state.advanceMonth)
             }
-                
-             
-           
         },
         lastWeek(state, action){
-            if (state.baseDay - action.payload < 1 ) {
-                state.baseDay = state.baseDay - action.payload + daysInMonth(d.getMonth() + state.advanceMonth );
-             } else {
-                state.baseDay -=action.payload;
-             }
+            state.baseDay -=action.payload;
+            console.log("last Week")
+            console.log("base day", state.baseDay)
+            console.log("state.advanceMonth", state.advanceMonth)
+            if(state.baseDay < 0) {
+                console.log("last week In IF")
+                state.baseDay = state.baseDay + daysInMonth(d.getMonth() + state.advanceMonth)
+                console.log("state.baseDay", state.baseDay)
+                console.log("days in month", daysInMonth(d.getMonth() + state.advanceMonth))
+                console.log("Month", monthArr[d.getMonth() + state.advanceMonth])
+            }
          },
-         advanceMonthAdvance(state, action){
+        advanceMonthAdvance(state, action){
             if((d.getMonth() + state.advanceMonth) >= 11) {
                  state.advanceMonth -= 12;
             }
-            console.log((d.getMonth() + state.advanceMonth))
              state.advanceMonth += action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
         } ,
         reverseMonthAdvance(state, action){
-            if((d.getMonth() + state.advanceMonth) >= 11) {
-                state.advanceMonth -= 12;
+            if((d.getMonth() + state.advanceMonth) <= 0) {
+                state.advanceMonth += 12;
             }
              state.advanceMonth -= action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
