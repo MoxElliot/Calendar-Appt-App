@@ -5,10 +5,10 @@ import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesso
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear } from '../../redux/weekNavSlice'
-import { end, start } from '@popperjs/core';
 
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const monthArr =['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec']
 let dispatchCheck = 0
 const InstCalandarView = () => {
 
@@ -31,8 +31,8 @@ const InstCalandarView = () => {
     const advanceMonth = useSelector(state => state.weekNav.advanceMonth)
     const year = useSelector(state => state.weekNav.year)
     const dispatch = useDispatch()
-   
-
+    
+        
     const weekDays = weekDaysArr.map(function(day) {
    
         const d = new Date();
@@ -48,6 +48,7 @@ const InstCalandarView = () => {
             
             if (weekDaysArr.indexOf(day) === dayNum) {
                     //console.log("baseday", baseDay)
+                    
                     if(baseDay===0) {
                         const lastDay = daysInMonth(d.getMonth() + advanceMonth - 1)
                         return lastDay
@@ -57,11 +58,11 @@ const InstCalandarView = () => {
                 return baseDay
                 } else {
                     const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                    console.log("dateAdjust", dateAdjust)
-                    console.log(dispatchCheck)
-                    console.log("baseday", baseDay)
-                    console.log("index of this day", weekDaysArr.indexOf(day))
-                    console.log("day Num", dayNum)
+                    // console.log("dateAdjust", dateAdjust)
+                    // console.log(dispatchCheck)
+                    // console.log("baseday", baseDay)
+                    // console.log("index of this day", weekDaysArr.indexOf(day))
+                    // console.log("day Num", dayNum)
                     if(dateAdjust > (daysInMonth(d.getMonth() + advanceMonth)) && dispatchCheck === 1) {
                         const endOfMonth = dateAdjust - (daysInMonth(d.getMonth() + advanceMonth))
                        // console.log("endOfMonth", endOfMonth)
@@ -111,7 +112,7 @@ const InstCalandarView = () => {
         }
         
         );
-       
+   
     return (
         <div className={instructorCal.calContainer}>
             <div className={instructorCal.dateSlide}>

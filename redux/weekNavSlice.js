@@ -48,13 +48,11 @@ const weekNavSlice = createSlice({
          },
          advanceMonthAdvance(state, action){
             if((d.getMonth() + state.advanceMonth) >= 11) {
-                state.advanceMonth -= 12;
+                 state.advanceMonth -= 12;
             }
+            console.log((d.getMonth() + state.advanceMonth))
              state.advanceMonth += action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
-            //  if(state.baseDay >(d.getMonth() + (state.advanceMonth  ))) {
-            //  state.baseDay = state.baseDay - (d.getMonth() + (state.advanceMonth -1 ))
-            // }
         } ,
         reverseMonthAdvance(state, action){
             if((d.getMonth() + state.advanceMonth) >= 11) {
