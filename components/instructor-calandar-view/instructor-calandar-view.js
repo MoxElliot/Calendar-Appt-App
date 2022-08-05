@@ -47,23 +47,33 @@ const InstCalandarView = () => {
         const dayOfWeek = () => {
             
             if (weekDaysArr.indexOf(day) === dayNum) {
+                    //console.log("baseday", baseDay)
+                    
                     if(baseDay===0) {
                         const lastDay = daysInMonth(d.getMonth() + advanceMonth - 1)
                         return lastDay
                     }
-                    console.log("baseday", baseDay)
+                    // console.log("index of this day", weekDaysArr.indexOf(day))
+                    // console.log("day Num", dayNum)
                 return baseDay
-                } else if(dispatchCheck >= 0){
+                } else {
                     const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                    console.log("dispatch > 0")
+                    // console.log("dateAdjust", dateAdjust)
+                    // console.log(dispatchCheck)
+                    // console.log("baseday", baseDay)
+                    // console.log("index of this day", weekDaysArr.indexOf(day))
+                    // console.log("day Num", dayNum)
                     if(dateAdjust > (daysInMonth(d.getMonth() + advanceMonth)) && dispatchCheck === 1) {
                         const endOfMonth = dateAdjust - (daysInMonth(d.getMonth() + advanceMonth))
+                       // console.log("endOfMonth", endOfMonth)
                         return endOfMonth
                     } else if (dateAdjust <= 0) { 
                         const negDay = ( dateAdjust + (daysInMonth(d.getMonth() + advanceMonth - 1)))
+                        //console.log("neg day", negDay)
                         return negDay;
                     } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth - 1) && dispatchCheck === 0) {
                         const startOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth - 1)
+                      //  console.log("start of Month", startOfMonth)
                         if (startOfMonth === 0) {
                             startOfMonth++
                         }
@@ -74,30 +84,21 @@ const InstCalandarView = () => {
     
                     }
                 return dateAdjust;
-            } else if(dispatchCheck < 0){
-                const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                //console.log("dateAdjust", dateAdjust)
-                if (dateAdjust <= 0) {
-                    console.log("startof month",monthArr[d.getMonth() + advanceMonth] )
-
-                    const startOfMonth = dateAdjust + daysInMonth(d.getMonth() + advanceMonth)
-                  
-                    return startOfMonth
-                }
-            return dateAdjust;
+            }
         }
-        }
-       console.log("dayofWeek", dayOfWeek())
+       
         useEffect(() => {
-                if(dispatchCheck > 0 && dayOfWeek() === 2){
+            //console.log("In use Effect", dayOfWeek())
+            if(dayOfWeek() === 2) {
+                if(dispatchCheck > 0){
                     dispatch(advanceMonthAdvance(1));
                     dispatch(advanceYear(1));
                     dispatchCheck=0;
-                } else if (dispatchCheck < 0 && dayOfWeek() === 28) {
-                    console.log("reverse Month useeffect")
+                } else if (dispatchCheck < 0) {
                     dispatch(reverseMonthAdvance(1));
-                   // dispatchCheck = 0;
-                };
+                
+                }
+            };
         }, [baseDay]);
 
         return (
