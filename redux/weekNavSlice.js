@@ -25,23 +25,18 @@ const weekNavSlice = createSlice({
     reducers: {
         nextWeek(state, action){
             state.baseDay +=action.payload;
-            console.log("next Week")
-            if(state.baseDay >= daysInMonth(d.getMonth() + state.advanceMonth)) {
-                state.baseDay = state.baseDay - daysInMonth(d.getMonth() + state.advanceMonth)
+            if(state.baseDay > daysInMonth(d.getMonth() + (state.advanceMonth - 1))) {
+                console.log("Next Week if baseday > days in last month ")
+                
+                state.baseDay = state.baseDay - daysInMonth(d.getMonth() + (state.advanceMonth - 1))
             }
+            console.log("Next Week bD", state.baseDay)
         },
         lastWeek(state, action){
-            state.baseDay -=action.payload;
-            console.log("last Week")
-            console.log("base day", state.baseDay)
-            console.log("state.advanceMonth", state.advanceMonth)
-            if(state.baseDay < 0) {
-                console.log("last week In IF")
-                state.baseDay = state.baseDay + daysInMonth(d.getMonth() + state.advanceMonth)
-                console.log("state.baseDay", state.baseDay)
-                console.log("days in month", daysInMonth(d.getMonth() + state.advanceMonth))
-                console.log("Month", monthArr[d.getMonth() + state.advanceMonth])
-            }
+            // state.baseDay -=action.payload;
+            // if(state.baseDay < 0) {
+            //     state.baseDay = state.baseDay + daysInMonth(d.getMonth() + state.advanceMonth)
+            // }
          },
         advanceMonthAdvance(state, action){
             if((d.getMonth() + state.advanceMonth) >= 11) {
@@ -49,14 +44,17 @@ const weekNavSlice = createSlice({
             }
              state.advanceMonth += action.payload
              state.month = monthArr[d.getMonth() + state.advanceMonth]
+             console.log("advanceMonth in SLICE",state.advanceMonth)
+             console.log("Month in Slice", state.month)
+             console.log("Month NUMBER in Slice", d.getMonth()+ state.advanceMonth)
         } ,
-        reverseMonthAdvance(state, action){
-            if((d.getMonth() + state.advanceMonth) <= 0) {
-                state.advanceMonth += 12;
-            }
-             state.advanceMonth -= action.payload
-             state.month = monthArr[d.getMonth() + state.advanceMonth]
-        } ,
+        // reverseMonthAdvance(state, action){
+        //     if((d.getMonth() + state.advanceMonth) <= 0) {
+        //         state.advanceMonth += 12;
+        //     }
+        //      state.advanceMonth -= action.payload
+        //      state.month = monthArr[d.getMonth() + state.advanceMonth]
+        //} ,
         advanceYear(state, action){
             if(state.month === "Jan")
             state.year += action.payload

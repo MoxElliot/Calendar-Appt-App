@@ -44,53 +44,61 @@ const InstCalandarView = () => {
         const daysInMonth = (m) => {
             return getDaysInMonth(currentYear, m + 1, 0)
         }
+        const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay) 
+        
         const dayOfWeek = () => {
-            
+           // console.log("dateAdjust", dateAdjust)
             if (weekDaysArr.indexOf(day) === dayNum) {
-                    if(baseDay===0) {
-                        const lastDay = daysInMonth(d.getMonth() + advanceMonth - 1)
-                        return lastDay
-                    }
-                    console.log("baseday", baseDay)
+                // console.log("dayNum", dayNum)
+                // console.log("baseDay", baseDay)
+                // console.log("weekdayarr = dayNum")
+                if(baseDay===0) {
+                    const lastDay = daysInMonth(d.getMonth() + advanceMonth - 1) //advanceMonth is one behind so this is LAST month
+                    //console.log("baseday==0 lastday", lastDay)
+                    return lastDay
+                }
+       
                 return baseDay
-                } else if(dispatchCheck >= 0){
-                    const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                    
-                    if(dateAdjust > (daysInMonth(d.getMonth() + advanceMonth)) && dispatchCheck === 1) {
-                        const endOfMonth = dateAdjust - (daysInMonth(d.getMonth() + advanceMonth))
-                        return endOfMonth
-                    } else if (dateAdjust <= 0) { 
-                        const negDay = ( dateAdjust + (daysInMonth(d.getMonth() + advanceMonth - 1)))
-                        return negDay;
-                    } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth - 1) && dispatchCheck === 0) {
-                        const startOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth - 1)
-                        if (startOfMonth === 0) {
-                            startOfMonth++
-                        }
-                        return startOfMonth;
-                    } else if (dateAdjust === 0) {
-                            const lastDay = (daysInMonth(d.getMonth() + advanceMonth))
-                            return lastDay;
-    
-                    }
+
+            } else if (dateAdjust > daysInMonth(d.getMonth() + advanceMonth-1)) { //advance month is ahead
+                const startOfMonth = dateAdjust - daysInMonth(d.getMonth() + advanceMonth-1)
+                // console.log("startofMonth", startOfMonth)
+                // console.log("SoM Days in Month", daysInMonth(d.getMonth() + advanceMonth-1))
+                // console.log("ADVANCE MONTH startofMonth", advanceMonth)
+                if (startOfMonth === 0) {
+                    startOfMonth++
+            //        console.log("startofMonth ++ ", startOfMonth)
+                }
+                return startOfMonth; 
+            // } else if (dateAdjust <= 0) { 
+            //     const negDay = ( dateAdjust + (daysInMonth(d.getMonth() + advanceMonth - 1)))
+            //     console.log("neg day", negDay)
+            //     return negDay;
+            // } else if(dateAdjust > daysInMonth(d.getMonth() + (advanceMonth - 1))) {
+            //     const endOfMonth = dateAdjust - (daysInMonth(d.getMonth() + (advanceMonth - 1)))
+            //     console.log("end of month", endOfMonth)
+            //     return endOfMonth
+            // } else if (dateAdjust === 0) {
+            //     const lastDay = (daysInMonth(d.getMonth() + advanceMonth))
+            //     console.log("date adjust == 0 lastday ", lastDay)
+            //     return lastDay;
+            } 
                 return dateAdjust;
-            } else if(dispatchCheck < 0){
-                const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-                console.log("dateAdjust", dateAdjust)
-            return dateAdjust;
-        }
+            
+            
         }
        
         useEffect(() => {
-           
-                if(dayOfWeek() === 2 && dispatchCheck > 0){
-                    dispatch(advanceMonthAdvance(1));
-                    dispatch(advanceYear(1));
-                    dispatchCheck=0;
-                } else if (dispatchCheck < 0) {
-                    dispatch(reverseMonthAdvance(1));
-                
-                }
+            if(dateAdjust === daysInMonth(d.getMonth() + advanceMonth + 1) && dispatchCheck > 0){ //advanceMonth is one behind
+                dispatch(advanceMonthAdvance(1));
+                dispatch(advanceYear(1));
+                dispatchCheck=0;
+            } 
+            console.log("advanceMonth in USE EFFECT", advanceMonth)
+            // else if (dispatchCheck < 0) {
+            //     dispatch(reverseMonthAdvance(1));
+            
+            // }
         
         }, [baseDay]);
 
@@ -113,7 +121,6 @@ const InstCalandarView = () => {
                     onClick={() =>{
                         dispatch(lastWeek(7))
                         dispatchCheck = -1;
-                        console.log("dispatch", dispatchCheck)
                         return dispatchCheck;
                         }
                     }
@@ -127,7 +134,7 @@ const InstCalandarView = () => {
                     onClick={() =>{
                         dispatch(nextWeek(7))
                         dispatchCheck = 1;
-                        console.log("dispatch", dispatchCheck)
+                        console.log("dispatchCheck", dispatchCheck)
                         return dispatchCheck;
                         } 
                     }
