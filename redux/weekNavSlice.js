@@ -17,7 +17,6 @@ const weekNavSlice = createSlice({
     name: 'weekNav',
     initialState: {
         baseDay: d.getDate(),
-        advanceMonth: 0,
         month: d.getMonth(),
         year: d.getFullYear(),
 
@@ -26,17 +25,10 @@ const weekNavSlice = createSlice({
         nextWeek(state, action){
             console.log("Next Week bD", state.baseDay)
             state.baseDay +=action.payload;
-            // if(state.baseDay > daysInMonth(d.getMonth() + (state.month-1))) {
-            //     console.log("Next Week if baseday > days in THIS month ")
-                
-            //     state.baseDay = state.baseDay - daysInMonth(d.getMonth() + (state.month-1))
-            // }
         },
         lastWeek(state, action){
-            // state.baseDay -=action.payload;
-            // if(state.baseDay < 0) {
-            //     state.baseDay = state.baseDay + daysInMonth(d.getMonth() + state.advanceMonth)
-            // }
+            state.baseDay -=action.payload;
+            console.log("LAst Week")
          },
         advanceMonthAdvance(state, action){
             if((state.month) >= 11) {
@@ -44,28 +36,31 @@ const weekNavSlice = createSlice({
             }
              state.month += action.payload
              state.baseDay -= daysInMonth(state.month-1)
-             //state.month = monthArr[d.getMonth() + state.advanceMonth]
-
              console.log("Month in Slice", state.month)
     
         } ,
-        // reverseMonthAdvance(state, action){
-        //     if((d.getMonth() + state.advanceMonth) <= 0) {
-        //         state.advanceMonth += 12;
-        //     }
-        //      state.advanceMonth -= action.payload
-        //      state.month = monthArr[d.getMonth() + state.advanceMonth]
-        //} ,
+        reverseMonthAdvance(state, action){
+            if((state.month) <= 0) {
+                state.month += 11;
+           }
+            state.month -= action.payload
+            state.baseDay += daysInMonth(state.month)
+            console.log("Month in Slice", state.month)
+        } ,
         advanceYear(state, action){
             if(state.month === 0)
             state.year += action.payload
+        },
+        reverseYear(state, action){
+            if(state.month === 11)
+            state.year -= action.payload
         }
     },
 });
 
 
 const { actions, reducer } = weekNavSlice
-export const { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear } = actions
+export const { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear, reverseYear } = actions
 export default reducer
 
 //Actions
