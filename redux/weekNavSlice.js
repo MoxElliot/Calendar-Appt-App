@@ -18,17 +18,17 @@ const weekNavSlice = createSlice({
     initialState: {
         baseDay: d.getDate(),
         advanceMonth: 0,
-        month: monthArr[d.getMonth()],
+        month: d.getMonth(),
         year: d.getFullYear(),
 
     },
     reducers: {
         nextWeek(state, action){
             state.baseDay +=action.payload;
-            if(state.baseDay > daysInMonth(d.getMonth() + (state.advanceMonth - 1))) {
-                console.log("Next Week if baseday > days in last month ")
+            if(state.baseDay > daysInMonth(d.getMonth() + (state.month-1))) {
+                console.log("Next Week if baseday > days in THIS month ")
                 
-                state.baseDay = state.baseDay - daysInMonth(d.getMonth() + (state.advanceMonth - 1))
+                state.baseDay = state.baseDay - daysInMonth(d.getMonth() + (state.month-1))
             }
             console.log("Next Week bD", state.baseDay)
         },
@@ -39,14 +39,14 @@ const weekNavSlice = createSlice({
             // }
          },
         advanceMonthAdvance(state, action){
-            if((d.getMonth() + state.advanceMonth) >= 11) {
-                 state.advanceMonth -= 12;
+            if((state.month) > 11) {
+                 state.month -= 11;
             }
-             state.advanceMonth += action.payload
-             state.month = monthArr[d.getMonth() + state.advanceMonth]
-             console.log("advanceMonth in SLICE",state.advanceMonth)
+             state.month += action.payload
+             //state.month = monthArr[d.getMonth() + state.advanceMonth]
+
              console.log("Month in Slice", state.month)
-             console.log("Month NUMBER in Slice", d.getMonth()+ state.advanceMonth)
+    
         } ,
         // reverseMonthAdvance(state, action){
         //     if((d.getMonth() + state.advanceMonth) <= 0) {
@@ -56,7 +56,7 @@ const weekNavSlice = createSlice({
         //      state.month = monthArr[d.getMonth() + state.advanceMonth]
         //} ,
         advanceYear(state, action){
-            if(state.month === "Jan")
+            if(state.month === 0)
             state.year += action.payload
         }
     },
