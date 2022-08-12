@@ -17,6 +17,7 @@ const weekNavSlice = createSlice({
     name: 'weekNav',
     initialState: {
         baseDay: d.getDate(),
+        advanceMonth: 0,
         month: d.getMonth(),
         year: d.getFullYear(),
 
@@ -27,8 +28,7 @@ const weekNavSlice = createSlice({
             state.baseDay +=action.payload;
         },
         lastWeek(state, action){
-            state.baseDay -=action.payload;
-            console.log("LAst Week")
+           
          },
         advanceMonthAdvance(state, action){
             if((state.month) >= 11) {
@@ -36,16 +36,6 @@ const weekNavSlice = createSlice({
             }
              state.month += action.payload
              state.baseDay -= daysInMonth(state.month-1)
-             console.log("Month in Slice", state.month)
-    
-        } ,
-        reverseMonthAdvance(state, action){
-            if((state.month) <= 0) {
-                state.month += 11;
-           }
-            state.month -= action.payload
-            state.baseDay += daysInMonth(state.month)
-            console.log("Month in Slice", state.month)
         } ,
         advanceYear(state, action){
             if(state.month === 0)
@@ -60,9 +50,5 @@ const weekNavSlice = createSlice({
 
 
 const { actions, reducer } = weekNavSlice
-export const { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear, reverseYear } = actions
+export const { nextWeek, lastWeek, advanceMonthAdvance, advanceYear } = actions
 export default reducer
-
-//Actions
- 
-
