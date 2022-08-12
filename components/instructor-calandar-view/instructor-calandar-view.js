@@ -4,7 +4,7 @@ import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
 import LessonCalControl from './lesson-calandar-control';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextWeek, lastWeek, advanceMonthAdvance, reverseMonthAdvance, advanceYear } from '../../redux/weekNavSlice'
+import { nextWeek, lastWeek, advanceMonth, advanceYear } from '../../redux/weekNavSlice'
 
 
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -28,7 +28,6 @@ const InstCalandarView = () => {
 
     const baseDay = useSelector(state => state.weekNav.baseDay)
     const month = useSelector(state => state.weekNav.month)
-    const advanceMonth = useSelector(state => state.weekNav.advanceMonth)
     const year = useSelector(state => state.weekNav.year)
     const dispatch = useDispatch()
     
@@ -40,7 +39,7 @@ const InstCalandarView = () => {
         const getDaysInMonth = (year, month) => {
             return new Date(year, month, 0).getDate();
         }
-        // const currentYear = d.getFullYear()
+
         const daysInMonth = (m) => {
             return getDaysInMonth(year, m + 1, 0)
         }
@@ -78,7 +77,7 @@ const InstCalandarView = () => {
        console.log(dayOfWeek())
         useEffect(() => {
             if(dayOfWeek() > daysInMonth(month) && dispatchCheck > 0){ //month is accurate
-                dispatch(advanceMonthAdvance(1));
+                dispatch(advanceMonth(1));
                 dispatch(advanceYear(1));
                 dispatchCheck=0;
             } 

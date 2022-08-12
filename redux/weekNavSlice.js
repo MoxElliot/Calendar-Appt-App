@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const monthArr =['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec']
 let d = new Date();
 const getDaysInMonth = (year, month, m) => {
     return new Date(year, month, 0).getDate();
@@ -17,7 +14,7 @@ const weekNavSlice = createSlice({
     name: 'weekNav',
     initialState: {
         baseDay: d.getDate(),
-        advanceMonth: 0,
+
         month: d.getMonth(),
         year: d.getFullYear(),
 
@@ -30,7 +27,7 @@ const weekNavSlice = createSlice({
         lastWeek(state, action){
            
          },
-        advanceMonthAdvance(state, action){
+        advanceMonth(state, action){
             if((state.month) >= 11) {
                  state.month -= 12;
             }
@@ -50,5 +47,5 @@ const weekNavSlice = createSlice({
 
 
 const { actions, reducer } = weekNavSlice
-export const { nextWeek, lastWeek, advanceMonthAdvance, advanceYear } = actions
+export const { nextWeek, lastWeek, advanceMonth, advanceYear } = actions
 export default reducer
