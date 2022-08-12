@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { undoReducer } from '../reducers/undoReducer'
 
 let d = new Date();
 const getDaysInMonth = (year, month, m) => {
@@ -16,15 +17,27 @@ const weekNavSlice = createSlice({
         baseDay: d.getDate(),
         month: d.getMonth(),
         year: d.getFullYear(),
+        
+            pastBaseDay: [d.getDate()],
+            pastMonth: [],
+            pastYear: [],
+        
 
     },
     reducers: {
         nextWeek(state, action){
-            console.log("Next Week bD", state.baseDay)
+       
             state.baseDay +=action.payload;
+            state.pastBaseDay= [...state.pastBaseDay, state.baseDay]
+            console.log("pastBaseDay", state.pastBaseDay)
         },
-        lastWeek(state, action){
-           
+        lastWeek(state){
+            const newPastBaseDay = state.pastBaseDay[state.pastBaseDay.length - 1];
+            const lastBaseDay = state.pastBaseDay.slice(0, state.pastBaseDay.length - 1);
+            console.log("new pastBaseDay day", newPastBaseDay);
+            console.log("new base day", lastBaseDay);
+            state.baseDay = newPastBaseDay
+            state.pastBaseDay = lastBaseDay
          },
         advanceMonth(state, action){
             if((state.month) >= 11) {
@@ -37,14 +50,11 @@ const weekNavSlice = createSlice({
             if(state.month === 0)
             state.year += action.payload
         },
-        reverseYear(state, action){
-            if(state.month === 11)
-            state.year -= action.payload
-        }
     },
 });
 
 
-const { actions, reducer } = weekNavSlice
-export const { nextWeek, lastWeek, advanceMonth, advanceYear } = actions
-export default reducer
+
+const { actions, reducer } = weekNavSlice;
+export const { nextWeek, lastWeek, advanceMonth, advanceYear } = actions;
+export default reducer;
