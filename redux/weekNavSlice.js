@@ -14,7 +14,6 @@ const weekNavSlice = createSlice({
     name: 'weekNav',
     initialState: {
         baseDay: d.getDate(),
-
         month: d.getMonth(),
         year: d.getFullYear(),
 
