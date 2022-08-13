@@ -46,28 +46,33 @@ const InstCalandarView = () => {
         
         const dayOfWeek = () => {
             const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
-
+            console.log("baseDay", baseDay)
+            console.log("dateAdjust", dateAdjust)
+            console.log("dayNum", dayNum)
+            console.log("weekDaysArr.indexOf(Day)", weekDaysArr.indexOf(day))
             if (weekDaysArr.indexOf(day) === dayNum) {  // For today
                 const today = baseDay 
+                console.log("today", today)
                 return today
-
             } else if (weekDaysArr.indexOf(day) > dayNum) {  //For all days ahead of today
                 const daysAhead = dateAdjust
                 if (daysAhead > daysInMonth(month)) { //At the end of the month when the days ahead of today are in the next month
                     daysAhead = daysAhead - daysInMonth(month) //the month is accurate
+                    console.log("daysAhead", daysAhead)
                     return daysAhead
                 }
                 return daysAhead
             } else if (weekDaysArr.indexOf(day) < dayNum) { //For all days behind today
                 const daysBehind = dateAdjust
+                console.log("daysBehind", daysBehind)
                 if (daysBehind <= 0) { //At the beginning of the month when the days behind today are in the last month 
                     daysBehind += daysInMonth(month-1) //the month is accurate so last month is -1
+                    console.log("daysBehind <= 0", daysBehind)
                     return daysBehind
                 }
                 return daysBehind
             }
-            console.log("today", today, "daysAhead", daysAhead, "daysBehind", daysBehind)
-            
+        
         }
        
         useEffect(() => {

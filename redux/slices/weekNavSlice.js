@@ -17,22 +17,22 @@ const weekNavSlice = createSlice({
         month: d.getMonth(),
         year: d.getFullYear(),
         
-            pastBaseDayArr: [d.getDate()],
-            pastMonthArr: [d.getMonth()],
-            pastYearArr: [d.getFullYear()],
-        
-
+        pastBaseDayArr: [d.getDate()],
+        pastMonthArr: [d.getMonth()],
+        pastYearArr: [d.getFullYear()],
     },
     reducers: {
         nextWeek(state, action){
-       
             state.baseDay +=action.payload;
+
             state.pastBaseDayArr = [...state.pastBaseDayArr, state.baseDay]
-            console.log("pastBaseDayArr", state.pastBaseDayArr)
+           console.log("pastBaseDayArr", state.pastBaseDayArr)
+            
             state.pastMonthArr = [...state.pastMonthArr, state.month]
-            console.log("pastMonthArr", state.pastMonthArr)
+          //  console.log("pastMonthArr", state.pastMonthArr)
+
             state.pastYearArr = [...state.pastYearArr, state.year]
-            console.log("pastYearArr", state.pastYearArr)
+          //  console.log("pastYearArr", state.pastYearArr)
         },
         lastWeek(state){
             if (state.pastBaseDayArr.length > 1 || state.pastMonthArr.length > 1 ||state.pastYearArr.length > 1 ) {
@@ -50,12 +50,14 @@ const weekNavSlice = createSlice({
                 console.log("new base day", lastBaseDay);
                 state.baseDay = newPastBaseDay
                 state.pastBaseDayArr = lastBaseDay
-                console.log("newPastMonth", newPastMonth);
-                console.log("lastMonth", lastMonth);
+
+                // console.log("newPastMonth", newPastMonth);
+                // console.log("lastMonth", lastMonth);
                 state.month = newPastMonth
                 state.pastMonthArr = lastMonth
-                console.log("newPastYear", newPastYear);
-                console.log("lastYear", lastYear);
+
+                // console.log("newPastYear", newPastYear);
+                // console.log("lastYear", lastYear);
                 state.year = newPastYear
                 state.pastYearArr = lastYear
             } else {
