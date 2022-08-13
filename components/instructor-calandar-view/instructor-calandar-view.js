@@ -66,7 +66,7 @@ const InstCalandarView = () => {
                 }
                 return daysBehind
             }
-            
+            console.log("today", today, "daysAhead", daysAhead, "daysBehind", daysBehind)
             
         }
        
