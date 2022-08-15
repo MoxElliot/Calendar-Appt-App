@@ -46,8 +46,8 @@ const weekNavSlice = createSlice({
                 const newPastYear = state.pastYearArr[state.pastYearArr.length - 2];
                 const lastYear = state.pastYearArr.slice(0, state.pastYearArr.length - 1);
     
-                console.log("new pastBaseDay day", newPastBaseDay);
-                console.log("new base day", lastBaseDay);
+                // console.log("new pastBaseDay day", newPastBaseDay);
+                // console.log("new base day", lastBaseDay);
                 state.baseDay = newPastBaseDay
                 state.pastBaseDayArr = lastBaseDay
 
