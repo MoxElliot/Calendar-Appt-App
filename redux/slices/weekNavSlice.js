@@ -26,13 +26,11 @@ const weekNavSlice = createSlice({
             state.baseDay +=action.payload;
 
             state.pastBaseDayArr = [...state.pastBaseDayArr, state.baseDay]
-           console.log("pastBaseDayArr", state.pastBaseDayArr)
             
             state.pastMonthArr = [...state.pastMonthArr, state.month]
-          //  console.log("pastMonthArr", state.pastMonthArr)
 
             state.pastYearArr = [...state.pastYearArr, state.year]
-          //  console.log("pastYearArr", state.pastYearArr)
+
         },
         lastWeek(state){
             if (state.pastBaseDayArr.length > 1 || state.pastMonthArr.length > 1 ||state.pastYearArr.length > 1 ) {
@@ -46,28 +44,21 @@ const weekNavSlice = createSlice({
                 const newPastYear = state.pastYearArr[state.pastYearArr.length - 2];
                 const lastYear = state.pastYearArr.slice(0, state.pastYearArr.length - 1);
     
-                // console.log("new pastBaseDay day", newPastBaseDay);
-                // console.log("new base day", lastBaseDay);
                 state.baseDay = newPastBaseDay
                 state.pastBaseDayArr = lastBaseDay
 
-                // console.log("newPastMonth", newPastMonth);
-                // console.log("lastMonth", lastMonth);
                 state.month = newPastMonth
                 state.pastMonthArr = lastMonth
 
-                // console.log("newPastYear", newPastYear);
-                // console.log("lastYear", lastYear);
                 state.year = newPastYear
                 state.pastYearArr = lastYear
             } else {
                 console.log("This is the END")
-                
             }
          },
         advanceMonth(state, action){
             if((state.month) >= 11) {
-                 state.month -= 12;
+                state.month -= 12;
             }
              state.month += action.payload
              state.baseDay -= daysInMonth(state.month-1)
@@ -78,8 +69,6 @@ const weekNavSlice = createSlice({
         },
     },
 });
-
-
 
 const { actions, reducer } = weekNavSlice;
 export const { nextWeek, lastWeek, advanceMonth, advanceYear } = actions;
