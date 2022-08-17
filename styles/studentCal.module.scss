@@ -13,13 +13,13 @@ $calItemInner-color: #c9328f;
     align-items: center;
     justify-content: center;
     width: 80vw;
-    height: 45vh;
+    height: 85vh;
 
     .weekContainer {
         display:flex;
         background-color: $calComponent-color;
         width: 90%;
-        height: 80%;
+        height: 40%;
         margin-top: .7rem;
         align-items: center;
         justify-content: space-evenly;
@@ -53,6 +53,40 @@ $calItemInner-color: #c9328f;
         .slideText {
             display: flex;
             align-items: center;
+        }
+    }
+    .controlContainer {
+        display: flex;
+        width: 90%;
+        height: 35%;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        .lessonControl {
+            background-color: $calItem-color;
+            width: 50%;
+            padding: .3rem;
+            #lessonControlEle {
+                padding-bottom: .5rem;
+                #lessonControlP{
+                    padding-bottom:.2rem;
+                    padding-left:.4rem;
+                    text-decoration: underline;
+                    font-weight: bold;
+                }
+            }
+            .studentSelect {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        .lessonControlBottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .lessonControlBtn {
+                align-self: flex-end;
+            }
         }
     }
     

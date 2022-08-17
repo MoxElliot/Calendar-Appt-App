@@ -10,6 +10,7 @@ import { nextWeek, lastWeek, advanceMonth, advanceYear } from '../../redux/slice
 const weekDaysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthArr =['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec']
 let dispatchCheck = 0
+
 const InstCalandarView = () => {
 
     const [showLessonDet, setShowLessonDet] = useState(false);
@@ -31,7 +32,7 @@ const InstCalandarView = () => {
     const year = useSelector(state => state.weekNav.year)
     const dispatch = useDispatch()
     
-    const weekDays = weekDaysArr.map(function(day) {
+    const weekDays = weekDaysArr.map((day) => {
    
         const d = new Date();
         const dayNum = d.getDay()

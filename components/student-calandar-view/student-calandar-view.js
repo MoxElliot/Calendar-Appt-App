@@ -1,31 +1,134 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import studentCal from '../../styles/studentCal.module.scss';
 import StudCalandarDay from './studCal-day';
+import StudentLessonDetail from '../student-lesson-detail/student-lesson-detail';
+import { useSelector, useDispatch } from 'react-redux';
+import { nextWeek, lastWeek, advanceMonth, advanceYear } from '../../redux/slices/weekNavSlice'
 
 
 const weekDaysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+const monthArr =['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec']
+let dispatchCheck = 0
 
 const StudCalandarView = () => {
-  
-        const weekDays = weekDaysArr.map((day) =>
-            <div className={studentCal.dayContainer} key={day.toString()}>{day}<StudCalandarDay /></div>
-            )
+
+    const [showLessonDet, setShowLessonDet] = useState(false);
+
+    const handleLessonDet = (e) => {
+            e.preventDefault();
+            setShowLessonDet((showLessonDet) =>{
+              
+                if(showLessonDet) {
+                    setShowLessonDet(false)
+                } else {
+                    setShowLessonDet(true)
+                }
+            });
+    }
+
+    const baseDay = useSelector(state => state.weekNav.baseDay)
+    const month = useSelector(state => state.weekNav.month)
+    const year = useSelector(state => state.weekNav.year)
+    const dispatch = useDispatch()
+
+    const weekDays = weekDaysArr.map((day) =>{
+
+        const d = new Date();
+        const dayNum = d.getDay()
+        const getDaysInMonth = (year, month) => {
+            return new Date(year, month, 0).getDate();
+        }
+
+        const daysInMonth = (m) => {
+            return getDaysInMonth(year, m + 1, 0)
+        }
+        
+        const dayOfWeek = () => {
+            const dateAdjust = ((weekDaysArr.indexOf(day) - dayNum) + baseDay)
+
+            if (weekDaysArr.indexOf(day) === dayNum) {  // For today
+                const today = baseDay 
+                if(today > daysInMonth(month)) {
+                    today -= daysInMonth(month)
+                }
+
+                return today
+            } else if (weekDaysArr.indexOf(day) > dayNum || baseDay > daysInMonth(month)) {  //For all days ahead of today
+                const daysAhead = dateAdjust
+                if (daysAhead > daysInMonth(month)) { //At the end of the month when the days ahead of today are in the next month
+                    daysAhead = daysAhead - daysInMonth(month) //the month is accurate
+
+                    return daysAhead
+                }
+                return daysAhead
+            } else if (weekDaysArr.indexOf(day) < dayNum || baseDay < 0  ) { //For all days behind today
+                const daysBehind = dateAdjust
+
+                if (daysBehind <= 0) { //At the beginning of the month when the days behind today are in the last month 
+                    daysBehind += daysInMonth(month-1) //the month is accurate so last month is -1
+
+                    return daysBehind
+                }
+                return daysBehind
+            }
+        
+        }
+       
+        useEffect(() => {
+            if(baseDay > daysInMonth(month) && dispatchCheck > 0){ //month is accurate
+                dispatch(advanceMonth(1));
+                dispatch(advanceYear(1));
+                dispatchCheck=0;
+            } 
+        }, [baseDay]);
+
+        return (
+        <div 
+            className={studentCal.dayContainer} 
+            key={day.toString()}
+        >
+            {day}{dayOfWeek()}
+            <StudCalandarDay handleLessonDet={handleLessonDet}/>
+        </div>)
+        }
+    
+        );
 
         return (
             <div className={studentCal.calContainer}>
                 <div className={studentCal.dateSlide}>
-                    <div>aro</div>
-                    <div className={studentCal.slideText}>
-                        <p>Week of August 7th</p>
-                       
-                    </div>
-                    <div>aro</div>
+                <button
+                    onClick={() =>{
+                        dispatch(lastWeek())
+                        dispatchCheck = -1;
+                        return dispatchCheck;
+                        }
+                    }
+                >
+                    aro
+                </button>
+                <label className={studentCal.slideText}>
+                    {baseDay}
+                </label>
+                <button 
+                    onClick={() =>{
+                        dispatch(nextWeek(7))
+                        dispatchCheck = 1;
+                        return dispatchCheck;
+                        } 
+                    }
+                >
+                    aro
+                </button>
+                <label>{monthArr[month]} {year}</label>
                 </div>
                 <div className={studentCal.weekContainer}>
                     {weekDays}
                 </div> 
                 <p>Select available less time to request booking</p>
+                <div className={studentCal.controlContainer}>
+                <StudentLessonDetail showLessonDet={showLessonDet}/>
+                </div>
             </div>
         )
     }
