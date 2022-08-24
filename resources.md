@@ -23,3 +23,20 @@ https://programmingwithmosh.com/react/build-a-react-calendar-component-from-scra
 https://www.w3schools.com/js/js_date_methods.asp
 https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
 https://justacoding.blog/react-calendar-component-example-with-events/
+
+**Mongo Resources**
+MERN Setup (MongoDB form submission) 
+https://www.mongodb.com/languages/mern-stack-tutorial4
+
+Used this one ->> Next.js Setup
+https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/
+    to create mongodb.js -> https://thetechhulk.com/nextjs-with-mongodb-the-complete-guide
+
+to connect:
+    cd server
+    node server.js
+
+connection string: mongodb+srv://eric0952:Eric5042@mongoatlascluster.5nkuq.mongodb.net/?retryWrites=true&w=majority
+
+APIs with MONGODB for REDUX 
+https://medium.com/coding-artist/redux-from-scratch-chapter-7-building-an-api-service-with-express-js-mongodb-3bde96e1f45b

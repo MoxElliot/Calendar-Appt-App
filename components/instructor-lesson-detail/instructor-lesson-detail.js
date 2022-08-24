@@ -9,7 +9,9 @@ export default function InstructorLessonDetail({showLessonDet}) {
 
     return (
         <div className={instructorLesDet.lesDetContainer}>
-            Lesson Detail
+            <div>
+                <h4>Go Lesson</h4>
+            </div>
         </div>
     )
 }

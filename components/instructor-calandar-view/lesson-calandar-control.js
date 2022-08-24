@@ -1,11 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import instructorCal from '../../styles/instructorCal.module.scss';
 
 const lessonDayArr = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
 export default function LessonCalControl () {
-
+    const lessonData = useSelector((state) => state.lessonData)
     const lessonDayRadio = lessonDayArr.map(day=> {
       
         return (
