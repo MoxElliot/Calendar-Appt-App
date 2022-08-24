@@ -1,5 +1,9 @@
 import { useSelector } from 'react-redux';
 import instructorLess from '../../styles/instructorLess.module.scss';
+import '../../pages/api/add-lesson'
+import { fetchLessonData } from '../../redux/slices/lessonDataSlice';
+
+console.log(fetchLessonData)
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData)
