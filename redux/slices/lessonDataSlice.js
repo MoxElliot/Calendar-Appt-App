@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { showLessonData } from '../../pages/api/show-lessons'
+//import { showLessonData } from '../../pages/api/show-lessons'
 
 
 export const lessonDataSlice = createSlice({
