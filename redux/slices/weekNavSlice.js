@@ -67,9 +67,14 @@ const weekNavSlice = createSlice({
             if(state.month === 0)
             state.year += action.payload
         },
+        makeToday(state){
+            state.baseDay = d.getDate()
+            state.month = d.getMonth()
+            state.year = d.getFullYear()
+        },
     },
 });
 
 const { actions, reducer } = weekNavSlice;
-export const { nextWeek, lastWeek, advanceMonth, advanceYear } = actions;
+export const { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } = actions;
 export default reducer;

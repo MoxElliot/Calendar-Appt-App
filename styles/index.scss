@@ -1,18 +1,27 @@
-$global-background: #ffbbbb;
+$primary: #034f84;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+$global-background: #f7786b;
+$background-border:#8b463f;
+
+
 
 html,
 body {
   background-color: $global-background;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 * {
     margin: 0;
     padding: 0;
+    
+}
+
+a {
+  text-decoration: none;
 }
