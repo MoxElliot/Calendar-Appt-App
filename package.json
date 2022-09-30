@@ -15,8 +15,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongodb": "4.9",
-    "mongoose": "^6.5.2",
     "next": "12.2.0",
     "next-redux-wrapper": "^7.0.5",
     "react": "18.2.0",
