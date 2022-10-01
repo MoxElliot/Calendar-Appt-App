@@ -31,11 +31,12 @@ export const lessonDataSlice = createSlice({
             // };
             state.lessons.push(action.payload)
             },
-            prepare(date, time, status, detail, attachment, name, link, read){
+            prepare(date, time, status, detail, attachment, name, link, read, userId){
                 return {
                     payload: {
                         id: new Lesson(),
-                        date, time, status, detail, attachment, name, link, read
+                        date, time, status, detail, attachment, name, link, read,
+                        user: userId
                     }
                 }
             }
