@@ -2,7 +2,7 @@ import React from 'react';
 
 const timeSlotsArr = ["9:00AM", "3:00PM", "5:00PM"]
 
-export default function InstCalandarDay({handleLessonDet}) {
+export default function StudCalandarDay({handleLessonDet}) {
     
 
     const timeSlots = timeSlotsArr.map((timeSlot) => 
