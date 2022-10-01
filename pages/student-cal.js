@@ -1,7 +1,6 @@
 import NavBar from '../components/nav-bar'
 import Head from 'next/head'
 import StudCalandarView from '../components/student-calandar-view/student-calandar-view'
-import student from '../styles/student.module.scss';
 
 export default function StudentCal() {
     return (
@@ -11,7 +10,7 @@ export default function StudentCal() {
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />
-        <div className={student.studContainer}>
+        <div className="studContainer">
             <StudCalandarView />
         </div>  
     </div>

@@ -1,15 +1,15 @@
 import React from 'react';
-import instructorCal from '../../styles/instructorCal.module.scss';
 
-const lessonDayArr = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];
+
+const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
 export default function LessonCalControl () {
-
+    const lessonData = useSelector((state) => state.lessonData)
     const lessonDayRadio = lessonDayArr.map(day=> {
       
         return (
-                    <label key={day.toString()} >
+                    <label className="lesson-control-radio" key={day.toString()} >
                         {day}
                         <input type="radio" id="dayRad" />
                     </label>
@@ -20,7 +20,7 @@ export default function LessonCalControl () {
         const repeatOptRadio = repeatOptArr.map(option=> {
       
             return (
-                        <label key={option.toString()} >
+                        <label className="lesson-control-radio" key={option.toString()} >
                             {option}
                             <input type="radio" id="optRad" />
                         </label>
@@ -28,22 +28,30 @@ export default function LessonCalControl () {
                     );
             });
     return (
-        <div className={instructorCal.lessonControl} >
-            <form id={instructorCal.lessonControlEle}>
-                <p id={instructorCal.lessonControlP}>Set New Lesson Date -or- Select New Lesson Day</p>
-                <input type="date" name="lesson-date"></input>
-                    {lessonDayRadio}
+        <div className="lessonControl">
+            <form id="lessonControlEle">
+                <p id="lessonControlP">Set New Lesson Date -or- Select New Lesson Day</p>
+                <div className='lesson-date-input 
+                    container 
+                    d-flex-column justify-content-center align-items-center'>
+                    <div className="row w-50" >        
+                    <input type="date" name="lesson-date" />
+                    </div>
+                    <div>
+                        {lessonDayRadio}
+                    </div>
+                </div>
             </form>
-            <form id={instructorCal.lessonControlEle}>
-                <p  id={instructorCal.lessonControlP}>Repeat Lesson</p>
-                    {repeatOptRadio}
+            <form id="lessonControlEle">
+                <p  id="lessonControlP">Repeat Lesson</p>
+                {repeatOptRadio}
             </form>
-            <div className={instructorCal.lessonControlBottom}>
-                <form className={instructorCal.lessonControlBtn} id={instructorCal.lessonControlEle}>
-                    <button>Create Lessson</button>
+            <div className="lessonControlBottom">
+                <form className="lessonControlBtn" id="lessonControlEle">
+                    <button className='btn btn-primary'>Create Lessson</button>
                 </form>
-                <form id={instructorCal.lessonControlEle} > 
-                    <label className={instructorCal.studentSelect} id={instructorCal.lessonControlP}>
+                <form id="lessonControlEle" > 
+                    <label className="studentSelect" id="lessonControlP">
                         <input type="checkbox" />
                         Only Available to:
                     </label>

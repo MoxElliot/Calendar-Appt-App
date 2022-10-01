@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/index.scss';
 import '../styles/instructorCal.scss';
+import '../styles/studentCal.scss';
 import { Provider } from "react-redux";
 import { store } from "../redux/store"
 
