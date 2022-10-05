@@ -17,25 +17,6 @@ export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState,
     reducers: {
-        loadLessonData: {
-            reducer(state, action){
-            state.lessons.push(action.payload)
-            },
-            prepare(id, date, time, status, detail, attachment, name, link) {
-                return {
-                    payload: {
-                        id,
-                        date,
-                        time,
-                        status,
-                        detail,
-                        attachment,
-                        name,
-                        link
-                    }
-                }
-            }
-        },
         addLessonData: {
             reducer(state, action) {
             
@@ -69,7 +50,7 @@ export const lessonDataSlice = createSlice({
     },
 });
 
-export const { addLessonData, loadLessonData } = lessonDataSlice.actions;
+export const { addLessonData } = lessonDataSlice.actions;
 export const pullAllLessons = state => state.lessons.lessons;
 export const pullOneLesson = (state, lessonId) => state.lessons.lessons.find(lesson => lesson.id === lessonId)
 export default lessonDataSlice.reducer;
