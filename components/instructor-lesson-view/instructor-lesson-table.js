@@ -1,8 +1,11 @@
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import instructorLess from '../../styles/instructorLess.module.scss';
+import { loadLessonData } from '../../redux/slices/lessonDataSlice';
 
 export default function InstructorLessonTable() {
-    const lessonData = useSelector((state) => state.lessonData)
+    const lessonData = useSelector((state) => state.lessonData.lessons)
+  
     return (
         <div className={instructorLess.lessonTableContainer}>
             <table className={instructorLess.lessonTable}>
@@ -15,6 +18,7 @@ export default function InstructorLessonTable() {
                     <th>Student Name</th>
                     <th>Discord Link</th>
                 </tr>
+                
                 {lessonData.map((val) => {
                     return (
                         <tr key={val.id}>
