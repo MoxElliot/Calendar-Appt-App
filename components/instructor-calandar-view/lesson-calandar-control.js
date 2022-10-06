@@ -1,5 +1,7 @@
 import React, { useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import { addLesson } from '../../redux/slices/lessonDataSlice'
 
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -13,7 +15,8 @@ export default function LessonCalControl () {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [status, setStatus] = useState('open');
-    const [link, setLink] = useState('https://www.discord.com');
+
+    const dispatch = useDispatch();
 
     const onDateChange = e => setDate(e.target.value);
     const onDayChange = e => setDay(e.target.value);
@@ -21,7 +24,27 @@ export default function LessonCalControl () {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onStatusChange = e => setStatus(e.target.value);
-    const onLinkChange = e => setLink(e.target.value);
+
+    const onCreateLessonClick = () => {
+        dispatch(
+            addLesson({
+                id:nanoid(),
+                date,
+                day,
+                repeat,
+                time,
+                name,
+                status
+            })
+        )
+        setDate('')
+        setDay('')
+        setRepeat('')
+        setTime('')
+        setName('')
+        setStatus('')
+    }
+
 
     const lessonDayRadio = lessonDayArr.map(dayOfWeek=> (
                     <label className="lesson-control-radio" key={dayOfWeek.toString()} >
@@ -51,7 +74,7 @@ export default function LessonCalControl () {
     return (
         <div className="lessonControl">
             <form id="lessonControlEle">
-                <p class="lessonControlP">
+                <p className="lessonControlP">
                     Set New Lesson Date -or- Select Repeat Options
                 </p>
                 <div className='lesson-date-input 
@@ -69,14 +92,14 @@ export default function LessonCalControl () {
                 </div>
             </form>
             <form id="lessonControlEle">
-                <p  class="lessonControlP">Repeat Lesson</p>
+                <p  className="lessonControlP">Repeat Lesson</p>
                     {repeatOptRadio}
                 <div>
                     {lessonDayRadio}
                 </div>
             </form>
             <form>
-                    <p class="lessonControlP">
+                    <p className="lessonControlP">
                         Set New Lesson Time
                     </p>
                     <div className='lesson-time-input 
@@ -95,11 +118,10 @@ export default function LessonCalControl () {
             <div className="lessonControlBottom">
                 <form className="lessonControlBtn" id="lessonControlEle">
                     <button 
-                        className='btn btn-primary'
+                        className='btn btn-primary submit'
                         id="lessonSubmit"
                         name="lessonSubmit"
-                        value={link}
-                        onChange={onLinkChange}
+                        onClick={onCreateLessonClick}
                     >
                         Create Lessson
                     </button>

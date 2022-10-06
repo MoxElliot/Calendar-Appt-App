@@ -17,12 +17,11 @@ export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState,
     reducers: {
-        addLesson: {
+        addLesson(state, action) {
+            state.lessons.push(action.payload)
         },
     },
 });
 
 export const { addLesson } = lessonDataSlice.actions;
-export const pullAllLessons = state => state.lessons.lessons;
-export const pullOneLesson = (state, lessonId) => state.lessons.lessons.find(lesson => lesson.id === lessonId)
 export default lessonDataSlice.reducer;
