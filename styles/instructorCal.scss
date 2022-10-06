@@ -64,7 +64,7 @@ $calandar-background:#92a8d1;
             .lesson-date-input {
               padding-left: 1rem;
             }
-            #lessonControlP{
+            .lessonControlP{
                 padding-bottom:.2rem;
                 padding-left:.4rem;
                 margin: 0;
@@ -75,6 +75,13 @@ $calandar-background:#92a8d1;
               padding-left: 1rem;
             }
         }
+        .lessonControlP{
+          padding-bottom:.2rem;
+          padding-left:.4rem;
+          margin: 0;
+          text-decoration: underline;
+          font-weight: bold;
+      }
         .studentSelect {
             display: flex;
             flex-direction: row;
