@@ -6,28 +6,22 @@ const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
 export default function LessonCalControl () {
-    const lessonData = useSelector((state) => state.lessonData)
-    const lessonDayRadio = lessonDayArr.map(day=> {
-      
-        return (
+
+    const lessonDayRadio = lessonDayArr.map(day=> (
                     <label className="lesson-control-radio" key={day.toString()} >
                         {day}
                         <input type="radio" id="dayRad" />
                     </label>
               
-                );
-        });
+            ));
 
-        const repeatOptRadio = repeatOptArr.map(option=> {
-      
-            return (
+        const repeatOptRadio = repeatOptArr.map(option=> (
                         <label className="lesson-control-radio" key={option.toString()} >
                             {option}
                             <input type="radio" id="optRad" />
                         </label>
                   
-                    );
-            });
+                ));
     return (
         <div className="lessonControl">
             <form id="lessonControlEle">
