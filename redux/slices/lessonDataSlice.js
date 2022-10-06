@@ -17,40 +17,12 @@ export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState,
     reducers: {
-        addLessonData: {
-            reducer(state, action) {
-            
-            state.lessons.push(action.payload)
-            },
-            prepare(date, time, status, detail, attachment, name, link, read, userId){
-                return {
-                    payload: {
-                        id: nanoid,
-                        user: userId,
-                        date, time, status, detail, attachment, name, link, read
-                    }
-                }
-            },
-            lessonUpdated(state, action ) {
-                const {id, date, time, status, detail, attachment, name, link, read} = action.payload
-                const existingLesson = state.lessons.find(lesson => lesson.id === id)
-                if (existingLesson) {
-                    existingLesson.date = date
-                    existingLesson.time = time
-                    existingLesson.status = status
-                    existingLesson.detail = detail
-                    existingLesson.attachment = attachment
-                    existingLesson.name = name
-                    existingLesson.link = link
-                    existingLesson.read = read
-
-                }
-            }
+        addLesson: {
         },
     },
 });
 
-export const { addLessonData } = lessonDataSlice.actions;
+export const { addLesson } = lessonDataSlice.actions;
 export const pullAllLessons = state => state.lessons.lessons;
 export const pullOneLesson = (state, lessonId) => state.lessons.lessons.find(lesson => lesson.id === lessonId)
 export default lessonDataSlice.reducer;
