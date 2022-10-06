@@ -4,6 +4,17 @@ import instructorLess from '../../styles/instructorLess.module.scss';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessons)
+
+    const renderedLessons = lessonData.map((lesson) => (
+            <tr key={lesson.id}>
+                <td>{lesson.date}</td>
+                <td>{lesson.status}</td>
+                <td>{lesson.detail}</td>
+                <td>{lesson.attachment}</td>
+                <td>{lesson.name}</td>
+                <td>{lesson.link}</td>
+            </tr>
+        ))
   
     return (
         <div className={instructorLess.lessonTableContainer}>
@@ -17,19 +28,7 @@ export default function InstructorLessonTable() {
                     <th>Student Name</th>
                     <th>Discord Link</th>
                 </tr>
-                
-                {lessonData.map((val) => {
-                    return (
-                        <tr key={val.id}>
-                            <td>{val.date}</td>
-                            <td>{val.status}</td>
-                            <td>{val.detail}</td>
-                            <td>{val.attachment}</td>
-                            <td>{val.name}</td>
-                            <td>{val.link}</td>
-                        </tr>
-                    )
-                })}
+                {renderedLessons}
                 </tbody>
             </table>
         </div>
