@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
+import e from 'cors';
 
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -10,39 +11,42 @@ const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 export default function LessonCalControl () {
 
     const [date, setDate] = useState('');
-    const [day, setDay] = useState('');
-    const [repeat, setRepeat] = useState('');
+    // const [day, setDay] = useState('');
+    // const [repeat, setRepeat] = useState('');
     const [time, setTime] = useState('');
-    const [name, setName] = useState('');
-    const [status, setStatus] = useState('open');
+    // const [name, setName] = useState('');
+    // const [status, setStatus] = useState('');
 
     const dispatch = useDispatch();
 
     const onDateChange = e => setDate(e.target.value);
-    const onDayChange = e => setDay(e.target.value);
-    const onRepeatChange = e => setRepeat(e.target.value);
+   // const onDayChange = e => setDay(e.target.value);
+    //const onRepeatChange = e => setRepeat(e.target.value);
     const onTimeChange = e => setTime(e.target.value);
-    const onNameChange = e => setName(e.target.value);
-    const onStatusChange = e => setStatus(e.target.value);
+    // const onNameChange = e => setName(e.target.value);
+    // const onStatusChange = e => setStatus(e.target.value);
 
-    const onCreateLessonClick = () => {
+    const onCreateLessonClick = (e) => {
+        e.preventDefault();
+        if(date && time )
+        console.log("in onCreateLessonClick")
         dispatch(
             addLesson({
-                id:nanoid(),
+            //    id:nanoid(),
                 date,
-                day,
-                repeat,
+                // day,
+                // repeat,
                 time,
-                name,
-                status
+                // name,
+                // status
             })
         )
         setDate('')
-        setDay('')
-        setRepeat('')
+        // setDay('')
+        // setRepeat('')
         setTime('')
-        setName('')
-        setStatus('')
+        // setName('')
+        // setStatus('')
     }
 
 
@@ -53,8 +57,9 @@ export default function LessonCalControl () {
                             type="radio" 
                             id="dayRad"
                             name="dayRad"
-                            value={day}
-                            onChange={onDayChange} />
+                            //value={day}
+                            //onChange={onDayChange} 
+                            />
                     </label>
               
             ));
@@ -66,8 +71,9 @@ export default function LessonCalControl () {
                             type="radio" 
                             id="repeatRad"
                             name="repeatRad"
-                            value={repeat}
-                            onChange={onRepeatChange} />
+                            //value={repeat}
+                            //onChange={onRepeatChange} 
+                            />
                     </label>
                 
             ));
@@ -86,7 +92,8 @@ export default function LessonCalControl () {
                         name="lesson-date"
                         id="lesson-date"
                         value={date}
-                        onChange={onDateChange} />
+                        onChange={onDateChange} 
+                        />
                     </div>
                     
                 </div>
@@ -111,14 +118,15 @@ export default function LessonCalControl () {
                             name="lesson-time"
                             id="lesson-time"
                             value={time}
-                            onChange={onTimeChange} />
+                            onChange={onTimeChange} 
+                            />
                         </div>
                     </div>
                 </form>
             <div className="lessonControlBottom">
                 <form className="lessonControlBtn" id="lessonControlEle">
                     <button 
-                        className='btn btn-primary submit'
+                        className='btn btn-primary'
                         id="lessonSubmit"
                         name="lessonSubmit"
                         onClick={onCreateLessonClick}
@@ -132,8 +140,9 @@ export default function LessonCalControl () {
                             type="checkbox" 
                             id="lessonStatus"
                             name="lessonStatus"
-                            value={status}
-                            onChange={onStatusChange}/>
+                            //value={status}
+                            //onChange={onStatusChange}
+                            />
                         Only Available to:
                     </label>
                         <input 
@@ -141,8 +150,9 @@ export default function LessonCalControl () {
                             placeholder='Student Name'
                             id="studentName"
                             name="studentName"
-                            value={name}
-                            onChange={onNameChange}/>
+                           // value={name}
+                            //onChange={onNameChange}
+                            />
                 </form>
                 
             </div>

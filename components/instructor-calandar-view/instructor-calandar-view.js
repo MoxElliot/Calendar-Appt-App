@@ -15,7 +15,6 @@ const InstCalandarView = () => {
     const [showLessonDet, setShowLessonDet] = useState(false);
 
     const handleLessonDet = (e) => {
-            console.log("in handleLessonDet")
             e.preventDefault();
        
                 if(showLessonDet) {
