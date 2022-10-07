@@ -12,10 +12,10 @@ const initialState =
     // lessons: lessonDataArr,
     // status: 'idle',
     // error: null
-    [{date: "xx/xx/xxx", time: "xxxx"},
-    {date: "xx/xx/xxx", time: "xx:xx"},
-    {date: "xx/xx/xxx", time: "xx:xx"},
-    {date: "xx/xx/xxx", time: "xx:xx"},]
+    [{id:1, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:"Lāvīniaque.sgf", name:"Student name", link:"Discord"},
+    {id:2, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:"Lāvīniaque.sgf", name:"Student name", link:"Discord"},
+    {id:3, date: "xx/xx/xxx", time: "xx:xx", status:"Requested", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:"Lāvīniaque.sgf", name:"Student name", link:"Discord"},
+    {id:4, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:"Lāvīniaque.sgf", name:"Student name", link:"Discord"},]
 //}
 
 export const lessonDataSlice = createSlice({
