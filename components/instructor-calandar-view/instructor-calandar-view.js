@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
-import LessonControl from '../instructor-lesson-detail/lesson-control';
+import LessonCreateControl from '../instructor-lesson-detail/lesson-create-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } from '../../redux/slices/weekNavSlice'
 
@@ -166,15 +166,9 @@ const InstCalandarView = () => {
                 d-flex justify-content-center'>
                     {weekDays}
             </div>
-            <div className="container">
-                <div className="row my-2">
-                    <div className="controlContainer col-5">    
-                    <LessonControl />
-                    </div>
-                    <div className="col-5">
-                    <InstructorLessonDetail showLessonDet={showLessonDet}/>
-                    </div>
-                </div>
+            <div className="container">    
+                <InstructorLessonDetail showLessonDet={showLessonDet}/>
+                <LessonCreateControl />   
             </div>
         </div>
         )

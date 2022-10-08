@@ -2,13 +2,13 @@ import React from 'react';
 import LessonViewSelect from './lesson-view-select';
 import InstructorLessonTable from './instructor-lesson-table';
 import LessonViewControls from './lesson-view-controls';
-import LessonControl from '../instructor-lesson-detail/lesson-control';
+import LessonCreateControl from '../instructor-lesson-detail/lesson-create-control';
 
 
 export default function InstructorLessonView () {
     return (
       
-            <div className="lessonContainer">
+            <div className="lessonContainer container">
                 <div className="viewSelect">
                     <p className="lessonViewSelectHeader">Instructor Lesson View </p>
                     <LessonViewSelect />
@@ -19,10 +19,7 @@ export default function InstructorLessonView () {
                 <div className="lessonControl">
                     <LessonViewControls />
                 </div>
-                <div className="controlContainer col-5">
-                    <LessonControl />
-                </div>
-
+                <LessonCreateControl />
             </div>
     )
 }

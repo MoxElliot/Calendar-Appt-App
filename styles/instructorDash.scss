@@ -146,12 +146,21 @@ $calandar-background:#92a8d1;
             margin-top: 1rem;
             display: flex;
             justify-content: space-between;
-            .lessonControl {
-                background-color: $lesson-control-background;
-                border: 1px solid $background-border;
-                border-radius: 2rem;
-                width: 100%;
-                padding: .3rem;
+            background-color: $lesson-control-background;
+            border: 1px solid $background-border;
+            border-radius: 2rem;
+            width: 100%;
+            padding: .3rem;
+            
+            .lessonControlP{
+                padding-bottom:.2rem;
+                padding-left:.4rem;
+                margin: 0;
+                text-decoration: underline;
+                font-weight: bold;
+            }
+            .lessonControlLeft {
+                
                 #lessonControlEle {
                     padding-bottom: .5rem;
                     .lesson-date-input {
@@ -168,19 +177,12 @@ $calandar-background:#92a8d1;
                       padding-left: 1rem;
                     }
                 }
-                .lessonControlP{
-                  padding-bottom:.2rem;
-                  padding-left:.4rem;
-                  margin: 0;
-                  text-decoration: underline;
-                  font-weight: bold;
-              }
                 .studentSelect {
                     display: flex;
                     flex-direction: row;
                 }
             }
-            .lessonControlBottom {
+            .lessonControlRight {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
@@ -188,6 +190,6 @@ $calandar-background:#92a8d1;
                     align-self: flex-end;
                 }
             }
-          }
+        }
     }
 }

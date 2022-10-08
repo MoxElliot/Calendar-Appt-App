@@ -7,13 +7,14 @@ import { addLesson } from '../../redux/slices/lessonDataSlice'
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
-export default function LessonControl () {
+export default function LessonCreateControl () {
 
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
     const [repeat, setRepeat] = useState('');
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
+    const [detail, setDetail] = useState('');
     const [status, setStatus] = useState('Booked');
 
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function LessonControl () {
     const onRepeatChange = e => setRepeat(e.target.value);
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
+    const onDetailChange = e => setDetail(e.target.value);
     const onStatusChange = e => setStatus(e.target.value);
 
     const onCreateLessonClick = (e) => {
@@ -37,6 +39,7 @@ export default function LessonControl () {
                 repeat,
                 time,
                 name,
+                detail,
                 status
             })
         )
@@ -45,6 +48,7 @@ export default function LessonControl () {
         setRepeat('')
         setTime('')
         setName('')
+        setDetail('')
         setStatus('')
     }
 
@@ -77,7 +81,8 @@ export default function LessonControl () {
                 
             ));
     return (
-        <div className="lessonControl">
+        <div className='controlContainer '>
+        <div className="lessonControlLeft col">
             <form id="lessonControlEle">
                 <p className="lessonControlP">
                     Set New Lesson Date -or- Select Repeat Options
@@ -123,16 +128,7 @@ export default function LessonControl () {
                     </div>
                 </form>
             <div className="lessonControlBottom">
-                <form className="lessonControlBtn" id="lessonControlEle">
-                    <button 
-                        className='btn btn-primary'
-                        id="lessonSubmit"
-                        name="lessonSubmit"
-                        onClick={onCreateLessonClick}
-                    >
-                        Create Lessson
-                    </button>
-                </form>
+                
                 <form id="lessonControlEle" > 
                     <label className="studentSelect" id="lessonControlP">
                         <input 
@@ -149,12 +145,43 @@ export default function LessonControl () {
                             placeholder='Student Name'
                             id="studentName"
                             name="studentName"
-                           value={name}
+                            value={name}
                             onChange={onNameChange}
                             />
                 </form>
                 
             </div>
+        </div>
+        <div className='lessonControlRight col'>
+            <div className='container'>
+            <form className='lessonControlDetail'>
+                <p className='lessonControlP'>Lesson Details</p>
+                <textarea 
+                    rows="5"
+                    cols="30"
+                    name="lessonDetail"
+                    value={detail}
+                    onChange={onDetailChange}
+                />
+            </form>
+            <form className='lessonControlAttachment'>
+                attachment
+            </form>
+            <form className='lessonControlLink'>
+                link
+            </form>
+            <form className="lessonControlBtn" id="lessonControlEle">
+                <button 
+                    className='btn btn-primary'
+                    id="lessonSubmit"
+                    name="lessonSubmit"
+                    onClick={onCreateLessonClick}
+                >
+                    Create Lessson
+                </button>
+            </form>
+            </div>
+        </div>
         </div>
     )
 }

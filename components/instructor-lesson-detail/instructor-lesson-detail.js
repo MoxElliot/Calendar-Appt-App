@@ -9,7 +9,7 @@ export default function InstructorLessonDetail({showLessonDet}) {
     } 
 
     return (
-        <div className="lesson-details container">
+        <div className="lessonDetailContainer container">
             <div className='row'>
             <div className='lesson-text col col-md-6 col-12'>
                 <h4>Lesson Details</h4>
