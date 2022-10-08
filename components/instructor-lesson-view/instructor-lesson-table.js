@@ -1,6 +1,4 @@
 import { useSelector } from 'react-redux';
-import instructorLess from '../../styles/instructorLess.module.scss';
-
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData)
@@ -19,8 +17,8 @@ export default function InstructorLessonTable() {
         ))
   
     return (
-        <div className={instructorLess.lessonTableContainer}>
-            <table className={instructorLess.lessonTable}>
+        <div className="lessonTableContainer">
+            <table className="lessonTable">
             <tbody>
                 <tr>
                     <th>Lesson Date</th>

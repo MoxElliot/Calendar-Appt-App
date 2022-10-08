@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import InstCalandarDay from './instCal-day';
 import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
-import LessonCalControl from './lesson-calandar-control';
+import LessonControl from '../instructor-lesson-detail/lesson-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } from '../../redux/slices/weekNavSlice'
 
@@ -169,7 +169,7 @@ const InstCalandarView = () => {
             <div className="container">
                 <div className="row my-2">
                     <div className="controlContainer col-5">    
-                    <LessonCalControl />
+                    <LessonControl />
                     </div>
                     <div className="col-5">
                     <InstructorLessonDetail showLessonDet={showLessonDet}/>

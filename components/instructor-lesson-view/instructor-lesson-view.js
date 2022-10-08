@@ -1,23 +1,26 @@
-import instructorLess from '../../styles/instructorLess.module.scss';
 import React from 'react';
 import LessonViewSelect from './lesson-view-select';
 import InstructorLessonTable from './instructor-lesson-table';
 import LessonViewControls from './lesson-view-controls';
+import LessonControl from '../instructor-lesson-detail/lesson-control';
 
 
 export default function InstructorLessonView () {
     return (
       
-            <div className={instructorLess.lessonContainer}>
-                <div className={instructorLess.viewSelect}>
-                    <p className={instructorLess.lessonViewSelectHeader}>Instructor Lesson View </p>
+            <div className="lessonContainer">
+                <div className="viewSelect">
+                    <p className="lessonViewSelectHeader">Instructor Lesson View </p>
                     <LessonViewSelect />
                 </div>
-                <div className={instructorLess.lessonTable}>
+                <div className="lessonTable">
                     <InstructorLessonTable />
                 </div>
-                <div className={instructorLess.lessonControl}>
+                <div className="lessonControl">
                     <LessonViewControls />
+                </div>
+                <div className="controlContainer col-5">
+                    <LessonControl />
                 </div>
 
             </div>

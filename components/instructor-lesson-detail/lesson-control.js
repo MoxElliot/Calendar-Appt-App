@@ -7,7 +7,7 @@ import { addLesson } from '../../redux/slices/lessonDataSlice'
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
 
-export default function LessonCalControl () {
+export default function LessonControl () {
 
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
