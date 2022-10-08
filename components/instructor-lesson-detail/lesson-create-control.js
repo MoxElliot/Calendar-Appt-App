@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
@@ -164,11 +165,21 @@ export default function LessonCreateControl () {
                     onChange={onDetailChange}
                 />
             </form>
-            <form className='lessonControlAttachment'>
-                attachment
-            </form>
-            <form className='lessonControlLink'>
-                link
+            <form className='lessonControlAttachment m-2
+                    col col-md-4 col-6
+                    d-flex flex-column'>
+            
+                    <p className='lessonControlP m-0'>Lesson Attachments</p>
+                    <button className='btn p-0'>
+                        <label className='bi bi-plus px-2'>Add Attachment</label>
+                    </button>
+                    <Link href="/">
+                        <a className='bi bi-paperclip'>game-review.sgf</a>
+                    </Link>
+                    <Link href="/">
+                        <a className='bi bi-paperclip'>OpeningProblems.sgf</a>
+                    </Link>
+               
             </form>
             <form className="lessonControlBtn" id="lessonControlEle">
                 <button 
