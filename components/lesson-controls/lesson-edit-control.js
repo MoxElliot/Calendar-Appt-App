@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
 
 
-export default function LessonEditControl({showEditLesson}) {
+export default function LessonEditControl() {
 
     if(!showEditLesson){
         return null;
     } 
-
+   
     return (
         <div className="lessonDetailContainer container">
             <div className='row'>

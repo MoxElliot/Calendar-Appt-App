@@ -4,6 +4,7 @@ import LessonEditControl from '../lesson-controls/lesson-edit-control';
 import LessonCreateControl from '../lesson-controls/lesson-create-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } from '../../redux/slices/weekNavSlice'
+import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
 
 
 
@@ -13,24 +14,20 @@ let dispatchCheck = 0
 
 const InstCalandarView = () => {
 
-    const [showEditLesson, setShowEditLesson] = useState(false);
-
-    const handleEditLesson = (e) => {
-            e.preventDefault();
-       
-                if(showEditLesson) {
-                    setShowEditLesson(false)
-                } else {
-                    setShowEditLesson(true)
-                };
-            
-    }
+    const editLesson = useSelector(state => state.lessonControl.editLesson)
+    const createLesson = useSelector(state => state.lessonControl.createLesson)
 
     const baseDay = useSelector(state => state.weekNav.baseDay)
     const month = useSelector(state => state.weekNav.month)
     const year = useSelector(state => state.weekNav.year)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        console.log(showEditLesson)
+        showEditLesson
+        showCreateLesson
+    });
+    
     const d = new Date();
     const dayNum = d.getDay()
     const getDaysInMonth = (year, month) => {
@@ -96,7 +93,7 @@ const InstCalandarView = () => {
                {day} {dayOfWeek()}
             </div>
             
-            <InstCalandarDay handleEditLesson={handleEditLesson}/>
+            <InstCalandarDay editLesson={editLesson}/>
             
             </div>)
         }
@@ -168,8 +165,8 @@ const InstCalandarView = () => {
                     {weekDays}
             </div>
             <div className="container">    
-                <LessonEditControl showEditLesson={showEditLesson}/>
-                <LessonCreateControl />   
+                <LessonEditControl editLesson={editLesson}/>
+                <LessonCreateControl createLesson={createLesson}/>   
             </div>
         </div>
         )

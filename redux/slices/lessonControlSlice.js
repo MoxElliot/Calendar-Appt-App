@@ -1,16 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-
-}
-
 export const lessonControlSlice = createSlice({
     name: 'lessonControl',
-    initialState,
+    initialState: {
+        editLesson: false,
+        createLesson: true,
+    },
     reducers: {
-        
+        showEditLesson(state, action) {
+            state.editLesson += action.payload
+            if(state.editLesson === false) {
+                state.editLesson = true; 
+            } else {
+                state.editLesson = false
+            }
+
+        },
+        showCreateLesson(state) {
+            if(state.createLesson === false) {
+                state.createLesson = true; 
+            } else {
+                state.createLesson = false
+            }
+
+        }
     },
 });
 
-export const { addLesson } = lessonControlSlice.actions;
+export const { createLesson, editLesson } = lessonControlSlice.actions;
 export default lessonControlSlice.reducer;
