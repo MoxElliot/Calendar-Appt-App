@@ -13,8 +13,15 @@ export default function LessonViewSelect () {
                     <input  type='radio'
                             value='Show Booked'
                     />
+                    Show Available
+                </label>
+                <label>
+                    <input  type='radio'
+                            value='Show Booked'
+                    />
                     Show Booked
                 </label>
+                
                 <label>
                     <input  type='radio'
                             value='Show Requested'

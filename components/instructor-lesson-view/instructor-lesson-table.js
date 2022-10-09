@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData)
@@ -12,7 +13,11 @@ export default function InstructorLessonTable() {
                 <td>{val.detail}</td>
                 <td>{val.attachment}</td>
                 <td>{val.name}</td>
-                <td>{val.link}</td>
+                <td>
+                    <Link href="https://www.discord.com/">
+                        <a className=''>{val.link}</a>
+                    </Link>
+                </td>
             </tr>
         ))
   

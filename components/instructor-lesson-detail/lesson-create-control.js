@@ -16,7 +16,8 @@ export default function LessonCreateControl () {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
-    const [status, setStatus] = useState('Requested');
+    const [status, setStatus] = useState('Available');
+    const [link, setLink] = useState('Discord');
 
     const dispatch = useDispatch();
 
@@ -27,6 +28,7 @@ export default function LessonCreateControl () {
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
     const onStatusChange = e => setStatus("Booked");
+   // const onLinkChange = e => setLink("Discord");
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
@@ -40,7 +42,8 @@ export default function LessonCreateControl () {
                 time,
                 name,
                 detail,
-                status
+                status,
+                link
             })
         )
         setDate('')
@@ -50,6 +53,7 @@ export default function LessonCreateControl () {
         setName('')
         setDetail('')
         setStatus('')
+        setLink('')
     }
 
 
