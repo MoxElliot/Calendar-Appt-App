@@ -6,7 +6,7 @@ import { addLesson } from '../../redux/slices/lessonDataSlice'
 
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-const repeatOptArr = ['Daily', 'Weekly', 'Monthly', 'None'];
+const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
 export default function LessonCreateControl () {
 
@@ -87,7 +87,8 @@ export default function LessonCreateControl () {
                 <p className="lessonControlP">
                     Set New Lesson Date -or- Select Repeat Options
                 </p>
-                <div className='lesson-date-input 
+                <p  className="lessonControlP mx-2">New Single Lesson</p>
+                <div className='lesson-date-input mx-5
                     container 
                     d-flex-column justify-content-center align-items-center'>
                     <div className="row w-50" >        
@@ -103,33 +104,35 @@ export default function LessonCreateControl () {
                 </div>
             </form>
             <form id="lessonControlEle">
-                <p  className="lessonControlP">Repeat Lesson</p>
+                <p  className="lessonControlP mx-2">New Repeating Lesson</p>
+                <div className='mx-5'>
                     {repeatOptRadio}
-                <div>
+                </div>
+                <div className='mx-5'>
                     {lessonDayRadio}
                 </div>
             </form>
-            <form>
-                    <p className="lessonControlP">
-                        Set New Lesson Time
-                    </p>
-                    <div className='lesson-time-input 
-                        container 
-                        d-flex-column justify-content-center align-items-center'>
-                        <div className="row w-50" >        
-                        <input 
-                            type="time" 
-                            name="lesson-time"
-                            id="lesson-time"
-                            value={time}
-                            onChange={onTimeChange} 
-                            />
-                        </div>
+            
+            <div className="lessonControlBottom row">
+            <form className='col-6'>
+                <p className="lessonControlP ">
+                    Set New Lesson Time
+                </p>
+                <div className='lesson-time-input 
+                    container mx-3
+                    d-flex-column justify-content-center align-items-center'>
+                    <div className="row w-50" >        
+                    <input 
+                        type="time" 
+                        name="lesson-time"
+                        id="lesson-time"
+                        value={time}
+                        onChange={onTimeChange} 
+                        />
                     </div>
-                </form>
-            <div className="lessonControlBottom">
-                
-                <form id="lessonControlEle" > 
+                </div>
+            </form>
+                <form className="lessonControlEle col-4" > 
                     <label className="studentSelect" id="lessonControlP">
                         <input 
                             type="checkbox" 
@@ -138,14 +141,14 @@ export default function LessonCreateControl () {
                             value={status}
                             onChange={onStatusChange}
                             />
-                        Only Available to:
+                        <p className='lessonControlP'>Only Available to:</p>
                     </label>
                         <input 
                             type="text" 
                             placeholder='Student Name'
                             id="studentName"
                             name="studentName"
-                            className='studentName'
+                            className='studentName mx-3'
                             value={name}
                             onChange={onNameChange}
                             />
