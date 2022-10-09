@@ -16,7 +16,7 @@ export default function LessonCreateControl () {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
-    const [status, setStatus] = useState('Booked');
+    const [status, setStatus] = useState('Requested');
 
     const dispatch = useDispatch();
 
@@ -26,11 +26,10 @@ export default function LessonCreateControl () {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
-    const onStatusChange = e => setStatus(e.target.value);
+    const onStatusChange = e => setStatus("Booked");
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
-        if(date && time )
         console.log("in onCreateLessonClick")
         dispatch(
             addLesson({
@@ -82,8 +81,8 @@ export default function LessonCreateControl () {
                 
             ));
     return (
-        <div className='controlContainer '>
-        <div className="lessonControlLeft col">
+        <div className='controlContainer'>
+        <div className="lessonControlLeft col mx-2">
             <form id="lessonControlEle">
                 <p className="lessonControlP">
                     Set New Lesson Date -or- Select Repeat Options
@@ -146,6 +145,7 @@ export default function LessonCreateControl () {
                             placeholder='Student Name'
                             id="studentName"
                             name="studentName"
+                            className='studentName'
                             value={name}
                             onChange={onNameChange}
                             />
@@ -158,39 +158,41 @@ export default function LessonCreateControl () {
             <form className='lessonControlDetail'>
                 <p className='lessonControlP'>Lesson Details</p>
                 <textarea 
-                    rows="5"
+                    rows="3"
                     cols="30"
                     name="lessonDetail"
                     value={detail}
                     onChange={onDetailChange}
                 />
             </form>
-            <form className='lessonControlAttachment m-2
-                    col col-md-4 col-6
-                    d-flex flex-column'>
-            
-                    <p className='lessonControlP m-0'>Lesson Attachments</p>
-                    <button className='btn p-0'>
-                        <label className='bi bi-plus px-2'>Add Attachment</label>
-                    </button>
-                    <Link href="/">
-                        <a className='bi bi-paperclip'>game-review.sgf</a>
-                    </Link>
-                    <Link href="/">
-                        <a className='bi bi-paperclip'>OpeningProblems.sgf</a>
-                    </Link>
-               
-            </form>
-            <form className="lessonControlBtn" id="lessonControlEle">
-                <button 
-                    className='btn btn-primary'
-                    id="lessonSubmit"
-                    name="lessonSubmit"
-                    onClick={onCreateLessonClick}
-                >
-                    Create Lessson
-                </button>
-            </form>
+                <div className='row'>
+                    <form className='lessonControlAttachment m-2 px-1
+                            col col-md-4 col-6
+                            d-flex flex-column'>
+                    
+                            <p className='lessonControlP m-0'>Lesson Attachments</p>
+                            <button className='btn p-0 w-75'>
+                                <label className='bi bi-plus'>Add Attachment</label>
+                            </button>
+                            <Link href="/">
+                                <a className='bi bi-paperclip'>game-review.sgf</a>
+                            </Link>
+                            <Link href="/">
+                                <a className='bi bi-paperclip'>OpeningProblems.sgf</a>
+                            </Link>
+                    
+                    </form>
+                    <form className="lessonControlBtn col" id="lessonControlEle">
+                        <button 
+                            className='btn btn-primary'
+                            id="lessonSubmit"
+                            name="lessonSubmit"
+                            onClick={onCreateLessonClick}
+                        >
+                            Create Lessson
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         </div>
