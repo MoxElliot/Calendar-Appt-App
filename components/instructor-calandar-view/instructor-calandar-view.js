@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import InstCalandarDay from './instCal-day';
-import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
-import LessonCreateControl from '../instructor-lesson-detail/lesson-create-control';
+import LessonEditControl from '../lesson-controls/lesson-edit-control';
+import LessonCreateControl from '../lesson-controls/lesson-create-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } from '../../redux/slices/weekNavSlice'
+
 
 
 const weekDaysArr = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -12,15 +13,15 @@ let dispatchCheck = 0
 
 const InstCalandarView = () => {
 
-    const [showLessonDet, setShowLessonDet] = useState(false);
+    const [showEditLesson, setShowEditLesson] = useState(false);
 
-    const handleLessonDet = (e) => {
+    const handleEditLesson = (e) => {
             e.preventDefault();
        
-                if(showLessonDet) {
-                    setShowLessonDet(false)
+                if(showEditLesson) {
+                    setShowEditLesson(false)
                 } else {
-                    setShowLessonDet(true)
+                    setShowEditLesson(true)
                 };
             
     }
@@ -95,7 +96,7 @@ const InstCalandarView = () => {
                {day} {dayOfWeek()}
             </div>
             
-            <InstCalandarDay handleLessonDet={handleLessonDet}/>
+            <InstCalandarDay handleEditLesson={handleEditLesson}/>
             
             </div>)
         }
@@ -167,7 +168,7 @@ const InstCalandarView = () => {
                     {weekDays}
             </div>
             <div className="container">    
-                <InstructorLessonDetail showLessonDet={showLessonDet}/>
+                <LessonEditControl showEditLesson={showEditLesson}/>
                 <LessonCreateControl />   
             </div>
         </div>

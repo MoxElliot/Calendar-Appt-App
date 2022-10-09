@@ -2,7 +2,7 @@ import React from 'react';
 
 const timeSlotsArr = ["9:00AM", "3:00PM", "5:00PM"]
 
-export default function InstCalandarDay({handleLessonDet}) {
+export default function InstCalandarDay({handleEditLesson}) {
     
 
     const timeSlots = timeSlotsArr.map((timeSlot) => 
@@ -11,7 +11,7 @@ export default function InstCalandarDay({handleLessonDet}) {
             btn btn-secondary my-1 w-100
             d-flex justify-content-center" 
             key={timeSlot.toString()}
-            onClick={handleLessonDet}
+            onClick={handleEditLesson}
         >
             <p className="m-0">{timeSlot}</p>
         </button>

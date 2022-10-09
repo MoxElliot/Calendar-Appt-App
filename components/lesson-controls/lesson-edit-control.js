@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 
 
-export default function InstructorLessonDetail({showLessonDet}) {
+export default function LessonEditControl({showEditLesson}) {
 
-    if(!showLessonDet){
+    if(!showEditLesson){
         return null;
     } 
 

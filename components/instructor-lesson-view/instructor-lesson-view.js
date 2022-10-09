@@ -2,7 +2,7 @@ import React from 'react';
 import LessonViewSelect from './lesson-view-select';
 import InstructorLessonTable from './instructor-lesson-table';
 import LessonViewControls from './lesson-view-controls';
-import LessonCreateControl from '../instructor-lesson-detail/lesson-create-control';
+import LessonCreateControl from '../lesson-controls/lesson-create-control';
 
 
 export default function InstructorLessonView () {
@@ -17,9 +17,17 @@ export default function InstructorLessonView () {
                     <InstructorLessonTable />
                 </div>
                 <div className="lessonControl">
+                    <div className='lessonControlToggle'>
+                        <button className='btn btn-primary p-1 m-1'>
+                            Create Lesson
+                        </button>
+                        <button className='btn btn-primary p-1 m-1'>
+                            Edit Lesson
+                        </button>
+                    </div>
                     <LessonViewControls />
                 </div>
-                <LessonCreateControl />
+                    <LessonCreateControl />
             </div>
     )
 }
