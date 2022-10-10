@@ -8,12 +8,13 @@ export const lessonControlSlice = createSlice({
     },
     reducers: {
         showEditLesson(state, action) {
-            state.editLesson += action.payload
-            if(state.editLesson === false) {
-                state.editLesson = true; 
-            } else {
-                state.editLesson = false
-            }
+         
+            state.editLesson = action.payload
+            // if(state.editLesson === false) {
+            //     state.editLesson = true; 
+            // } else {
+            //     state.editLesson = false
+            // }
 
         },
         showCreateLesson(state) {
@@ -27,5 +28,5 @@ export const lessonControlSlice = createSlice({
     },
 });
 
-export const { createLesson, editLesson } = lessonControlSlice.actions;
+export const { showEditLesson } = lessonControlSlice.actions;
 export default lessonControlSlice.reducer;

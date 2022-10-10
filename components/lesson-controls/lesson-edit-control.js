@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
 
-
-export default function LessonEditControl() {
-
-    if(!showEditLesson){
+export default function LessonEditControl({editLesson}) {
+    
+    //const editLesson = useSelector(state => state.lessonControl.editLesson)
+    console.log("inlesson-edit-control", editLesson)
+    if(!editLesson){
+        console.log("In LessonEditControl if", editLesson)
         return null;
     } 
    

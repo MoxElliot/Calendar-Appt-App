@@ -1,10 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
 
 const timeSlotsArr = ["9:00AM", "3:00PM", "5:00PM"]
 
 export default function InstCalandarDay({handleEditLesson}) {
     
-
     const timeSlots = timeSlotsArr.map((timeSlot) => 
         <button
         className="time-slot

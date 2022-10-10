@@ -17,16 +17,20 @@ const InstCalandarView = () => {
     const editLesson = useSelector(state => state.lessonControl.editLesson)
     const createLesson = useSelector(state => state.lessonControl.createLesson)
 
+    const dispatch = useDispatch()
+
+    const handleEditLesson = (e) => {
+        e.preventDefault()
+
+        dispatch(showEditLesson(!editLesson))
+        console.log("in handle instructor-calendar-view", editLesson)
+    }
     const baseDay = useSelector(state => state.weekNav.baseDay)
     const month = useSelector(state => state.weekNav.month)
     const year = useSelector(state => state.weekNav.year)
-    const dispatch = useDispatch()
+    
 
-    useEffect(() => {
-        console.log(showEditLesson)
-        showEditLesson
-        showCreateLesson
-    });
+   
     
     const d = new Date();
     const dayNum = d.getDay()
@@ -93,7 +97,7 @@ const InstCalandarView = () => {
                {day} {dayOfWeek()}
             </div>
             
-            <InstCalandarDay editLesson={editLesson}/>
+            <InstCalandarDay handleEditLesson={handleEditLesson} />
             
             </div>)
         }
@@ -166,7 +170,7 @@ const InstCalandarView = () => {
             </div>
             <div className="container">    
                 <LessonEditControl editLesson={editLesson}/>
-                <LessonCreateControl createLesson={createLesson}/>   
+                <LessonCreateControl />   
             </div>
         </div>
         )
