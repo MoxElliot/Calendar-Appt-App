@@ -177,19 +177,39 @@ const InstCalandarView = () => {
                     {weekDays}
             </div>
             <div className="container">
-                <div className='lessonControlToggle'>
-                    <button 
-                        className='btn btn-primary p-1 m-1'
+                <div 
+                    className='btn-group lessonControlToggle'
+                    role="group"
+                    aria-label="Basic radio toggle button group"
+                >
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleCreate"
+                        id="toggleCreate"
+                        autoComplete='off'
                         onClick={handleCreateLesson}
+                    />
+                    <label 
+                        className='btn btn-outline-primary'
+                        for="toggleCreate"
                     >
                         Create Lesson
-                    </button>
-                    <button 
-                        className='btn btn-primary p-1 m-1'
+                    </label>
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleEdit"
+                        id="toggleEdit"
+                        autoComplete='off'
                         onClick={handleEditLesson}
+                    />
+                    <label 
+                        className='btn btn-outline-primary'
+                        for="toggleEdit"
                     >
                         Edit Lesson
-                    </button>
+                    </label>
                 </div>    
                 <LessonEditControl editLesson={editLesson}/>
                 <LessonCreateControl createLesson={createLesson}/>   
