@@ -30,7 +30,7 @@ export default function InstructorLessonView () {
       
             <div className="lessonContainer container">
                 <div className="viewSelect">
-                    <p className="lessonViewSelectHeader">Instructor Lesson View </p>
+                    <p className="lessonViewSelectHeader">Instructor Lesson View</p>
                     <LessonViewSelect />
                 </div>
                 <div className="lessonTable">
