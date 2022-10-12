@@ -31,3 +31,7 @@ Feature Branch Workflow
 7.	Pull remote main to local main to update local
     a.	git pull origin main
     b. npm run deploy <-- to update gh-pages branch (recreates it I think)
+
+8. My calendar-appt-apt is getting an error after pulling remote main to local (step 7)
+    a. "Error: ENOENT: no such file or directory, open 'D:\Web          Dev\Projects\calendar-appt-app\styles\instructorDash.scss'"
+    b. try 'npm update'
