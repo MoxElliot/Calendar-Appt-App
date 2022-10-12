@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonViewSelect from './lesson-view-select';
 import InstructorLessonTable from './instructor-lesson-table';
-import LessonViewControls from './lesson-view-controls';
+
 import LessonCreateControl from '../lesson-controls/lesson-create-control';
 
 
@@ -25,9 +25,9 @@ export default function InstructorLessonView () {
                             Edit Lesson
                         </button>
                     </div>
-                    <LessonViewControls />
-                </div>
+                    
                     <LessonCreateControl />
+                </div>
             </div>
     )
 }

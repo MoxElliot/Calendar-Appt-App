@@ -55,101 +55,16 @@ $calandar-background:#92a8d1;
               }
         }
 
-        .lessonControl {
-           
-            max-width: 50%;
-            
-            .lessonViewControl {
-                display: flex;
-                flex-direction: column;
-                padding: .4rem;
-                border: 1px solid #000000;
-
-                .studentLink {
-                    display: flex;
-                    margin-bottom: .5rem;
-
-                    .studentName {
-                        font-weight: bold; 
-                        margin-right: .3rem; 
-                    }
-                }
-
-                .lessonViewControlBottom {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    
-
-                    .lessonViewControlLeft {
-                        display: flex;
-                        flex-direction: column;
-
-                        .topicContainer {
-                            display: flex;
-                            flex-direction: row;
-                            margin-bottom: .5rem;
-
-                            .topicTitle {
-                                font-weight: bold;
-                                margin-right: .3rem;
-                            }
-                        }
-                        .attachmentContainer {
-                            display: flex;
-                            flex-direction: row;
-                            padding: .2rem;
-                            border: 1px solid #000000;
-                            max-width: fit-content;
-                            .attachmentTitle {
-                                font-weight: bold;
-                                margin-right: .3rem;
-                            }
-                        }
-                    }  
-                    
-                    .lessonViewControlRight {
-                        display: flex;
-                        flex-direction: column;
-                        padding: .3rem;
-
-                        .lessonViewControlForm {
-                            display: flex;
-                            flex-direction: column;
-                        
-                            .lessonViewControlAccept {
-                                margin-right: .5rem;
-                            }
-                            
-                            .lessonViewControlRadio {
-                                margin-bottom: .3rem;
-                            }
-                            .lessonViewControlText {
-                                margin-bottom: .3rem;
-                            }
-                            .lessonViewControlSubmitContainer {
-                                width: 90px;
-
-                                .lessonViewControlSubmit {
-                                    width: 100%;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    .lessonControl {
+        
         .controlContainer {
             display: flex;
-            width: 50%;
-            height: 35%;
             margin-top: 1rem;
             display: flex;
             justify-content: space-between;
             background-color: $lesson-control-background;
             border: 1px solid $background-border;
             border-radius: 2rem;
-            width: 100%;
             padding: .3rem;
 
             .lessonControlP{
@@ -180,10 +95,8 @@ $calandar-background:#92a8d1;
                 }
             }
             .lessonControlRight {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-               
+              
+                width:fit-content;
                 .lessonControlAttachment{
                     border: 1px solid $background-border;
                     border-radius: 1rem;
@@ -191,9 +104,10 @@ $calandar-background:#92a8d1;
                     }
             
                 .lessonControlBtn {
-                    align-self: flex-end;
+                   align-self: end;
                 }
             }
         }
+    }
     }
 }

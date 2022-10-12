@@ -85,7 +85,7 @@ export default function LessonCreateControl () {
                 
             ));
     return (
-        <div className='controlContainer'>
+        <div className='controlContainer container'>
         <div className="lessonControlLeft col mx-2">
             <form id="lessonControlEle">
                 <p className="lessonControlP">
@@ -160,7 +160,7 @@ export default function LessonCreateControl () {
                 
             </div>
         </div>
-        <div className='lessonControlRight col'>
+        <div className='lessonControlRight col col-5'>
             <div className='container'>
             <form className='lessonControlDetail'>
                 <p className='lessonControlP'>Lesson Details</p>
@@ -189,7 +189,7 @@ export default function LessonCreateControl () {
                             </Link>
                     
                     </form>
-                    <form className="lessonControlBtn col" id="lessonControlEle">
+                    <form className="lessonControlBtn col">
                         <button 
                             className='btn btn-primary'
                             id="lessonSubmit"
