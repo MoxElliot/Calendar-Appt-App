@@ -15,12 +15,14 @@ export default function InstructorLessonView () {
 
     const handleEditLesson = (e) => {
         e.preventDefault()
-        dispatch(showEditLesson(!editLesson))
+        dispatch(showEditLesson(true))
+        dispatch(showCreateLesson(false))
         console.log("in edit handle instructor-calendar-view", editLesson)
     }
     const handleCreateLesson = (e) => {
         e.preventDefault()
-        dispatch(showCreateLesson(!createLesson))
+        dispatch(showCreateLesson(true))
+        dispatch(showEditLesson(false))
         console.log("in create handle instructor-calendar-view", createLesson)
     }
 
