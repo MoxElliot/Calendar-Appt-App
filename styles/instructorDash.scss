@@ -55,7 +55,9 @@ $calandar-background:#92a8d1;
               }
         }
 
-    .lessonControl {
+    .lessonControlContainer {
+        margin-top: 3rem;
+        
         .lessonDetailContainer {
             background-color: $calandar-background;
             height: fit-content;
@@ -81,7 +83,7 @@ $calandar-background:#92a8d1;
              max-width: 185px;
             }
           }
-        .controlContainer {
+        .lessonCreateContainer {
             display: flex;
             margin-top: 1rem;
             display: flex;

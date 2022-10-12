@@ -176,7 +176,7 @@ const InstCalandarView = () => {
                 d-flex justify-content-center'>
                     {weekDays}
             </div>
-            <div className="container">
+            <div className="calendarControlContainer container">
                 <div 
                     className='btn-group lessonControlToggle'
                     role="group"
@@ -191,7 +191,7 @@ const InstCalandarView = () => {
                         onClick={handleCreateLesson}
                     />
                     <label 
-                        className='btn btn-outline-primary'
+                        className='btn btn-primary'
                         for="toggleCreate"
                     >
                         Create Lesson
@@ -205,7 +205,7 @@ const InstCalandarView = () => {
                         onClick={handleEditLesson}
                     />
                     <label 
-                        className='btn btn-outline-primary'
+                        className='btn btn-primary'
                         for="toggleEdit"
                     >
                         Edit Lesson

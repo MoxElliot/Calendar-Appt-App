@@ -36,21 +36,41 @@ export default function InstructorLessonView () {
                 <div className="lessonTable">
                     <InstructorLessonTable />
                 </div>
-                <div className="lessonControl">
-                    <div className='lessonControlToggle'>
-                        <button 
-                            className='btn btn-primary p-1 m-1'
-                            onClick={handleCreateLesson}
-                        >
-                            Create Lesson
-                        </button>
-                        <button 
-                            className='btn btn-primary p-1 m-1'
-                            onClick={handleEditLesson}
-                        >
-                            Edit Lesson
-                        </button>
-                    </div>
+                <div className="lessonControlContainer">
+                <div 
+                    className='btn-group lessonControlToggle'
+                    role="group"
+                    aria-label="Basic radio toggle button group"
+                >
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleCreate"
+                        id="toggleCreate"
+                        autoComplete='off'
+                        onClick={handleCreateLesson}
+                    />
+                    <label 
+                        className='btn btn-primary'
+                        for="toggleCreate"
+                    >
+                        Create Lesson
+                    </label>
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleEdit"
+                        id="toggleEdit"
+                        autoComplete='off'
+                        onClick={handleEditLesson}
+                    />
+                    <label 
+                        className='btn btn-primary'
+                        for="toggleEdit"
+                    >
+                        Edit Lesson
+                    </label>
+                </div>  
                     <LessonEditControl editLesson={editLesson}/>
                     <LessonCreateControl createLesson={createLesson}/>
                 </div>

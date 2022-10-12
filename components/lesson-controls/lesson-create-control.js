@@ -90,7 +90,7 @@ export default function LessonCreateControl ({createLesson}) {
                 
             ));
     return (
-        <div className='controlContainer container'>
+        <div className='lessonCreateContainer container'>
         <div className="lessonControlLeft col mx-2">
             <form id="lessonControlEle">
                 <p className="lessonControlP">
@@ -166,7 +166,7 @@ export default function LessonCreateControl ({createLesson}) {
             </div>
         </div>
         <div className='lessonControlRight col col-5'>
-            <div className='container'>
+            <div className=' container'>
             <form className='lessonControlDetail'>
                 <p className='lessonControlP'>Lesson Details</p>
                 <textarea 
