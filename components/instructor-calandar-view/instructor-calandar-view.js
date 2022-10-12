@@ -21,10 +21,18 @@ const InstCalandarView = () => {
 
     const handleEditLesson = (e) => {
         e.preventDefault()
-
-        dispatch(showEditLesson(!editLesson))
+        dispatch(showCreateLesson(false))
+        dispatch(showEditLesson(true))
         console.log("in handle instructor-calendar-view", editLesson)
     }
+
+    const handleCreateLesson = (e) => {
+        e.preventDefault()
+        dispatch(showCreateLesson(true))
+        dispatch(showEditLesson(false))
+        console.log("in create handle instructor-calendar-view", createLesson)
+    }
+
     const baseDay = useSelector(state => state.weekNav.baseDay)
     const month = useSelector(state => state.weekNav.month)
     const year = useSelector(state => state.weekNav.year)
@@ -168,9 +176,23 @@ const InstCalandarView = () => {
                 d-flex justify-content-center'>
                     {weekDays}
             </div>
-            <div className="container">    
+            <div className="container">
+                <div className='lessonControlToggle'>
+                    <button 
+                        className='btn btn-primary p-1 m-1'
+                        onClick={handleCreateLesson}
+                    >
+                        Create Lesson
+                    </button>
+                    <button 
+                        className='btn btn-primary p-1 m-1'
+                        onClick={handleEditLesson}
+                    >
+                        Edit Lesson
+                    </button>
+                </div>    
                 <LessonEditControl editLesson={editLesson}/>
-                <LessonCreateControl />   
+                <LessonCreateControl createLesson={createLesson}/>   
             </div>
         </div>
         )
