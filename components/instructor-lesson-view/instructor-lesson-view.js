@@ -9,13 +9,19 @@ import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonContr
 export default function InstructorLessonView () {
 
     const editLesson = useSelector(state => state.lessonControl.editLesson)
+    const createLesson = useSelector(state => state.lessonControl.createLesson)
+
     const dispatch = useDispatch()
 
     const handleEditLesson = (e) => {
         e.preventDefault()
-
         dispatch(showEditLesson(!editLesson))
-        console.log("in handle instructor-calendar-view", editLesson)
+        console.log("in edit handle instructor-calendar-view", editLesson)
+    }
+    const handleCreateLesson = (e) => {
+        e.preventDefault()
+        dispatch(showCreateLesson(!createLesson))
+        console.log("in create handle instructor-calendar-view", createLesson)
     }
 
     return (
@@ -30,7 +36,10 @@ export default function InstructorLessonView () {
                 </div>
                 <div className="lessonControl">
                     <div className='lessonControlToggle'>
-                        <button className='btn btn-primary p-1 m-1'>
+                        <button 
+                            className='btn btn-primary p-1 m-1'
+                            onClick={handleCreateLesson}
+                        >
                             Create Lesson
                         </button>
                         <button 
@@ -41,7 +50,7 @@ export default function InstructorLessonView () {
                         </button>
                     </div>
                     <LessonEditControl editLesson={editLesson}/>
-                    <LessonCreateControl />
+                    <LessonCreateControl createLesson={createLesson}/>
                 </div>
             </div>
     )

@@ -7,6 +7,7 @@ export default function LessonEditControl({editLesson}) {
     
     //const editLesson = useSelector(state => state.lessonControl.editLesson)
     console.log("inlesson-edit-control", editLesson)
+    
     if(!editLesson){
         console.log("In LessonEditControl if", editLesson)
         return null;

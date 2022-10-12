@@ -8,7 +8,12 @@ import { addLesson } from '../../redux/slices/lessonDataSlice'
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
-export default function LessonCreateControl () {
+export default function LessonCreateControl ({createLesson}) {
+
+    if(!createLesson){
+        console.log("In LessonCreateControl if", createLesson)
+        return null;
+    } 
 
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');

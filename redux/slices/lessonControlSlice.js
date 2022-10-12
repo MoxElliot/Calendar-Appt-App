@@ -17,16 +17,17 @@ export const lessonControlSlice = createSlice({
             // }
 
         },
-        showCreateLesson(state) {
-            if(state.createLesson === false) {
-                state.createLesson = true; 
-            } else {
-                state.createLesson = false
-            }
+        showCreateLesson(state, action) {
+            state.createLesson = action.payload
+            // if(state.createLesson === false) {
+            //     state.createLesson = true; 
+            // } else {
+            //     state.createLesson = false
+            // }
 
         }
     },
 });
 
-export const { showEditLesson } = lessonControlSlice.actions;
+export const { showEditLesson, showCreateLesson } = lessonControlSlice.actions;
 export default lessonControlSlice.reducer;
