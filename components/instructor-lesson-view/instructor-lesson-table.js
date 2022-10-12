@@ -1,32 +1,40 @@
 import { useSelector } from 'react-redux';
-import instructorLess from '../../styles/instructorLess.module.scss';
+import Link from 'next/link';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData)
+    console.log(lessonData)
+
+    const renderedLessons = lessonData.map((val) => (
+            <tr key={val.id}>
+                <td>{val.date}</td>
+                <td>{val.time}</td>
+                <td>{val.status}</td>
+                <td>{val.detail}</td>
+                <td>{val.attachment}</td>
+                <td>{val.name}</td>
+                <td>
+                    <Link href="https://www.discord.com/">
+                        <a className=''>{val.link}</a>
+                    </Link>
+                </td>
+            </tr>
+        ))
+  
     return (
-        <div className={instructorLess.lessonTableContainer}>
-            <table className={instructorLess.lessonTable}>
+        <div className="lessonTableContainer">
+            <table className="lessonTable">
             <tbody>
                 <tr>
                     <th>Lesson Date</th>
+                    <th>Lesson Time</th>
                     <th>Lesson Status</th>
                     <th>Lesson Detail</th>
                     <th>Lesson Attachments</th>
                     <th>Student Name</th>
                     <th>Discord Link</th>
                 </tr>
-                {lessonData.map((val) => {
-                    return (
-                        <tr key={val.id}>
-                            <td>{val.date}</td>
-                            <td>{val.status}</td>
-                            <td>{val.detail}</td>
-                            <td>{val.attachment}</td>
-                            <td>{val.name}</td>
-                            <td>{val.link}</td>
-                        </tr>
-                    )
-                })}
+                {renderedLessons}
                 </tbody>
             </table>
         </div>

@@ -1,28 +1,27 @@
-import instructorLess from '../../styles/instructorLess.module.scss';
 import Link from 'next/link';
 
 export default function LessonViewControls() {
 
     return (
-        <div className={instructorLess.lessonViewControl}>
+        <div className="lessonViewControl">
 
-            <div className={instructorLess.studentLink}>
+            <div className="studentLink">
                     <Link href="/">
-                        <p className={instructorLess.studentName}>Student Name</p>
+                        <p className="studentName">Student Name</p>
                     </Link>
                         <p>requested a lesson on xx/xx/xxxx at xx:xx</p>
             </div>
 
-            <div className={instructorLess.lessonViewControlBottom}>
+            <div className="lessonViewControlBottom">
 
-                <div className={instructorLess.lessonViewControlLeft}>
+                <div className="lessonViewControlLeft">
                     
-                    <div className={instructorLess.topicContainer}>
-                        <p className={instructorLess.topicTitle}>Topic:</p>
+                    <div className="topicContainer">
+                        <p className="topicTitle">Topic:</p>
                         <p>Review from OGS game.</p>
                     </div>
-                    <div className={instructorLess.attachmentContainer}>
-                        <div className={instructorLess.attachmentTitle}>
+                    <div className="attachmentContainer">
+                        <div className="attachmentTitle">
                             <p>Attachments:</p>
                         </div>
                         <div>
@@ -33,11 +32,11 @@ export default function LessonViewControls() {
                     
                 </div>
                 
-                <div className={instructorLess.lessonViewControlRight}>
+                <div className="lessonViewControlRight">
 
-                    <form className={instructorLess.lessonViewControlForm}>
-                        <div className={instructorLess.lessonViewControlRadio}>
-                            <label className={instructorLess.lessonViewControlAccept}>
+                    <form className="lessonViewControlForm">
+                        <div className="lessonViewControlRadio">
+                            <label className="lessonViewControlAccept">
                                 <input  
                                     type='radio'
                                     value='Accept'
@@ -53,7 +52,7 @@ export default function LessonViewControls() {
                                 Reject
                             </label>
                         </div>
-                        <div className={instructorLess.lessonViewControlText}>
+                        <div className="lessonViewControlText">
                         <textarea 
                             rows="5"
                             cols="30"
@@ -61,8 +60,8 @@ export default function LessonViewControls() {
                             />
                         </div>
 
-                        <div className={instructorLess.lessonViewControlSubmitContainer}>
-                        <button className={instructorLess.lessonViewControlSubmit}>
+                        <div className="lessonViewControlSubmitContainer">
+                        <button className="lessonViewControlSubmit">
                             Submit
                         </button>
                         </div>

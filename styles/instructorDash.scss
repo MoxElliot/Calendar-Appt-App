@@ -1,0 +1,139 @@
+@import './index.scss';
+$dashboard-color: #21df10;
+$lessonView-color: #3fb427;
+$lessonComp-color: #3384aa;
+
+$calandar-background:#92a8d1;
+
+.dashContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 4rem;
+    
+    .lessonContainer {
+        background-color: $lessonView-color;
+        width: 90%;
+        margin-top: 1rem;
+        padding: 1rem;
+
+        .viewSelect {
+           
+            margin-bottom: .5rem;
+            display: flex;
+            flex-direction: column;
+            
+            .lessonViewSelectHeader {
+                font-weight: bold;
+                margin-bottom: .2rem;
+            }
+            .radioContainer {
+                width: 60%;
+
+                .radioForm {
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    
+                }
+            }
+        }
+
+        .lessonTable {
+            border-collapse: collapse;
+            margin-bottom: .5rem;
+              th {
+                padding: .1rem;
+                border: 1px solid black;
+              }
+                
+              td {
+                padding: .1rem;
+                text-align: center;
+                border: 1px solid black;
+              }
+        }
+
+    .lessonControlContainer {
+        margin-top: 3rem;
+        
+        .lessonDetailContainer {
+            background-color: $calandar-background;
+            height: fit-content;
+            width: fit-content;
+            max-width: 75vw;
+            min-width: 280px;
+            border: 1px solid $background-border;
+            border-radius: 2rem;
+            padding:1rem;
+            .lesson-text {
+              width:fit-content;
+            }
+            .lesson-attachment{
+              border: 1px solid black;
+              border-radius: 1rem;
+              min-width:195px;
+            }
+            .lesson-detail {
+              margin:0 0 0 1rem;
+            }
+          
+            .lesson-buttons {
+             max-width: 185px;
+            }
+          }
+        .lessonCreateContainer {
+            display: flex;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            background-color: $lesson-control-background;
+            border: 1px solid $background-border;
+            border-radius: 2rem;
+            padding: .3rem;
+
+            .lessonControlP{
+                padding-bottom:.2rem;
+                padding-left:.4rem;
+                margin: 0;
+                text-decoration: underline;
+                font-weight: bold;
+            }
+            .lessonControlLeft {
+                
+                #lessonControlEle {
+                    padding-bottom: .5rem;
+                    .lesson-date-input {
+                      padding-left: 1rem;
+                    }
+                   
+                    .lesson-control-radio{
+                      padding-left: 1rem;
+                    }
+                    .studentName {
+                        margin-left: 1rem;
+                    }
+                }
+                .studentSelect {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            .lessonControlRight {
+              
+                width:fit-content;
+                .lessonControlAttachment{
+                    border: 1px solid $background-border;
+                    border-radius: 1rem;
+                    min-width:195px;
+                    }
+            
+                .lessonControlBtn {
+                   align-self: end;
+                }
+            }
+        }
+    }
+    }
+}

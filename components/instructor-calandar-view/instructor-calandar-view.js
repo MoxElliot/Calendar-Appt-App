@@ -1,9 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import InstCalandarDay from './instCal-day';
-import InstructorLessonDetail from '../instructor-lesson-detail/instructor-lesson-detail';
-import LessonCalControl from './lesson-calandar-control';
+import LessonEditControl from '../lesson-controls/lesson-edit-control';
+import LessonCreateControl from '../lesson-controls/lesson-create-control';
 import { useSelector, useDispatch } from 'react-redux';
 import { nextWeek, lastWeek, advanceMonth, advanceYear, makeToday } from '../../redux/slices/weekNavSlice'
+import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
+
 
 
 const weekDaysArr = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -12,25 +14,32 @@ let dispatchCheck = 0
 
 const InstCalandarView = () => {
 
-    const [showLessonDet, setShowLessonDet] = useState(false);
+    const editLesson = useSelector(state => state.lessonControl.editLesson)
+    const createLesson = useSelector(state => state.lessonControl.createLesson)
 
-    const handleLessonDet = (e) => {
-            console.log("in handleLessonDet")
-            e.preventDefault();
-       
-                if(showLessonDet) {
-                    setShowLessonDet(false)
-                } else {
-                    setShowLessonDet(true)
-                };
-            
+    const dispatch = useDispatch()
+
+    const handleEditLesson = (e) => {
+        e.preventDefault()
+        dispatch(showCreateLesson(false))
+        dispatch(showEditLesson(true))
+        console.log("in handle instructor-calendar-view", editLesson)
+    }
+
+    const handleCreateLesson = (e) => {
+        e.preventDefault()
+        dispatch(showCreateLesson(true))
+        dispatch(showEditLesson(false))
+        console.log("in create handle instructor-calendar-view", createLesson)
     }
 
     const baseDay = useSelector(state => state.weekNav.baseDay)
     const month = useSelector(state => state.weekNav.month)
     const year = useSelector(state => state.weekNav.year)
-    const dispatch = useDispatch()
+    
 
+   
+    
     const d = new Date();
     const dayNum = d.getDay()
     const getDaysInMonth = (year, month) => {
@@ -96,7 +105,7 @@ const InstCalandarView = () => {
                {day} {dayOfWeek()}
             </div>
             
-            <InstCalandarDay handleLessonDet={handleLessonDet}/>
+            <InstCalandarDay handleEditLesson={handleEditLesson} />
             
             </div>)
         }
@@ -167,15 +176,43 @@ const InstCalandarView = () => {
                 d-flex justify-content-center'>
                     {weekDays}
             </div>
-            <div className="container">
-                <div className="row my-2">
-                    <div className="controlContainer col-5">    
-                    <LessonCalControl />
-                    </div>
-                    <div className="col-5">
-                    <InstructorLessonDetail showLessonDet={showLessonDet}/>
-                    </div>
-                </div>
+            <div className="calendarControlContainer container">
+                <div 
+                    className='btn-group lessonControlToggle'
+                    role="group"
+                    aria-label="Basic radio toggle button group"
+                >
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleCreate"
+                        id="toggleCreate"
+                        autoComplete='off'
+                        onClick={handleCreateLesson}
+                    />
+                    <label 
+                        className='btn btn-primary'
+                        for="toggleCreate"
+                    >
+                        Create Lesson
+                    </label>
+                    <input 
+                        className='btn-check p-1 m-1'
+                        type="radio"
+                        name="toggleEdit"
+                        id="toggleEdit"
+                        autoComplete='off'
+                        onClick={handleEditLesson}
+                    />
+                    <label 
+                        className='btn btn-primary'
+                        for="toggleEdit"
+                    >
+                        Edit Lesson
+                    </label>
+                </div>    
+                <LessonEditControl editLesson={editLesson}/>
+                <LessonCreateControl createLesson={createLesson}/>   
             </div>
         </div>
         )

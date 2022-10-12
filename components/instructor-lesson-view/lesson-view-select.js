@@ -1,9 +1,8 @@
-import instructorLess from '../../styles/instructorLess.module.scss';
 
 export default function LessonViewSelect () {
     return (    
-        <div className={instructorLess.radioContainer}>
-            <form className={instructorLess.radioForm}>
+        <div className="radioContainer">
+            <form className="radioForm">
                 <label>
                     <input  type='radio'
                             value='Show All'
@@ -14,8 +13,15 @@ export default function LessonViewSelect () {
                     <input  type='radio'
                             value='Show Booked'
                     />
+                    Show Available
+                </label>
+                <label>
+                    <input  type='radio'
+                            value='Show Booked'
+                    />
                     Show Booked
                 </label>
+                
                 <label>
                     <input  type='radio'
                             value='Show Requested'
