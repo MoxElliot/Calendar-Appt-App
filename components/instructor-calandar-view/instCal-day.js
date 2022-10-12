@@ -8,7 +8,7 @@ export default function InstCalandarDay({handleEditLesson}) {
     
     const timeSlots = timeSlotsArr.map((timeSlot) => 
         <button
-        className="time-slot
+            className="time-slot
             btn btn-secondary my-1 w-100
             d-flex justify-content-center" 
             key={timeSlot.toString()}
