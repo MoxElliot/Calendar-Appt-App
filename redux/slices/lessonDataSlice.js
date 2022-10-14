@@ -24,8 +24,6 @@ export const lessonDataSlice = createSlice({
     reducers: {
         addLesson(state, action) {
             state.push(action.payload)
-            console.log("hello in addLesson reducer")
-            console.log("state", state)
         },
     },
 });

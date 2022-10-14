@@ -52,7 +52,7 @@ export default function InstructorLessonView () {
                     />
                     <label 
                         className='btn btn-primary'
-                        for="toggleCreate"
+                        htmlFor="toggleCreate"
                     >
                         Create Lesson
                     </label>
@@ -66,7 +66,7 @@ export default function InstructorLessonView () {
                     />
                     <label 
                         className='btn btn-primary'
-                        for="toggleEdit"
+                        htmlFor="toggleEdit"
                     >
                         Edit Lesson
                     </label>
