@@ -7,6 +7,7 @@ export default function InstructorLessonTable() {
 
     const renderedLessons = lessonData.map((val) => (
             <tr key={val.id}>
+                <th scope='row' className='text-center'>{val.id}</th>
                 <td>{val.date}</td>
                 <td>{val.time}</td>
                 <td>{val.status}</td>
@@ -22,21 +23,23 @@ export default function InstructorLessonTable() {
         ))
   
     return (
-        <div className="lessonTableContainer">
-            <table className="lessonTable">
-            <tbody>
-                <tr>
-                    <th>Lesson Date</th>
-                    <th>Lesson Time</th>
-                    <th>Lesson Status</th>
-                    <th>Lesson Detail</th>
-                    <th>Lesson Attachments</th>
-                    <th>Student Name</th>
-                    <th>Discord Link</th>
-                </tr>
-                {renderedLessons}
-                </tbody>
-            </table>
-        </div>
+    <table className="table table-hover">
+        <thead>
+            <tr>
+                <th scope='col'>Lesson #</th>
+                <th scope='col'>Lesson Date</th>
+                <th scope='col'>Lesson Time</th>
+                <th scope='col'>Lesson Status</th>
+                <th scope='col'>Lesson Detail</th>
+                <th scope='col'>Lesson Attachments</th>
+                <th scope='col'>Student Name</th>
+                <th scope='col'>Discord Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {renderedLessons}
+        </tbody>
+        
+    </table> 
     )
 }

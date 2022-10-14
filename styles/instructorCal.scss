@@ -55,8 +55,7 @@ $calandar-background:#92a8d1;
       width: fit-content;
       max-width: 75vw;
       min-width: 280px;
-      border: 1px solid $background-border;
-      border-radius: 2rem;
+      @include standard-border;
       padding:1rem;
       .lesson-text {
         width:fit-content;
@@ -82,8 +81,7 @@ $calandar-background:#92a8d1;
       margin-top: 1rem;
       display: flex;
       justify-content: space-between;
-      background-color: $lesson-control-background;
-      border: 1px solid $background-border;
+      @include standard-border;
       border-radius: 2rem;
       padding: .3rem;
 
@@ -120,8 +118,7 @@ $calandar-background:#92a8d1;
         justify-content: space-around;
 
         .lessonControlAttachment{
-          border: 1px solid $background-border;
-          border-radius: 1rem;
+          @include standard-border;
           min-width:195px;
           }
           
