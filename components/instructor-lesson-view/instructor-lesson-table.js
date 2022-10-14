@@ -1,8 +1,13 @@
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { readLesson } from '../../redux/slices/lessonDataSlice'
 
 export default function InstructorLessonTable() {
-    const lessonData = useSelector((state) => state.lessonData)
+    const lessonData = useSelector((state) => state.lessonData.lessonData)
+    const singleLessonData = useSelector((state) => state.lessonData.singleLessonData)
+    
+    const dispatch = useDispatch()
 
     const renderedLessons = lessonData.map((val) => {
 
@@ -10,8 +15,8 @@ export default function InstructorLessonTable() {
 
         const rowSelect = () => {
             console.log("you clicked row", val.id);
-            
-            console.log("rowdata", rowData)
+            dispatch(readLesson(rowData))
+            console.log("singleLesonData", singleLessonData)
             return rowData
            }
 
@@ -30,10 +35,9 @@ export default function InstructorLessonTable() {
                 </Link>
             </td>
         </tr>
-
-        return lessonRow
-            
+        return lessonRow 
     })
+
 
     return (
     <table className="table table-hover ">
