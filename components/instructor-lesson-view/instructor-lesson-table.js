@@ -29,7 +29,7 @@ export default function InstructorLessonTable() {
             <td>{val.detail}</td>
             <td>{val.attachment}</td>
             <td>{val.name}</td>
-            <td>
+            <td>   
                 <Link href="https://www.discord.com/">
                     <a className=''>{val.link}</a>
                 </Link>
