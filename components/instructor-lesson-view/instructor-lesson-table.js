@@ -11,12 +11,13 @@ export default function InstructorLessonTable() {
 
     const renderedLessons = lessonData.map((val) => {
 
-        const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name];
+        const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
 
         const rowSelect = () => {
             console.log("you clicked row", val.id);
             dispatch(readLesson(rowData))
-            console.log("singleLesonData", singleLessonData)
+            console.log("singleLesonData", {singleLessonData})
+            console.log("rowData", rowData)
             return rowData
            }
 

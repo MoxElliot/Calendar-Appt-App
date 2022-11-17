@@ -14,14 +14,14 @@ export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState: {
         lessonData: lessonDataArr,
-        singleLessonData: []
+        singleLessonData: "Select a Lesson"
     },
     reducers: {
         addLesson(state, action) {
             state.lessonData.push(action.payload)
         },
         readLesson(state, action) {
-            state.singleLessonData = [action.payload]
+            state.singleLessonData = action.payload
         },
     },
 });

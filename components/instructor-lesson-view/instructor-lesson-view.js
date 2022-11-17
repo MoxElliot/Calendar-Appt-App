@@ -26,6 +26,8 @@ export default function InstructorLessonView () {
         dispatch(showEditLesson(false))
        
     }
+
+    console.log("singleLessonData", singleLessonData)
   
     return (
       
@@ -33,7 +35,7 @@ export default function InstructorLessonView () {
                 <div>
 
                     hello
-                    {singleLessonData[0][0]}
+                    {singleLessonData}
                 </div>
                 <div className="viewSelect">
                     <p className="lessonViewSelectHeader">Instructor Lesson View</p>

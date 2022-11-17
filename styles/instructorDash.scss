@@ -64,6 +64,7 @@ $calandar-background:#92a8d1;
             }
             .lesson-attachment{
               @include standard-border;
+              padding:1rem;
               min-width:195px;
             }
             .lesson-detail {
