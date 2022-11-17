@@ -8,27 +8,30 @@ export default function InstructorLessonTable() {
     const singleLessonData = useSelector((state) => state.lessonData.singleLessonData)
     
     const dispatch = useDispatch()
+   
 
     const renderedLessons = lessonData.map((val) => {
 
         const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
-
+        console.log("Lesson Table" , val.attachment)
         const rowSelect = () => {
             console.log("you clicked row", val.id);
             dispatch(readLesson(rowData))
-            console.log("singleLesonData", {singleLessonData})
-            console.log("rowData", rowData)
             return rowData
            }
 
         const lessonRow = 
         <tr key={val.id} onClick={rowSelect}>
-            <th scope='row' className='text-center'>{val.id}</th>
             <td>{val.date}</td>
             <td>{val.time}</td>
             <td>{val.status}</td>
             <td>{val.detail}</td>
-            <td>{val.attachment}</td>
+            
+            <td> 
+                {val.attachment.map((att) => 
+                    <p>{att}</p>
+                )}
+            </td>
             <td>{val.name}</td>
             <td>   
                 <Link href="https://www.discord.com/">
@@ -44,7 +47,6 @@ export default function InstructorLessonTable() {
     <table className="table table-hover ">
         <thead>
             <tr >
-                <th scope='col'>Lesson #</th>
                 <th scope='col'>Lesson Date</th>
                 <th scope='col'>Lesson Time</th>
                 <th scope='col'>Lesson Status</th>

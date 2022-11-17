@@ -6,7 +6,6 @@ import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonContr
 export default function LessonEditControl({editLesson}) {
     
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
-    console.log("inlesson-edit-control", singleLessonData[7])
     
     if(!editLesson){
         return null;
@@ -38,12 +37,11 @@ export default function LessonEditControl({editLesson}) {
                         <button className='btn p-0'>
                             <label className='bi bi-plus px-2'>Add Attachment</label>
                         </button>
-                        <Link href="/">
-                            <a className='bi bi-paperclip'><a>{singleLessonData[5]}</a></a>
-                        </Link>
-                        <Link href="/">
-                            <a className='bi bi-paperclip'>OpeningProblems.sgf</a>
-                        </Link>
+                        {singleLessonData[5].map((att) => 
+                            <Link className='bi bi-paperclip'href="/">
+                                <a >{att}</a>
+                            </Link>
+                        )}
                     </div>
                 </div>
                 <div className="row p-0">

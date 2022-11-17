@@ -27,7 +27,7 @@ export default function InstructorLessonView () {
        
     }
 
-    console.log("singleLessonData", singleLessonData)
+
   
     return (
       
