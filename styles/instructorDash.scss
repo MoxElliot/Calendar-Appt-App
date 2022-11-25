@@ -114,13 +114,15 @@ $calandar-background:#92a8d1;
             .lessonControlRight {
               
                 width:fit-content;
+
                 .lessonControlAttachment{
                   @include standard-border;
-                  min-width:195px;
+                  min-width:295px;
                 }
             
                 .lessonControlBtn {
                    align-self: end;
+                   flex-basis: 1;
                 }
              }
           }
