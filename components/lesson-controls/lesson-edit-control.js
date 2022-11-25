@@ -39,7 +39,7 @@ export default function LessonEditControl({editLesson}) {
                         </button>
                         {singleLessonData[5].map((att) => 
                             <Link className='bi bi-paperclip'href="/">
-                                <a >{att}</a>
+                                <a>{att}</a>
                             </Link>
                         )}
                     </div>
