@@ -10,6 +10,7 @@ export default function InstructorLessonView () {
 
     const editLesson = useSelector(state => state.lessonControl.editLesson)
     const createLesson = useSelector(state => state.lessonControl.createLesson)
+    const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
 
     const dispatch = useDispatch()
 
@@ -17,18 +18,25 @@ export default function InstructorLessonView () {
         e.preventDefault()
         dispatch(showEditLesson(true))
         dispatch(showCreateLesson(false))
-        console.log("in edit handle instructor-calendar-view", editLesson)
+       
     }
     const handleCreateLesson = (e) => {
         e.preventDefault()
         dispatch(showCreateLesson(true))
         dispatch(showEditLesson(false))
-        console.log("in create handle instructor-calendar-view", createLesson)
+       
     }
 
+
+  
     return (
       
             <div className="lessonContainer container">
+                <div>
+
+                    hello
+                    {singleLessonData}
+                </div>
                 <div className="viewSelect">
                     <p className="lessonViewSelectHeader">Instructor Lesson View</p>
                     <LessonViewSelect />
@@ -52,7 +60,7 @@ export default function InstructorLessonView () {
                     />
                     <label 
                         className='btn btn-primary'
-                        for="toggleCreate"
+                        htmlFor="toggleCreate"
                     >
                         Create Lesson
                     </label>
@@ -66,7 +74,7 @@ export default function InstructorLessonView () {
                     />
                     <label 
                         className='btn btn-primary'
-                        for="toggleEdit"
+                        htmlFor="toggleEdit"
                     >
                         Edit Lesson
                     </label>

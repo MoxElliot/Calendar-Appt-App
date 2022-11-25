@@ -7,11 +7,12 @@ export default class CustomDocument extends Document {
   render() {
     return <Html>
         <Head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></link>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css"></link>
         </Head>
         <body>
           <Main />
           <NextScript />
+          
         </body>
       </Html>
   }

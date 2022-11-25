@@ -1,32 +1,52 @@
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { readLesson } from '../../redux/slices/lessonDataSlice'
 
 export default function InstructorLessonTable() {
-    const lessonData = useSelector((state) => state.lessonData)
-    console.log(lessonData)
+    const lessonData = useSelector((state) => state.lessonData.lessonData)
+    const singleLessonData = useSelector((state) => state.lessonData.singleLessonData)
+    
+    const dispatch = useDispatch()
+   
 
-    const renderedLessons = lessonData.map((val) => (
-            <tr key={val.id}>
-                <th scope='row' className='text-center'>{val.id}</th>
-                <td>{val.date}</td>
-                <td>{val.time}</td>
-                <td>{val.status}</td>
-                <td>{val.detail}</td>
-                <td>{val.attachment}</td>
-                <td>{val.name}</td>
-                <td>
-                    <Link href="https://www.discord.com/">
-                        <a className=''>{val.link}</a>
-                    </Link>
-                </td>
-            </tr>
-        ))
-  
+    const renderedLessons = lessonData.map((val) => {
+
+        const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
+        console.log("Lesson Table" , val.attachment)
+        const rowSelect = () => {
+            console.log("you clicked row", val.id);
+            dispatch(readLesson(rowData))
+            return rowData
+           }
+
+        const lessonRow = 
+        <tr key={val.id} onClick={rowSelect}>
+            <td>{val.date}</td>
+            <td>{val.time}</td>
+            <td>{val.status}</td>
+            <td>{val.detail}</td>
+            
+            <td> 
+                {val.attachment.map((att) => 
+                    <p>{att}</p>
+                )}
+            </td>
+            <td>{val.name}</td>
+            <td>   
+                <Link href="https://www.discord.com/">
+                    <a className=''>{val.link}</a>
+                </Link>
+            </td>
+        </tr>
+        return lessonRow 
+    })
+
+
     return (
-    <table className="table table-hover">
+    <table className="table table-hover ">
         <thead>
-            <tr>
-                <th scope='col'>Lesson #</th>
+            <tr >
                 <th scope='col'>Lesson Date</th>
                 <th scope='col'>Lesson Time</th>
                 <th scope='col'>Lesson Status</th>
@@ -36,7 +56,7 @@ export default function InstructorLessonTable() {
                 <th scope='col'>Discord Link</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             {renderedLessons}
         </tbody>
         
