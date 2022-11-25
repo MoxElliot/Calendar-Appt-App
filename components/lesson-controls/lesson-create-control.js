@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
+import LessonCreateAttachment from './lesson-create-attachment';
 
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -178,22 +179,7 @@ export default function LessonCreateControl ({createLesson}) {
                 />
             </form>
                 <div className='row'>
-                    <form className='lessonControlAttachment m-2 px-1
-                            col col-md-4 col-6
-                            d-flex flex-column'>
-                    
-                            <p className='lessonControlP m-0'>Lesson Attachments</p>
-                            <button className='btn p-0 w-75'>
-                                <label className='bi bi-plus'>Add Attachment</label>
-                            </button>
-                            <Link href="/">
-                                <a className='bi bi-paperclip'>game-review.sgf</a>
-                            </Link>
-                            <Link href="/">
-                                <a className='bi bi-paperclip'>OpeningProblems.sgf</a>
-                            </Link>
-                    
-                    </form>
+                    <LessonCreateAttachment />
                     <form className="lessonControlBtn col">
                         <button 
                             className='btn btn-primary'
