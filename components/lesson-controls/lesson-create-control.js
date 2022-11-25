@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
