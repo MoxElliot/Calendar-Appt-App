@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 
@@ -11,10 +11,13 @@ export default function LessonCreateAttachment () {
     const [isSelected, setIsSelected] = useState(false);
     const [attachArray, setAttachArray] = useState([])
     const handleSearchAttachment = (e) => {
-        if(e.target.files[0].name === undefined){
+        if(e.target.files.length === 0){
+            console.log("etarget in if", e.target.files)
+            console.log("etartget length in If", e.target.files.length)
             return attachArray
         } else {
-        
+        console.log("etarget in else", e.target.files)
+        console.log("etartget length in else", e.target.files.length)
         setSelectedFile(e.target.files[0].name);
         // setIsSelected(false)
         // attachArray.push(selectedFile)
@@ -34,17 +37,18 @@ export default function LessonCreateAttachment () {
         return attachArray
     }
 
-    const handleRemoveAttachment = (e) => {
-        e.preventDefault();
-        // attachArray(selectedFile.filter(i => i !== item))
-        console.log("hello", e.target.id)
-        console.log("in Handle", attachArray)
-        console.log("lenth", e.target.id - attachArray.length)
-        console.log("splice", attachArray.splice(attachArray.length - e.target.id, 1))
-       //setAttachArray(attachArray.splice(e.target.id, 1))
 
-    }
-    console.log("attachArray", attachArray)
+        const handleRemoveAttachment = (e) => {
+          //  e.preventDefault();
+            // attachArray(selectedFile.filter(i => i !== item))
+            attachArray.splice(e.target.id, 1)
+            setAttachArray(attachArray)
+            return attachArray
+            // console.log("lenth", e.target.id - attachArray.length)
+            //console.log("splice", attachArray.splice(e.target.id, 1)
+        }
+
+    // console.log("attachArray", attachArray)
     
     return ( 
         <form className='lessonControlAttachment m-2 p-2
