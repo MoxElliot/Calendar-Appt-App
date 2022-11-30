@@ -49,11 +49,8 @@ export default function LessonCreateControl () {
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
-        console.log("repeat", repeat)
-        console.log("in onCreateLessonClick")
-        console.log("day", day)
-        console.log("date", date)
-        console.log("date plus 7", dayjs(date).add(7, 'd'))
+        let d = 0
+        for (let i = 0; i < repeat; i++){
         dispatch(
             addLesson({
                 id:nanoid(),
@@ -68,6 +65,13 @@ export default function LessonCreateControl () {
                 link
             })
         )
+        d+=7
+      
+        let repeatDate = dayjs(date).add(d, 'd')
+        console.log("repeatDate:,", repeatDate.M.D) 
+        setDate(repeatDate)
+        console.log("date", date)
+        }
         setDate('')
         setDay('')
         setRepeat(1)

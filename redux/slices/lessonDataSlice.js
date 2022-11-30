@@ -1,6 +1,5 @@
+import { left } from '@popperjs/core';
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-
-
 
 const lessonDataArr = [
     {id:1, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf", "Opening.sgf"], name:"Student name", link:"Discord"},
@@ -9,7 +8,8 @@ const lessonDataArr = [
     {id:4, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Student name", link:"Discord"},
     ]
 
-
+const dayjs = require('dayjs')
+let d = 0
 export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState: {
@@ -18,10 +18,9 @@ export const lessonDataSlice = createSlice({
     },
     reducers: {
         addLesson(state, action) {
-            for (let i = 0; i < action.payload.repeat; i++){
-            console.log(i)
-            state.lessonData.push(action.payload)}
-            console.log("in addLesson LessonDataSlice, repeat", action.payload.repeat)
+        
+            state.lessonData.push(action.payload)
+          
         },
         readLesson(state, action) {
             state.singleLessonData = action.payload
