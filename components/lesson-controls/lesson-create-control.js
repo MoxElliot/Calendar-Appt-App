@@ -6,7 +6,6 @@ import LessonCreateAttachment from './lesson-create-attachment';
 
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
 export default function LessonCreateControl () {
 
@@ -83,19 +82,7 @@ export default function LessonCreateControl () {
               
             ));
 
-    const repeatOptRadio = repeatOptArr.map(option=> (
-                    <label className="lesson-control-radio" key={option.toString()} >
-                        {option}
-                        <input 
-                            type="radio" 
-                            id="repeatRad"
-                            name="repeatRad"
-                            value={repeat}
-                            onChange={onRepeatChange} 
-                            />
-                    </label>
-                
-            ));
+
     return (
         <div className='lessonCreateContainer container'>
         <div className="lessonControlLeft col mx-2">
@@ -120,9 +107,18 @@ export default function LessonCreateControl () {
                 </div>
             </form>
             <form id="lessonControlEle">
-                <p  className="lessonControlP mx-2">New Repeating Lesson</p>
+                <p  className="lessonControlP mx-2">New Weekly Repeating Lesson</p>
                 <div className='mx-5'>
-                    {repeatOptRadio}
+                    <label className="studentSelect" id="lessonControlP">
+                        <p className='lessonControlP px-2'>Weeks to repeat lesson:</p>
+                        <input 
+                            size="4"
+                            id="lessonRepeat"
+                            name="lessonRepeat"
+                            value={repeat}
+                            onChange={onRepeatChange}
+                        />
+                    </label>
                 </div>
                 <div className='mx-5'>
                     {lessonDayRadio}
