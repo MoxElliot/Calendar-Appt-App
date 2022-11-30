@@ -18,7 +18,10 @@ export const lessonDataSlice = createSlice({
     },
     reducers: {
         addLesson(state, action) {
-            state.lessonData.push(action.payload)
+            for (let i = 0; i < action.payload.repeat; i++){
+            console.log(i)
+            state.lessonData.push(action.payload)}
+            console.log("in addLesson LessonDataSlice, repeat", action.payload.repeat)
         },
         readLesson(state, action) {
             state.singleLessonData = action.payload

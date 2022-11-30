@@ -11,21 +11,9 @@ export const lessonControlSlice = createSlice({
         showEditLesson(state, action) {
          
             state.editLesson = action.payload
-            // if(state.editLesson === false) {
-            //     state.editLesson = true; 
-            // } else {
-            //     state.editLesson = false
-            // }
-
         },
         showCreateLesson(state, action) {
             state.createLesson = action.payload
-            // if(state.createLesson === false) {
-            //     state.createLesson = true; 
-            // } else {
-            //     state.createLesson = false
-            // }
-
         },
         updateLessonAttachmentList(state, action) {
             state.lessonAttachmentList = action.payload

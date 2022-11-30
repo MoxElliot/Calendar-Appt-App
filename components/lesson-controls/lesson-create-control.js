@@ -5,17 +5,19 @@ import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
 
 
+
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
 export default function LessonCreateControl () {
 
+    const dayjs = require('dayjs')
     const createLesson = useSelector(state => state.lessonControl.createLesson)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
   
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
     const [toggleRepeat, setToggleRepeat] = useState(false)
-    const [repeat, setRepeat] = useState('');
+    const [repeat, setRepeat] = useState(1);
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
@@ -28,7 +30,6 @@ export default function LessonCreateControl () {
     const onDateChange = e => setDate(e.target.value);
     const onDayChange = e => setDay(e.target.value);
     const onToggleRepeatChange = () => {
-        console.log('checked box')
         setToggleRepeat(!toggleRepeat);
         if (toggleRepeat === true) {
             document.getElementById("lessonRepeat").disabled=true;
@@ -37,11 +38,8 @@ export default function LessonCreateControl () {
             document.getElementById("lessonRepeat").disabled=false
             document.getElementById("repeatDaySelect").hidden=false
         }
-        console.log(toggleRepeat)
-        }
-    const onRepeatChange = e => {
-        console.log("number box")
-        setRepeat(e.target.value);}
+    }
+    const onRepeatChange = e => setRepeat(e.target.value);
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
@@ -51,7 +49,11 @@ export default function LessonCreateControl () {
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
+        console.log("repeat", repeat)
         console.log("in onCreateLessonClick")
+        console.log("day", day)
+        console.log("date", date)
+        console.log("date plus 7", dayjs(date).add(7, 'd'))
         dispatch(
             addLesson({
                 id:nanoid(),
@@ -68,13 +70,13 @@ export default function LessonCreateControl () {
         )
         setDate('')
         setDay('')
-        setRepeat('')
+        setRepeat(1)
         setTime('')
         setName('')
         setDetail('')
-        setAttachment('')
-        setStatus('')
-        setLink('')
+        setAttachment(lessonAttachmentList)
+        setStatus('Available')
+        setLink('Discord')
     }
 
   
@@ -83,18 +85,19 @@ export default function LessonCreateControl () {
         return null;
     } 
 
-    const lessonDayRadio = lessonDayArr.map(dayOfWeek=> (
+    const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
                     <label 
                         
                         className="lesson-control-radio" 
                         id="repeatDaySelect"
+                        
                         key={dayOfWeek.toString()} >
                         {dayOfWeek}
                         <input 
                             type="radio" 
                             id="dayRad"
                             name="dayRad"
-                            value={day}
+                            value={i}
                             onChange={onDayChange} 
                             />
                     </label>
