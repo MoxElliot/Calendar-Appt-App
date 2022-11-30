@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
@@ -9,7 +9,7 @@ const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
 export default function LessonCreateControl ({createLesson}) {
-
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
     if(!createLesson){
         console.log("In LessonCreateControl if", createLesson)
         return null;
@@ -21,6 +21,7 @@ export default function LessonCreateControl ({createLesson}) {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
+    const [attachment, setAttachment] = useState(lessonAttachmentList);
     const [status, setStatus] = useState('Available');
     const [link, setLink] = useState('Discord');
 
@@ -32,6 +33,7 @@ export default function LessonCreateControl ({createLesson}) {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
+    const onAttachmentChange = e => setAttachment(e.target.value);
     const onStatusChange = e => setStatus("Booked");
    // const onLinkChange = e => setLink("Discord");
 
@@ -47,6 +49,7 @@ export default function LessonCreateControl ({createLesson}) {
                 time,
                 name,
                 detail,
+                attachment,
                 status,
                 link
             })
@@ -57,6 +60,7 @@ export default function LessonCreateControl ({createLesson}) {
         setTime('')
         setName('')
         setDetail('')
+        setAttachment('')
         setStatus('')
         setLink('')
     }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { updateLessonAttachmentList } from '../../redux/slices/lessonControlSlice';
 
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
@@ -10,18 +12,15 @@ export default function LessonCreateAttachment () {
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
     const [attachArray, setAttachArray] = useState([])
+
+    const dispatch = useDispatch();
+    
     const handleSearchAttachment = (e) => {
+        e.preventDefault()
         if(e.target.files.length === 0){
-            console.log("etarget in if", e.target.files)
-            console.log("etartget length in If", e.target.files.length)
             return attachArray
         } else {
-        console.log("etarget in else", e.target.files)
-        console.log("etartget length in else", e.target.files.length)
         setSelectedFile(e.target.files[0].name);
-        // setIsSelected(false)
-        // attachArray.push(selectedFile)
-        
         return attachArray}
     }
 
@@ -32,24 +31,17 @@ export default function LessonCreateAttachment () {
         } else {
             setIsSelected(!isSelected)
             setAttachArray([...attachArray, selectedFile])
-            // attachArray.push(selectedFile)
        }
+        dispatch(updateLessonAttachmentList(attachArray))
         return attachArray
     }
 
+    const handleRemoveAttachment = (e) => {
+        attachArray.splice(e.target.id, 1)
+        setAttachArray(attachArray)
+        return attachArray
+    }
 
-        const handleRemoveAttachment = (e) => {
-          //  e.preventDefault();
-            // attachArray(selectedFile.filter(i => i !== item))
-            attachArray.splice(e.target.id, 1)
-            setAttachArray(attachArray)
-            return attachArray
-            // console.log("lenth", e.target.id - attachArray.length)
-            //console.log("splice", attachArray.splice(e.target.id, 1)
-        }
-
-    // console.log("attachArray", attachArray)
-    
     return ( 
         <form className='lessonControlAttachment m-2 p-2
             col col-md-4 col-6
