@@ -14,6 +14,7 @@ export default function LessonCreateControl () {
   
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
+    const [toggleRepeat, setToggleRepeat] = useState(false)
     const [repeat, setRepeat] = useState('');
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
@@ -26,7 +27,21 @@ export default function LessonCreateControl () {
 
     const onDateChange = e => setDate(e.target.value);
     const onDayChange = e => setDay(e.target.value);
-    const onRepeatChange = e => setRepeat(e.target.value);
+    const onToggleRepeatChange = () => {
+        console.log('checked box')
+        setToggleRepeat(!toggleRepeat);
+        if (toggleRepeat === true) {
+            document.getElementById("lessonRepeat").disabled=true;
+            document.getElementById("repeatDaySelect").hidden=true
+        } else {
+            document.getElementById("lessonRepeat").disabled=false
+            document.getElementById("repeatDaySelect").hidden=false
+        }
+        console.log(toggleRepeat)
+        }
+    const onRepeatChange = e => {
+        console.log("number box")
+        setRepeat(e.target.value);}
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
@@ -69,7 +84,11 @@ export default function LessonCreateControl () {
     } 
 
     const lessonDayRadio = lessonDayArr.map(dayOfWeek=> (
-                    <label className="lesson-control-radio" key={dayOfWeek.toString()} >
+                    <label 
+                        
+                        className="lesson-control-radio" 
+                        id="repeatDaySelect"
+                        key={dayOfWeek.toString()} >
                         {dayOfWeek}
                         <input 
                             type="radio" 
@@ -107,11 +126,18 @@ export default function LessonCreateControl () {
                 </div>
             </form>
             <form id="lessonControlEle">
-                <p  className="lessonControlP mx-2">New Weekly Repeating Lesson</p>
                 <div className='mx-5'>
-                    <label className="studentSelect" id="lessonControlP">
+                    <label className="lessonCheckbox" id="lessonControlP">
+                        <input 
+                            id="repeatLesson" 
+                            name="repeatLesson"
+                            value={toggleRepeat}
+                            onChange={onToggleRepeatChange}
+                            type="checkbox"
+                            />
                         <p className='lessonControlP px-2'>Weeks to repeat lesson:</p>
                         <input 
+                            disabled
                             size="4"
                             id="lessonRepeat"
                             name="lessonRepeat"
@@ -120,7 +146,7 @@ export default function LessonCreateControl () {
                         />
                     </label>
                 </div>
-                <div className='mx-5'>
+                <div className='mx-5' id="repeatDaySelect" hidden>
                     {lessonDayRadio}
                 </div>
             </form>
@@ -145,7 +171,7 @@ export default function LessonCreateControl () {
                 </div>
             </form>
                 <form className="lessonControlEle col-4" > 
-                    <label className="studentSelect" id="lessonControlP">
+                    <label className="lessonCheckbox" id="lessonControlP">
                         <input 
                             type="checkbox" 
                             id="lessonStatus"
