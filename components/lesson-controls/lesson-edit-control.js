@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonControlSlice'
 
 export default function LessonEditControl({editLesson}) {
     

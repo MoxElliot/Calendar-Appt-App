@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { readLesson } from '../../redux/slices/lessonDataSlice'
 
+
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
     const singleLessonData = useSelector((state) => state.lessonData.singleLessonData)
@@ -29,7 +30,7 @@ export default function InstructorLessonTable() {
             
             <td> 
                 {val.attachment.map((att) => 
-                    <p>{att}</p>
+                    <p key={att.toString()}>{att}</p>
                 )}
             </td>
             <td>{val.name}</td>

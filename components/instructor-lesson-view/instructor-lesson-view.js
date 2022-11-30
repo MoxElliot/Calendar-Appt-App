@@ -10,6 +10,7 @@ export default function InstructorLessonView () {
 
     const editLesson = useSelector(state => state.lessonControl.editLesson)
     const createLesson = useSelector(state => state.lessonControl.createLesson)
+
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
 
     const dispatch = useDispatch()
