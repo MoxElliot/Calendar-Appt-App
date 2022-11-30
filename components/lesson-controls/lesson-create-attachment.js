@@ -37,6 +37,7 @@ export default function LessonCreateAttachment () {
     }
 
     const handleRemoveAttachment = (e) => {
+        e.preventDefault()
         attachArray.splice(e.target.id, 1)
         setAttachArray(attachArray)
         return attachArray

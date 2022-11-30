@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
-export default function LessonEditControl({editLesson}) {
+export default function LessonEditControl() {
     
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
-    
+    const editLesson = useSelector(state => state.lessonControl.editLesson)
     if(!editLesson){
         return null;
     } 

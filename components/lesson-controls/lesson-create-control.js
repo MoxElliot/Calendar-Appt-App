@@ -8,13 +8,11 @@ import LessonCreateAttachment from './lesson-create-attachment';
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
-export default function LessonCreateControl ({createLesson}) {
-    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
-    if(!createLesson){
-        console.log("In LessonCreateControl if", createLesson)
-        return null;
-    } 
+export default function LessonCreateControl () {
 
+    const createLesson = useSelector(state => state.lessonControl.createLesson)
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+  
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
     const [repeat, setRepeat] = useState('');
@@ -65,6 +63,11 @@ export default function LessonCreateControl ({createLesson}) {
         setLink('')
     }
 
+  
+    if(!createLesson){
+        console.log("In LessonCreateControl if", createLesson)
+        return null;
+    } 
 
     const lessonDayRadio = lessonDayArr.map(dayOfWeek=> (
                     <label className="lesson-control-radio" key={dayOfWeek.toString()} >
@@ -182,7 +185,8 @@ export default function LessonCreateControl ({createLesson}) {
                 />
             </form>
                 <div className='row'>
-                    <LessonCreateAttachment />
+                    <LessonCreateAttachment 
+                        onChange={onAttachmentChange}/>
                     <form className="lessonControlBtn col">
                         <button 
                             className='btn btn-primary'
