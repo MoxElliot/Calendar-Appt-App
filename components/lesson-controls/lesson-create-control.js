@@ -1,10 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
-
-
 
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
@@ -17,7 +15,7 @@ export default function LessonCreateControl () {
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
     const [toggleRepeat, setToggleRepeat] = useState(false)
-    const [repeat, setRepeat] = useState(1);
+    const [repeat, setRepeat] = useState(0);
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
@@ -49,8 +47,8 @@ export default function LessonCreateControl () {
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
-        let d = 0
-        for (let i = 0; i < repeat; i++){
+       
+        for (let i = 0; i <= repeat; i++){
         dispatch(
             addLesson({
                 id:nanoid(),
@@ -65,13 +63,12 @@ export default function LessonCreateControl () {
                 link
             })
         )
-        d+=7
-      
+        const d = 7
         let repeatDate = dayjs(date).add(d, 'd')
-        console.log("repeatDate:,", repeatDate.M.D) 
-        setDate(repeatDate)
-        console.log("date", date)
+        const {$y, $M, $D} = repeatDate
+        date =  $y + "-" + ($M+1) +"-" + $D
         }
+        
         setDate('')
         setDay('')
         setRepeat(1)
@@ -83,7 +80,6 @@ export default function LessonCreateControl () {
         setLink('Discord')
     }
 
-  
     if(!createLesson){
         console.log("In LessonCreateControl if", createLesson)
         return null;
