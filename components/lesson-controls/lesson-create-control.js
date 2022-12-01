@@ -108,7 +108,7 @@ export default function LessonCreateControl () {
     return (
         <div className='lessonCreateContainer container'>
         <div className="lessonControlLeft col mx-2">
-            <form id="lessonControlEle">
+            <form id="lessonControlEle" method="post" encType="multipart/form-data">
                 <p className="lessonControlP">
                     Set New Lesson Date -or- Select Repeat Options
                 </p>

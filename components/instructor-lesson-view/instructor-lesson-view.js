@@ -8,11 +8,6 @@ import { showEditLesson, showCreateLesson } from '../../redux/slices/lessonContr
 
 export default function InstructorLessonView () {
 
-    // const editLesson = useSelector(state => state.lessonControl.editLesson)
-   // const createLesson = useSelector(state => state.lessonControl.createLesson)
-
-    const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
-
     const dispatch = useDispatch()
 
     const handleEditLesson = (e) => {
@@ -25,11 +20,8 @@ export default function InstructorLessonView () {
         e.preventDefault()
         dispatch(showCreateLesson(true))
         dispatch(showEditLesson(false))
-       
     }
 
-
-  
     return (
       
             <div className="lessonContainer container">

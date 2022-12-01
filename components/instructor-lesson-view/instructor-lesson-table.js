@@ -7,10 +7,8 @@ import { nanoid } from 'nanoid';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
-    const singleLessonData = useSelector((state) => state.lessonData.singleLessonData)
     
     const dispatch = useDispatch()
-   
 
     const renderedLessons = lessonData.map((val) => {
 

@@ -24,7 +24,8 @@ export default function LessonCreateAttachment () {
         return attachArray}
     }
 
-    const handleAddAttachment = () => {
+    const handleAddAttachment = (e) => {
+        e.preventDefault()
         console.log("includes",attachArray.includes(selectedFile))
         if(attachArray.includes(selectedFile) || selectedFile === undefined) {
             setIsSelected(!isSelected)
@@ -46,7 +47,8 @@ export default function LessonCreateAttachment () {
     return ( 
         <form className='lessonControlAttachment m-2 p-2
             col col-md-4 col-6
-            d-flex flex-column'>
+            d-flex flex-column'
+            method="post" encType="multipart/form-data">
     
             <p className='lessonControlP m-0'>Lesson Attachments</p>
             <input type='file' name='file' onChange={handleSearchAttachment} />
