@@ -38,11 +38,16 @@ export default function LessonCreateAttachment () {
     }
 
     const handleRemoveAttachment = (e) => {
-        e.preventDefault()
+      e.preventDefault()
         attachArray.splice(e.target.id, 1)
-        setAttachArray(attachArray)
-        return attachArray
+        // console.log("in handle removeAttachArray", removeAttachArray)
+        // console.log("in handle attachArray", attachArray)
+        dispatch(updateLessonAttachmentList(attachArray))
+       return attachArray
     }
+    // useEffect(()=>{
+    //     console.log(attachArray)
+    // })
 
     return ( 
         <form className='lessonControlAttachment m-2 p-2
