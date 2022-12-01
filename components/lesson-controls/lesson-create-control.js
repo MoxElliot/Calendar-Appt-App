@@ -1,21 +1,21 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
 
-
 const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-const repeatOptArr = ['None', 'Daily', 'Weekly', 'Monthly'];
 
 export default function LessonCreateControl () {
 
+    const dayjs = require('dayjs')
     const createLesson = useSelector(state => state.lessonControl.createLesson)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
   
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
-    const [repeat, setRepeat] = useState('');
+    const [toggleRepeat, setToggleRepeat] = useState(false)
+    const [repeat, setRepeat] = useState(0);
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
@@ -27,6 +27,16 @@ export default function LessonCreateControl () {
 
     const onDateChange = e => setDate(e.target.value);
     const onDayChange = e => setDay(e.target.value);
+    const onToggleRepeatChange = () => {
+        setToggleRepeat(!toggleRepeat);
+        if (toggleRepeat === true) {
+            document.getElementById("lessonRepeat").disabled=true;
+            document.getElementById("repeatDaySelect").hidden=true
+        } else {
+            document.getElementById("lessonRepeat").disabled=false
+            document.getElementById("repeatDaySelect").hidden=false
+        }
+    }
     const onRepeatChange = e => setRepeat(e.target.value);
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
@@ -37,7 +47,8 @@ export default function LessonCreateControl () {
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
-        console.log("in onCreateLessonClick")
+       
+        for (let i = 0; i <= repeat; i++){
         dispatch(
             addLesson({
                 id:nanoid(),
@@ -52,50 +63,48 @@ export default function LessonCreateControl () {
                 link
             })
         )
+        const d = 7
+        let repeatDate = dayjs(date).add(d, 'd')
+        const {$y, $M, $D} = repeatDate
+        date =  $y + "-" + ($M+1) +"-" + $D
+        }
+        
         setDate('')
         setDay('')
-        setRepeat('')
+        setRepeat(1)
         setTime('')
         setName('')
         setDetail('')
-        setAttachment('')
-        setStatus('')
-        setLink('')
+        setAttachment(lessonAttachmentList)
+        setStatus('Available')
+        setLink('Discord')
     }
 
-  
     if(!createLesson){
         console.log("In LessonCreateControl if", createLesson)
         return null;
     } 
 
-    const lessonDayRadio = lessonDayArr.map(dayOfWeek=> (
-                    <label className="lesson-control-radio" key={dayOfWeek.toString()} >
+    const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
+                    <label 
+                        
+                        className="lesson-control-radio" 
+                        id="repeatDaySelect"
+                        
+                        key={dayOfWeek.toString()} >
                         {dayOfWeek}
                         <input 
                             type="radio" 
                             id="dayRad"
                             name="dayRad"
-                            value={day}
+                            value={i}
                             onChange={onDayChange} 
                             />
                     </label>
               
             ));
 
-    const repeatOptRadio = repeatOptArr.map(option=> (
-                    <label className="lesson-control-radio" key={option.toString()} >
-                        {option}
-                        <input 
-                            type="radio" 
-                            id="repeatRad"
-                            name="repeatRad"
-                            value={repeat}
-                            onChange={onRepeatChange} 
-                            />
-                    </label>
-                
-            ));
+
     return (
         <div className='lessonCreateContainer container'>
         <div className="lessonControlLeft col mx-2">
@@ -120,11 +129,27 @@ export default function LessonCreateControl () {
                 </div>
             </form>
             <form id="lessonControlEle">
-                <p  className="lessonControlP mx-2">New Repeating Lesson</p>
                 <div className='mx-5'>
-                    {repeatOptRadio}
+                    <label className="lessonCheckbox" id="lessonControlP">
+                        <input 
+                            id="repeatLesson" 
+                            name="repeatLesson"
+                            value={toggleRepeat}
+                            onChange={onToggleRepeatChange}
+                            type="checkbox"
+                            />
+                        <p className='lessonControlP px-2'>Weeks to repeat lesson:</p>
+                        <input 
+                            disabled
+                            size="4"
+                            id="lessonRepeat"
+                            name="lessonRepeat"
+                            value={repeat}
+                            onChange={onRepeatChange}
+                        />
+                    </label>
                 </div>
-                <div className='mx-5'>
+                <div className='mx-5' id="repeatDaySelect" hidden>
                     {lessonDayRadio}
                 </div>
             </form>
@@ -149,7 +174,7 @@ export default function LessonCreateControl () {
                 </div>
             </form>
                 <form className="lessonControlEle col-4" > 
-                    <label className="studentSelect" id="lessonControlP">
+                    <label className="lessonCheckbox" id="lessonControlP">
                         <input 
                             type="checkbox" 
                             id="lessonStatus"

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { readLesson } from '../../redux/slices/lessonDataSlice'
+import { nanoid } from 'nanoid';
 
 
 export default function InstructorLessonTable() {
@@ -14,7 +15,6 @@ export default function InstructorLessonTable() {
     const renderedLessons = lessonData.map((val) => {
 
         const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
-        console.log("Lesson Table" , val.attachment)
         const rowSelect = () => {
             console.log("you clicked row", val.id);
             dispatch(readLesson(rowData))
@@ -22,7 +22,7 @@ export default function InstructorLessonTable() {
            }
 
         const lessonRow = 
-        <tr key={val.id} onClick={rowSelect}>
+        <tr key={nanoid()} onClick={rowSelect}>
             <td>{val.date}</td>
             <td>{val.time}</td>
             <td>{val.status}</td>
