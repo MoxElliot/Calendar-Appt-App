@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { updateLessonAttachmentList } from '../../redux/slices/lessonControlSlice';
+import { updateLessonAttachmentList, removeLessonAttachment } from '../../redux/slices/lessonControlSlice';
 
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
@@ -14,6 +14,7 @@ export default function LessonCreateAttachment () {
     const [attachArray, setAttachArray] = useState([])
 
     const dispatch = useDispatch();
+    const removeIndex = useSelector(state => state.removeIndex)
     
     const handleSearchAttachment = (e) => {
         e.preventDefault()
@@ -38,11 +39,14 @@ export default function LessonCreateAttachment () {
     }
 
     const handleRemoveAttachment = (e) => {
-      e.preventDefault()
-        attachArray.splice(e.target.id, 1)
+        e.preventDefault()
+        console.log("in handle index", e.target.id)
+        removeIndex = e.target.id
+        console.log("removeIndex", removeIndex)
+        attachArray.splice(removeIndex, 1)
         // console.log("in handle removeAttachArray", removeAttachArray)
         // console.log("in handle attachArray", attachArray)
-        dispatch(updateLessonAttachmentList(attachArray))
+        dispatch(removeLessonAttachment(removeIndex, attachArray))
        return attachArray
     }
     // useEffect(()=>{
