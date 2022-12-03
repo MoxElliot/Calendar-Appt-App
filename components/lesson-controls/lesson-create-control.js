@@ -4,7 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
 
-const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+// const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
 export default function LessonCreateControl () {
 
@@ -27,14 +27,15 @@ export default function LessonCreateControl () {
 
     const onDateChange = e => setDate(e.target.value);
     const onDayChange = e => setDay(e.target.value);
+
     const onToggleRepeatChange = () => {
         setToggleRepeat(!toggleRepeat);
         if (toggleRepeat === true) {
             document.getElementById("lessonRepeat").disabled=true;
-            document.getElementById("repeatDaySelect").hidden=true
+            // document.getElementById("repeatDaySelect").hidden=true
         } else {
             document.getElementById("lessonRepeat").disabled=false
-            document.getElementById("repeatDaySelect").hidden=false
+            // document.getElementById("repeatDaySelect").hidden=false
         }
     }
     const onRepeatChange = e => setRepeat(e.target.value);
@@ -43,7 +44,7 @@ export default function LessonCreateControl () {
     const onDetailChange = e => setDetail(e.target.value);
     const onAttachmentChange = e => setAttachment(e.target.value);
     const onStatusChange = e => setStatus("Booked");
-   // const onLinkChange = e => setLink("Discord");
+  
 
     const onCreateLessonClick = (e) => {
         e.preventDefault();
@@ -85,24 +86,24 @@ export default function LessonCreateControl () {
         return null;
     } 
 
-    const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
-                    <label 
+    // const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
+    //                 <label 
                         
-                        className="lesson-control-radio" 
-                        id="repeatDaySelect"
+    //                     className="lesson-control-radio" 
+    //                     id="repeatDaySelect"
                         
-                        key={dayOfWeek.toString()} >
-                        {dayOfWeek}
-                        <input 
-                            type="radio" 
-                            id="dayRad"
-                            name="dayRad"
-                            value={i}
-                            onChange={onDayChange} 
-                            />
-                    </label>
+    //                     key={dayOfWeek.toString()} >
+    //                     {dayOfWeek}
+    //                     <input 
+    //                         type="radio" 
+    //                         id="dayRad"
+    //                         name="dayRad"
+    //                         value={i}
+    //                         onChange={onDayChange} 
+    //                         />
+    //                 </label>
               
-            ));
+    //         ));
 
 
     return (
@@ -110,9 +111,9 @@ export default function LessonCreateControl () {
         <div className="lessonControlLeft col mx-2">
             <form id="lessonControlEle" method="post" encType="multipart/form-data">
                 <p className="lessonControlP">
-                    Set New Lesson Date -or- Select Repeat Options
+                    Set New Lesson Date -or- Select Repeat Option
                 </p>
-                <p  className="lessonControlP mx-2">New Single Lesson</p>
+                <p  className="lessonControlP mx-2">Lesson Date</p>
                 <div className='lesson-date-input mx-5
                     container 
                     d-flex-column justify-content-center align-items-center'>
@@ -149,9 +150,9 @@ export default function LessonCreateControl () {
                         />
                     </label>
                 </div>
-                <div className='mx-5' id="repeatDaySelect" hidden>
+                {/* <div className='mx-5' id="repeatDaySelect" hidden>
                     {lessonDayRadio}
-                </div>
+                </div> */}
             </form>
             
             <div className="lessonControlBottom row">
