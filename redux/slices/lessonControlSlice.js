@@ -24,12 +24,6 @@ export const lessonControlSlice = createSlice({
             state.removeIndex = action.payload
             state.lessonAttachmentList = action.payload
             console.log("in slice removeIndex", state.removeIndex)
-            // state.lessonAttachmentList = state.lessonAttachmentList.filter((_, i) => 
-            // i === state.removeIndex)
-
-            // console.log("inSLice State", state.lessonAttachmentList)
-            // console.log("in SLice action", action.payload)
-            
         }
     },
 });

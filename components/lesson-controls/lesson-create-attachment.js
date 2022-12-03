@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 import { updateLessonAttachmentList, removeLessonAttachment } from '../../redux/slices/lessonControlSlice';
 
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 //https://www.pluralsight.com/guides/manipulating-arrays-and-objects-in-state-with-react
-// const attachArray = []
+
 export default function LessonCreateAttachment () {
 
+  
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
-    const [attachArray, setAttachArray] = useState([])
+    const [attachArray, setAttachArray] = useState([]);
+
+    useEffect(() => {
+        console.log("attachArray is updated", attachArray)
+    }, [selectedFile, isSelected, attachArray]);
+
+    const removeIndex = useSelector(state => state.removeIndex)
 
     const dispatch = useDispatch();
-    const removeIndex = useSelector(state => state.removeIndex)
+    
     
     const handleSearchAttachment = (e) => {
         e.preventDefault()
@@ -22,12 +28,13 @@ export default function LessonCreateAttachment () {
             return attachArray
         } else {
         setSelectedFile(e.target.files[0].name);
-        return attachArray}
-    }
+        return attachArray
+    }}
 
     const handleAddAttachment = (e) => {
         e.preventDefault()
         console.log("includes",attachArray.includes(selectedFile))
+        console.log("attachArray in Handle", attachArray)
         if(attachArray.includes(selectedFile) || selectedFile === undefined) {
             setIsSelected(!isSelected)
         } else {
@@ -44,14 +51,9 @@ export default function LessonCreateAttachment () {
         removeIndex = e.target.id
         console.log("removeIndex", removeIndex)
         attachArray.splice(removeIndex, 1)
-        // console.log("in handle removeAttachArray", removeAttachArray)
-        // console.log("in handle attachArray", attachArray)
         dispatch(removeLessonAttachment(removeIndex, attachArray))
        return attachArray
     }
-    // useEffect(()=>{
-    //     console.log(attachArray)
-    // })
 
     return ( 
         <form className='lessonControlAttachment m-2 p-2
