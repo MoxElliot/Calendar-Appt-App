@@ -27,7 +27,7 @@ export default function LessonCreateControl () {
 
     useEffect(()=>{
         console.log("in Create Control Lesson Attach List", lessonAttachmentList)
-        setAttachment(...attachment, lessonAttachmentList)
+        setAttachment(lessonAttachmentList)
     }, [lessonAttachmentList])
 
     const onDateChange = e => setDate(e.target.value);
