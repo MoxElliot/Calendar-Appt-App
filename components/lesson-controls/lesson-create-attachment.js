@@ -6,16 +6,23 @@ import { updateLessonAttachmentList, removeLessonAttachment } from '../../redux/
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 //https://www.pluralsight.com/guides/manipulating-arrays-and-objects-in-state-with-react
 
-export default function LessonCreateAttachment () {
+export default function LessonCreateAttachment ({toggleAttachClear}) {
 
   
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
     const [attachArray, setAttachArray] = useState([]);
-
+    
+    
     useEffect(() => {
         console.log("attachArray is updated", attachArray)
-    }, [selectedFile, isSelected, attachArray]);
+        console.log("toggleAttachClear", toggleAttachClear)
+        if(toggleAttachClear === true) {
+            setAttachArray([])
+            !toggleAttachClear
+            return attachArray
+        }
+    }, [selectedFile, isSelected, attachArray, toggleAttachClear]);
 
     const removeIndex = useSelector(state => state.removeIndex)
 
