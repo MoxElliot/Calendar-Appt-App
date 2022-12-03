@@ -19,14 +19,18 @@ export default function LessonCreateControl () {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
-    const [attachment, setAttachment] = useState(lessonAttachmentList);
+    const [attachment, setAttachment] = useState([]);
     const [status, setStatus] = useState('Available');
     const [link, setLink] = useState('Discord');
 
     const dispatch = useDispatch();
 
+    useEffect(()=>{
+        console.log("in Create Control Lesson Attach List", lessonAttachmentList)
+        setAttachment(...attachment, lessonAttachmentList)
+    }, [lessonAttachmentList])
+
     const onDateChange = e => setDate(e.target.value);
-    const onDayChange = e => setDay(e.target.value);
 
     const onToggleRepeatChange = () => {
         setToggleRepeat(!toggleRepeat);
@@ -42,8 +46,8 @@ export default function LessonCreateControl () {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
-    const onAttachmentChange = e => setAttachment(e.target.value);
-    const onStatusChange = e => setStatus("Booked");
+    const onAttachmentChange = () => setAttachment(lessonAttachmentList);
+    const onStatusChange = () => setStatus("Booked");
   
 
     const onCreateLessonClick = (e) => {
@@ -76,7 +80,7 @@ export default function LessonCreateControl () {
         setTime('')
         setName('')
         setDetail('')
-        setAttachment(lessonAttachmentList)
+        setAttachment([])
         setStatus('Available')
         setLink('Discord')
     }

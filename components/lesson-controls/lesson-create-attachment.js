@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 import { updateLessonAttachmentList, removeLessonAttachment } from '../../redux/slices/lessonControlSlice';
 
 
@@ -32,9 +31,9 @@ export default function LessonCreateAttachment () {
             setIsSelected(!isSelected)
         } else {
             setIsSelected(!isSelected)
+            dispatch(updateLessonAttachmentList(selectedFile))
             setAttachArray([...attachArray, selectedFile])
        }
-        dispatch(updateLessonAttachmentList(attachArray))
         return attachArray
     }
 

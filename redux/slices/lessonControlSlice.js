@@ -17,7 +17,7 @@ export const lessonControlSlice = createSlice({
             state.createLesson = action.payload
         },
         updateLessonAttachmentList(state, action) {
-            state.lessonAttachmentList = action.payload
+            state.lessonAttachmentList = [...state.lessonAttachmentList, action.payload]
             console.log("in slice lesson attachment List", state.lessonAttachmentList)
         },
         removeLessonAttachment(state, action) {
