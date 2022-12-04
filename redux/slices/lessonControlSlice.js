@@ -27,7 +27,8 @@ export const lessonControlSlice = createSlice({
         clearLessonAttachmentList(state) {
             state.lessonAttachmentList = []
             console.log("in clear Lesson Attachment List")
-        }
+        },
+        
     },
 });
 
