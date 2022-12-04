@@ -9,7 +9,7 @@ export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
     
     const dispatch = useDispatch()
-
+    console.log("in lesson table", lessonData.attachment)
     const renderedLessons = lessonData.map((val) => {
 
         const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
+import { clearLessonAttachmentList } from '../../redux/slices/lessonControlSlice';
 
 // const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
 export default function LessonCreateControl () {
-
     const dayjs = require('dayjs')
     const createLesson = useSelector(state => state.lessonControl.createLesson)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
@@ -19,15 +19,18 @@ export default function LessonCreateControl () {
     const [time, setTime] = useState('');
     const [name, setName] = useState('');
     const [detail, setDetail] = useState('');
-    const [attachment, setAttachment] = useState(lessonAttachmentList);
+    const [attachment, setAttachment] = useState([]);
     const [status, setStatus] = useState('Available');
     const [link, setLink] = useState('Discord');
+    let toggleAttachClear = false
 
     const dispatch = useDispatch();
 
+    useEffect(()=>{
+        console.log("in Create Control Lesson Attach List", lessonAttachmentList)
+        setAttachment(lessonAttachmentList)
+    }, [lessonAttachmentList])
     const onDateChange = e => setDate(e.target.value);
-    const onDayChange = e => setDay(e.target.value);
-
     const onToggleRepeatChange = () => {
         setToggleRepeat(!toggleRepeat);
         if (toggleRepeat === true) {
@@ -42,10 +45,9 @@ export default function LessonCreateControl () {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
-    const onAttachmentChange = e => setAttachment(e.target.value);
-    const onStatusChange = e => setStatus("Booked");
+    const onAttachmentChange = () => setAttachment(lessonAttachmentList);
+    const onStatusChange = () => setStatus("Booked");
   
-
     const onCreateLessonClick = (e) => {
         e.preventDefault();
        
@@ -72,20 +74,21 @@ export default function LessonCreateControl () {
         
         setDate('')
         setDay('')
-        setRepeat(1)
+        setRepeat(0)
         setTime('')
         setName('')
         setDetail('')
-        setAttachment(lessonAttachmentList)
+        setAttachment([])
         setStatus('Available')
         setLink('Discord')
+        dispatch(clearLessonAttachmentList())
+        !toggleAttachClear
     }
 
     if(!createLesson){
         console.log("In LessonCreateControl if", createLesson)
         return null;
     } 
-
     // const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
     //                 <label 
                         
@@ -104,8 +107,6 @@ export default function LessonCreateControl () {
     //                 </label>
               
     //         ));
-
-
     return (
         <div className='lessonCreateContainer container'>
         <div className="lessonControlLeft col mx-2">
@@ -211,7 +212,8 @@ export default function LessonCreateControl () {
                 />
             </form>
                 <div className='row'>
-                    <LessonCreateAttachment 
+                    <LessonCreateAttachment
+                        toggleAttachClear={toggleAttachClear} 
                         onChange={onAttachmentChange}/>
                     <form className="lessonControlBtn col">
                         <button 
