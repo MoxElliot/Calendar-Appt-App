@@ -18,13 +18,12 @@ export default function LessonCreateAttachment () {
 
     const dispatch = useDispatch();
     
-    useEffect(() => {
+    useEffect((attachClear) => {
         console.log("attachArray is updated", attachArray)
         console.log(" in useEffect:", attachClear)
         if(attachClear === true) {
             console.log("in UseEffect IF")
             setAttachArray([])
-            dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
         }
     }, [selectedFile, isSelected, attachArray, attachClear]);
