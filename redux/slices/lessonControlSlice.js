@@ -17,20 +17,20 @@ export const lessonControlSlice = createSlice({
         },
         updateLessonAttachmentList(state, action) {
             state.lessonAttachmentList = [...state.lessonAttachmentList, action.payload]
-            console.log("in slice lesson attachment List", state.lessonAttachmentList)
         },
         removeLessonAttachment(state, action) {
             state.removeIndex = action.payload
             state.lessonAttachmentList = action.payload
-            console.log("in slice removeIndex", state.removeIndex)
         },
         clearLessonAttachmentList(state) {
             state.lessonAttachmentList = []
-            console.log("in clear Lesson Attachment List")
         },
-        
+        toggleAttachClear(state, action) {
+            state.attachClear = action.payload
+            console.log('in toggleAttachClear', state.attachClear)
+        }
     },
 });
 
-export const { showEditLesson, showCreateLesson, updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList } = lessonControlSlice.actions;
+export const { showEditLesson, showCreateLesson, updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear } = lessonControlSlice.actions;
 export default lessonControlSlice.reducer;
