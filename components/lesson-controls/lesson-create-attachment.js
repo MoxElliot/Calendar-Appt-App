@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateLessonAttachmentList, removeLessonAttachment } from '../../redux/slices/lessonControlSlice';
+import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices/lessonControlSlice';
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 //https://www.pluralsight.com/guides/manipulating-arrays-and-objects-in-state-with-react
 
-export default function LessonCreateAttachment ({toggleAttachClear}) {
+export default function LessonCreateAttachment () {
 
 
     const [selectedFile, setSelectedFile] = useState();
@@ -12,19 +12,21 @@ export default function LessonCreateAttachment ({toggleAttachClear}) {
     const [attachArray, setAttachArray] = useState([]);
 
 
-    useEffect(() => {
-        console.log("attachArray is updated", attachArray)
-        console.log("toggleAttachClear", toggleAttachClear)
-        if(toggleAttachClear === true) {
-            setAttachArray([])
-            !toggleAttachClear
-            return attachArray
-        }
-    }, [selectedFile, isSelected, attachArray, toggleAttachClear]);
-
-    const removeIndex = useSelector(state => state.removeIndex)
+    const removeIndex = useSelector(state => state.lessonControl.removeIndex)
+    const attachClear = useSelector(state => state.lessonControl.attachClear)
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("attachArray is updated", attachArray)
+        console.log(" in useEffect:", attachClear)
+        if(attachClear === true) {
+            console.log("in UseEffect IF")
+            setAttachArray([])
+            dispatch(clearLessonAttachmentList([]))
+            dispatch(toggleAttachClear(false))
+        }
+    }, [attachClear]);
     
     
     const handleSearchAttachment = (e) => {
