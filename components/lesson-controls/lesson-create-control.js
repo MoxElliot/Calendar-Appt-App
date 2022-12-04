@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
-import { clearLessonAttachmentList } from '../../redux/slices/lessonControlSlice';
+import { clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices/lessonControlSlice';
 
 // const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
@@ -23,7 +23,6 @@ export default function LessonCreateControl () {
     const [attachment, setAttachment] = useState([]);
     const [status, setStatus] = useState('Available');
     const [link, setLink] = useState('Discord');
-    let toggleAttachClear = false
 
     const dispatch = useDispatch();
 
@@ -51,7 +50,6 @@ export default function LessonCreateControl () {
     const onAttachmentChange = () => setAttachment(lessonAttachmentList);
     const onStatusChange = () => setStatus("Booked");
   
-
     const onCreateLessonClick = (e) => {
         e.preventDefault();
        
@@ -78,15 +76,14 @@ export default function LessonCreateControl () {
         
         setDate('')
         setDay('')
-        setRepeat(1)
+        setRepeat(0)
         setTime('')
         setName('')
         setDetail('')
         setAttachment([])
         setStatus('Available')
         setLink('Discord')
-        dispatch(clearLessonAttachmentList())
-        !toggleAttachClear
+        dispatch(toggleAttachClear(true))
     }
 
     if(!createLesson){
@@ -220,7 +217,6 @@ export default function LessonCreateControl () {
             </form>
                 <div className='row'>
                     <LessonCreateAttachment
-                        toggleAttachClear={toggleAttachClear} 
                         onChange={onAttachmentChange}/>
                     <form className="lessonControlBtn col">
                         <button 
