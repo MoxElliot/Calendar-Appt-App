@@ -19,12 +19,11 @@ export const lessonControlSlice = createSlice({
             state.lessonAttachmentList = [...state.lessonAttachmentList, action.payload]
         },
         removeLessonAttachment(state, action) {
-            // state.removeIndex = action.payload 
-            // console.log("in SLice remove, lessonAttach", state.lessonAttachmentList, state.removeIndex)
-            // state.lessonAttachmentList.slice(state.removeIndex, 1)
-            state.removeIndex = action.payload   
+
+          //  state.removeIndex = action.payload   
             state.lessonAttachmentList = action.payload
-           
+            console.log("in SLice remove, lessonAttach", state.lessonAttachmentList, state.removeIndex)
+            
         },
         clearLessonAttachmentList(state, action) {
             state.lessonAttachmentList = action.payload

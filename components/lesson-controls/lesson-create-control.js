@@ -26,9 +26,11 @@ export default function LessonCreateControl () {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log("in Create Control Lesson Attach List", lessonAttachmentList)
         setAttachment(lessonAttachmentList)
+        console.log("in Create Control Lesson Attach List", lessonAttachmentList)
     }, [lessonAttachmentList])
+
+    
     const onDateChange = e => setDate(e.target.value);
     const onToggleRepeatChange = () => {
         setToggleRepeat(!toggleRepeat);
