@@ -12,8 +12,9 @@ export default function LessonCreateAttachment () {
     const [attachArray, setAttachArray] = useState([]);
 
 
-    const removeIndex = useSelector(state => state.lessonControl.removeIndex)
-    const attachClear = useSelector(state => state.lessonControl.attachClear)
+    const removeIndex = useSelector(state => state.removeIndex)
+    const attachClear = useSelector(state => state.attachClear);
+    //let removeIndex = 0;
 
     const dispatch = useDispatch();
 
@@ -25,6 +26,9 @@ export default function LessonCreateAttachment () {
             setAttachArray([])
             dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
+        } else {
+            console.log("in else UseEffect", attachArray)
+            dispatch(clearLessonAttachmentList(attachArray))
         }
     }, [attachClear]);
     
@@ -40,23 +44,32 @@ export default function LessonCreateAttachment () {
     const handleAddAttachment = (e) => {
         e.preventDefault()
         console.log("includes",attachArray.includes(selectedFile))
-        console.log("attachArray in Handle", attachArray)
+       
         if(attachArray.includes(selectedFile) || selectedFile === undefined) {
             setIsSelected(!isSelected)
         } else {
             setIsSelected(!isSelected)
             dispatch(updateLessonAttachmentList(selectedFile))
             setAttachArray([...attachArray, selectedFile])
+            console.log("attachArray in Handle", attachArray)
        }
         return attachArray
     }
     const handleRemoveAttachment = (e) => {
+        // e.preventDefault()
+        // console.log("in handle index", e.target.id)
+        // removeIndex = e.target.id
+        // console.log("removeIndex", removeIndex)
+        // console.log("inHandle Remove Attach after Click", attachArray)
+        // console.log("Spice", attachArray.slice(removeIndex, 1))
+        // dispatch(removeLessonAttachment(removeIndex))
+        // return attachArray
         e.preventDefault()
         console.log("in handle index", e.target.id)
         removeIndex = e.target.id
         console.log("removeIndex", removeIndex)
-        attachArray.splice(removeIndex, 1)
-        dispatch(removeLessonAttachment(removeIndex, attachArray))
+        dispatch(removeLessonAttachment(attachArray.splice(removeIndex, 1)))
+        console.log("in hande remove", attachArray)
        return attachArray
     }
     return ( 
@@ -68,7 +81,8 @@ export default function LessonCreateAttachment () {
             <p className='lessonControlP m-0'>Lesson Attachments</p>
             <input type='file' name='file' onChange={handleSearchAttachment} />
            
-                {attachArray.map((file, i) => 
+                {attachArray.map((file, i) => {
+                    return(
                     <div key={file.toString()} >
                         <button 
                             className='btn'
@@ -79,7 +93,7 @@ export default function LessonCreateAttachment () {
                         </button>
                         <label> {file}</label>
                     </div>
-                    )}
+                    )})}
                  
             <button 
                 className='btn p-0 w-75'
