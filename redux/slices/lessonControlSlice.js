@@ -16,11 +16,14 @@ export const lessonControlSlice = createSlice({
             state.createLesson = action.payload
         },
         updateLessonAttachmentList(state, action) {
+            if (state.lessonAttachmentList === undefined || state.lessonAttachmentList === null) {
+                state.lessonAttachmentList = []
+            }
             state.lessonAttachmentList = [...state.lessonAttachmentList, action.payload]
         },
         removeLessonAttachment(state, action) {
 
-          //  state.removeIndex = action.payload   
+          //  state.removeIndex = action.payload
             state.lessonAttachmentList = action.payload
             console.log("in SLice remove, lessonAttach", state.lessonAttachmentList, state.removeIndex)
             

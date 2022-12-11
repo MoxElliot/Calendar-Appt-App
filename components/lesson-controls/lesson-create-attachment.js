@@ -51,8 +51,8 @@ export default function LessonCreateAttachment () {
             setIsSelected(!isSelected)
             dispatch(updateLessonAttachmentList(selectedFile))
             setAttachArray([...attachArray, selectedFile])
+            console.log("attachArray in Handle", attachArray)
        }
-       console.log("attachArray in Handle", attachArray)
         return attachArray
     }
     const handleRemoveAttachment = (e) => {
@@ -68,9 +68,8 @@ export default function LessonCreateAttachment () {
         console.log("in handle index", e.target.id)
         removeIndex = e.target.id
         console.log("removeIndex", removeIndex)
-        attachArray.splice(removeIndex, 1)
-        dispatch(removeLessonAttachment(attachArray))
-
+        dispatch(removeLessonAttachment(attachArray.splice(removeIndex, 1)))
+        console.log("in hande remove", attachArray)
        return attachArray
     }
     return ( 

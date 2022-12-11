@@ -10,7 +10,7 @@ import { clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices
 export default function LessonCreateControl () {
     const dayjs = require('dayjs')
     const createLesson = useSelector(state => state.lessonControl.createLesson)
-    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+    const attachArray = useSelector(state => state.lessonControl.lessonAttachmentList)
   
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
@@ -26,9 +26,9 @@ export default function LessonCreateControl () {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        setAttachment(lessonAttachmentList)
-        console.log("in Create Control Lesson Attach List", lessonAttachmentList)
-    }, [lessonAttachmentList])
+        setAttachment(attachArray)
+        console.log("in Create Control Lesson Attach List", attachArray)
+    }, [attachArray])
 
     
     const onDateChange = e => setDate(e.target.value);
