@@ -27,7 +27,6 @@ export default function LessonCreateControl () {
 
     useEffect(()=>{
         setAttachment(attachArray)
-        console.log("in Create Control Lesson Attach List", attachArray)
     }, [attachArray])
 
     
@@ -82,12 +81,11 @@ export default function LessonCreateControl () {
         setAttachment([])
         setStatus('Available')
         setLink('Discord')
-        dispatch(clearLessonAttachmentList())
+        dispatch(clearLessonAttachmentList([]))
         dispatch(toggleAttachClear(true))
     }
 
     if(!createLesson){
-        console.log("In LessonCreateControl if", createLesson)
         return null;
     } 
     // const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
