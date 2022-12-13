@@ -12,26 +12,16 @@ export default function LessonCreateAttachment () {
     const [attachArray, setAttachArray] = useState([]);
 
 
-    const removeIndex = useSelector(state => state.removeIndex)
-    const attachClear = useSelector(state => state.attachClear);
-    //let removeIndex = 0;
+    const removeIndex = useSelector(state => state.lessonControl.removeIndex)
+    const attachClear = useSelector(state => state.lessonControl.attachClear);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("attachArray is updated", attachArray)
-        console.log(" in useEffect:", attachClear)
-        if(attachClear === true) {
-            console.log("in UseEffect IF")
             setAttachArray([])
             dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
-        } else {
-            console.log("in else UseEffect", attachArray)
-            dispatch(clearLessonAttachmentList(attachArray))
-        }
     }, [attachClear]);
-    
     
     const handleSearchAttachment = (e) => {
         e.preventDefault()
@@ -43,34 +33,22 @@ export default function LessonCreateAttachment () {
     }}
     const handleAddAttachment = (e) => {
         e.preventDefault()
-        console.log("includes",attachArray.includes(selectedFile))
-       
         if(attachArray.includes(selectedFile) || selectedFile === undefined) {
             setIsSelected(!isSelected)
         } else {
             setIsSelected(!isSelected)
             dispatch(updateLessonAttachmentList(selectedFile))
             setAttachArray([...attachArray, selectedFile])
-            console.log("attachArray in Handle", attachArray)
        }
         return attachArray
     }
     const handleRemoveAttachment = (e) => {
-        // e.preventDefault()
-        // console.log("in handle index", e.target.id)
-        // removeIndex = e.target.id
-        // console.log("removeIndex", removeIndex)
-        // console.log("inHandle Remove Attach after Click", attachArray)
-        // console.log("Spice", attachArray.slice(removeIndex, 1))
-        // dispatch(removeLessonAttachment(removeIndex))
-        // return attachArray
         e.preventDefault()
-        console.log("in handle index", e.target.id)
+        attachArray.splice(e.target.id, 1)
+        setAttachArray(attachArray)
+        console.log("attachaftersplice", attachArray)
         removeIndex = e.target.id
-        console.log("removeIndex", removeIndex)
-        dispatch(removeLessonAttachment(attachArray.splice(removeIndex, 1)))
-        console.log("in hande remove", attachArray)
-       return attachArray
+        dispatch(removeLessonAttachment(removeIndex))
     }
     return ( 
         <form className='lessonControlAttachment m-2 p-2

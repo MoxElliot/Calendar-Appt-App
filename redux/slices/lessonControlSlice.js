@@ -7,6 +7,7 @@ export const lessonControlSlice = createSlice({
         createLesson: true,
         lessonAttachmentList: [],
         removeIndex:"",
+        attachClear:false,
     },
     reducers: {
         showEditLesson(state, action) {
@@ -22,19 +23,18 @@ export const lessonControlSlice = createSlice({
             state.lessonAttachmentList = [...state.lessonAttachmentList, action.payload]
         },
         removeLessonAttachment(state, action) {
-
-          //  state.removeIndex = action.payload
-            state.lessonAttachmentList = action.payload
-            console.log("in SLice remove, lessonAttach", state.lessonAttachmentList, state.removeIndex)
-            
+            state.removeIndex = action.payload
+            console.log("removeIndex", state.removeIndex)
+            console.log("state.lessonAttachmentList", state.lessonAttachmentList)
+            state.lessonAttachmentList.splice(state.removeIndex, 1)
         },
         clearLessonAttachmentList(state, action) {
             state.lessonAttachmentList = action.payload
-            console.log("in Clear", action.payload)
+         
         },
         toggleAttachClear(state, action) {
             state.attachClear = action.payload
-            console.log('in toggleAttachClear', state.attachClear)
+           
         }
     },
 });
