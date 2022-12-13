@@ -16,9 +16,7 @@ export const lessonDataSlice = createSlice({
     },
     reducers: {
         addLesson(state, action) {
-        
             state.lessonData.push(action.payload)
-            console.log("in lessonDataSlice", action.payload)
         },
         readLesson(state, action) {
             state.singleLessonData = action.payload

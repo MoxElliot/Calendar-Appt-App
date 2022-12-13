@@ -9,7 +9,6 @@ export default function LessonEditControl() {
     if(!editLesson){
         return null;
     } 
-       console.log("singleLessonData", (singleLessonData === "Select a Lesson"))
 
     if(singleLessonData === "Select a Lesson") {
         return (

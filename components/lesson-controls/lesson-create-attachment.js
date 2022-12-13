@@ -46,7 +46,6 @@ export default function LessonCreateAttachment () {
         e.preventDefault()
         attachArray.splice(e.target.id, 1)
         setAttachArray(attachArray)
-        console.log("attachaftersplice", attachArray)
         removeIndex = e.target.id
         dispatch(removeLessonAttachment(removeIndex))
     }
