@@ -44,9 +44,11 @@ export default function LessonCreateAttachment () {
     }
     const handleRemoveAttachment = (e) => {
         e.preventDefault()
+        attachArray.splice(e.target.id, 1)
+        setAttachArray(attachArray)
+        console.log("attachaftersplice", attachArray)
         removeIndex = e.target.id
-        dispatch(removeLessonAttachment(attachArray.splice(removeIndex, 1)))
-       return attachArray
+        dispatch(removeLessonAttachment(removeIndex))
     }
     return ( 
         <form className='lessonControlAttachment m-2 p-2
