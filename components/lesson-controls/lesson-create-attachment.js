@@ -14,33 +14,14 @@ export default function LessonCreateAttachment () {
 
     const removeIndex = useSelector(state => state.lessonControl.removeIndex)
     const attachClear = useSelector(state => state.lessonControl.attachClear);
-    //let removeIndex = 0;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // if(attachClear === true) {
-            console.log("in UseEffect IF", attachArray)
             setAttachArray([])
             dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
-        // } else {
-        //     setAttachArray([])
-        //     console.log("in else UseEffect", attachArray)
-        //     dispatch(clearLessonAttachmentList([]))
-        // }
     }, [attachClear]);
-
-    // useEffect(() => {
-   
-    //         console.log("in UseEffect IF")
-    //       //  setAttachArray([])
-    //         dispatch(clearLessonAttachmentList([]))
-    //         dispatch(toggleAttachClear(false))
-        
-    // }, [attachArray]);
-    
-    
     
     const handleSearchAttachment = (e) => {
         e.preventDefault()
