@@ -21,7 +21,7 @@ export default function LessonEditControl() {
     if(!editLesson){
         return null;
     } 
-
+    
     if(singleLessonData === "Select a Lesson") {
         return (
             <div className="lessonDetailContainer container">
@@ -45,14 +45,11 @@ export default function LessonEditControl() {
                         col col-md-4 col-6
                         d-flex flex-column">
                         <h5 className='m-0'>Lesson Attachments</h5>
-                        <button className='btn p-0'>
-                            <label className='bi bi-plus px-2'>Add Attachment</label>
-                        </button>
                         {singleLessonData[5].map((att) => 
                             <Link 
                                 className='bi bi-paperclip'
                                 href="/"
-                                key={singleLessonData[5].toString() + nanoid}
+                                key={att.toString() + nanoid}
                             >
                                 <a>{att}</a>
                             </Link>
