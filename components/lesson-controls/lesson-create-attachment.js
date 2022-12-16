@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices/lessonControlSlice';
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
@@ -30,9 +30,16 @@ export default function LessonCreateAttachment () {
         } else {
         setSelectedFile(e.target.files[0].name);
         return attachArray
-    }}
+    }};
+    
+    const inputRef = useRef(null);
+    const resetFileInput = () => {
+        inputRef.current.value = null;
+    };
+
     const handleAddAttachment = (e) => {
         e.preventDefault()
+        resetFileInput();
         if(attachArray.includes(selectedFile) || selectedFile === undefined) {
             setIsSelected(!isSelected)
         } else {
@@ -41,14 +48,16 @@ export default function LessonCreateAttachment () {
             setAttachArray([...attachArray, selectedFile])
        }
         return attachArray
-    }
+    };
+
     const handleRemoveAttachment = (e) => {
         e.preventDefault()
         attachArray.splice(e.target.id, 1)
         setAttachArray(attachArray)
         removeIndex = e.target.id
         dispatch(removeLessonAttachment(removeIndex))
-    }
+    };
+
     return ( 
         <form className='lessonControlAttachment m-2 p-2
             col col-md-4 col-6
@@ -56,7 +65,12 @@ export default function LessonCreateAttachment () {
             method="post" encType="multipart/form-data">
     
             <p className='lessonControlP m-0'>Lesson Attachments</p>
-            <input type='file' name='file' onChange={handleSearchAttachment} />
+            <input 
+                type='file' 
+                name='file'
+                ref={inputRef} 
+                onChange={handleSearchAttachment} 
+            />
            
                 {attachArray.map((file, i) => {
                     return(
