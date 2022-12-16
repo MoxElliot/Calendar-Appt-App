@@ -14,11 +14,8 @@ export default function LessonEditControl() {
     
 
     const handleCancelLesson = () => {
-        console.log("inHandle lessonData", lessonData)
-        console.log("inHandle singleLessonData", singleLessonData)
         const index = lessonData.findIndex(item => item.id === singleLessonData[0])
-        console.log("inHandle Find Index", index)
-        dispatch(cancelLesson(lessonData.indexOf(singleLessonData)))
+        dispatch(cancelLesson(index))
     }
 
     if(!editLesson){

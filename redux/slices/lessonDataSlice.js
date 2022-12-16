@@ -12,7 +12,7 @@ export const lessonDataSlice = createSlice({
     name: 'lessonData',
     initialState: {
         lessonData: lessonDataArr,
-        singleLessonData: "Select a Lesson"
+        singleLessonData: "Select a Lesson",
     },
     reducers: {
         addLesson(state, action) {
@@ -22,13 +22,10 @@ export const lessonDataSlice = createSlice({
             state.singleLessonData = action.payload
         },
         cancelLesson(state, action) {
-            console.log("in editLesson, action", action)
-            const index = state.lessonData.findIndex(lesson => lesson.id !==action.payload)
+            const index = action.payload
             const newArray = [...state.lessonData];
             newArray[index].status = 'Canceled'
-            state.singleLessonData[3] = 'Canceled'
-            console.log("in EditLesson cancel", state.singleLessonData[3])
-            
+            state.singleLessonData[3] = 'Canceled'            
         }
     },
 });
