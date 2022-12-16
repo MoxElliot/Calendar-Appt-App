@@ -22,6 +22,8 @@ export default function LessonCreateControl () {
     const [attachment, setAttachment] = useState([]);
     const [status, setStatus] = useState('Available');
     const [link, setLink] = useState('Discord');
+    const [isRepeatChecked, setIsRepeatChecked] = useState(false);
+    const [isAvailChecked, setIsAvailChecked] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -31,8 +33,9 @@ export default function LessonCreateControl () {
 
     
     const onDateChange = e => setDate(e.target.value);
-    const onToggleRepeatChange = () => {
+    const onToggleRepeatChange = (e) => {
         setToggleRepeat(!toggleRepeat);
+        setIsRepeatChecked(e.target.checked)
         if (toggleRepeat === true) {
             document.getElementById("lessonRepeat").disabled=true;
             // document.getElementById("repeatDaySelect").hidden=true
@@ -81,6 +84,8 @@ export default function LessonCreateControl () {
         setAttachment([])
         setStatus('Available')
         setLink('Discord')
+        setIsAvailChecked(false);
+        setIsRepeatChecked(false);
         dispatch(clearLessonAttachmentList([]))
         dispatch(toggleAttachClear(true))
     }
@@ -129,12 +134,15 @@ export default function LessonCreateControl () {
                     
                 </div>
             </form>
-            <form id="lessonControlEle">
+            <form 
+                id="lessonControlEle"
+                >
                 <div className='mx-5'>
                     <label className="lessonCheckbox" id="lessonControlP">
                         <input 
                             id="repeatLesson" 
                             name="repeatLesson"
+                            checked={isRepeatChecked}
                             value={toggleRepeat}
                             onChange={onToggleRepeatChange}
                             type="checkbox"
@@ -180,8 +188,9 @@ export default function LessonCreateControl () {
                             type="checkbox" 
                             id="lessonStatus"
                             name="lessonStatus"
-                            value={status}
-                            onChange={onStatusChange}
+                            checked={isAvailChecked}
+                            onChange={e => setIsAvailChecked(e.target.checked)}
+                            // onChange={onStatusChange}
                             />
                         <p className='lessonControlP'>Only Available to:</p>
                     </label>
