@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function LessonEditControl() {
     
@@ -36,7 +37,11 @@ export default function LessonEditControl() {
                             <label className='bi bi-plus px-2'>Add Attachment</label>
                         </button>
                         {singleLessonData[5].map((att) => 
-                            <Link className='bi bi-paperclip'href="/">
+                            <Link 
+                                className='bi bi-paperclip'
+                                href="/"
+                                key={singleLessonData[5].toString() + nanoid}
+                            >
                                 <a>{att}</a>
                             </Link>
                         )}
