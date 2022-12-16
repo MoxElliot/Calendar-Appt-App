@@ -49,7 +49,10 @@ export default function LessonCreateControl () {
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
     const onAttachmentChange = () => setAttachment(lessonAttachmentList);
-    const onStatusChange = () => setStatus("Booked");
+    const onStatusChange = (e) => {
+        setStatus("Booked");
+        setIsAvailChecked(e.target.checked);
+    }
   
     const onCreateLessonClick = (e) => {
         e.preventDefault();
@@ -189,8 +192,7 @@ export default function LessonCreateControl () {
                             id="lessonStatus"
                             name="lessonStatus"
                             checked={isAvailChecked}
-                            onChange={e => setIsAvailChecked(e.target.checked)}
-                            // onChange={onStatusChange}
+                            onChange={onStatusChange}
                             />
                         <p className='lessonControlP'>Only Available to:</p>
                     </label>
