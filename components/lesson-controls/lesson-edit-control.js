@@ -1,12 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { cancelLesson } from '../../redux/slices/lessonDataSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
 export default function LessonEditControl() {
     
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData)
+    const lessonData = useSelector(state => state.lessonData.lessonData)
     const editLesson = useSelector(state => state.lessonControl.editLesson)
+
+    const dispatch = useDispatch();
+    
+
+    const handleCancelLesson = () => {
+        console.log("inHandle lessonData", lessonData)
+        console.log("inHandle singleLessonData", singleLessonData)
+        const index = lessonData.findIndex(item => item.id === singleLessonData[0])
+        console.log("inHandle Find Index", index)
+        dispatch(cancelLesson(lessonData.indexOf(singleLessonData)))
+    }
+
     if(!editLesson){
         return null;
     } 
@@ -26,6 +40,7 @@ export default function LessonEditControl() {
                         <h4>Lesson Details</h4>
                         <p className='lesson-detail lesson-comment'>{singleLessonData[4]}</p>
                         <p className='lesson-detail lesson-name'>{singleLessonData[6]}</p>
+                        <p className='lesson-detail lesson-status'>{singleLessonData[3]}</p>
                         <p className='lesson-detail lesson-date-time'>{singleLessonData[1]} at {singleLessonData[2]}</p>
                         <Link href="/"><a>{singleLessonData[7]}</a></Link>
                     </div>
@@ -57,10 +72,13 @@ export default function LessonEditControl() {
                         </button>
                     </div>
                     <div className='col-6 p-0'>
-                        <button className='lesson-buttons 
+                        <button 
+                            className='lesson-buttons 
                             d-flex justify-content-center
                             btn 
-                            w-100 p-0'> 
+                            w-100 p-0'
+                            onClick = {handleCancelLesson}
+                        > 
                             <label className='bi bi-trash px-2'>Cancel Lesson</label>
                         </button>
                     </div>
