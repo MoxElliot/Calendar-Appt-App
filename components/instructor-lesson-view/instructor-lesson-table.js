@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
@@ -6,6 +7,8 @@ import { nanoid } from 'nanoid';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
+
+    // const [selectedLesson, setSelectedLesson] = useState(lessonData)
     
     const dispatch = useDispatch()
 

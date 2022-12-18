@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { cancelLesson } from '../../redux/slices/lessonDataSlice';
 import { nanoid } from '@reduxjs/toolkit';
@@ -21,6 +22,15 @@ export default function LessonEditControl() {
 
     const dispatch = useDispatch();
     
+    useEffect(() => {
+        setLessonComment(singleLessonData[4])
+        setLessonName(singleLessonData[6])
+        setLessonStatus(singleLessonData[3])
+        setLessonDate(singleLessonData[1]);
+        setLessonTime(singleLessonData[2]);
+        setLessonLink(singleLessonData[7]);
+        console.log("in Use Effect");
+    }, [singleLessonData])
 
     const handleCancelLesson = () => {
         const index = lessonData.findIndex(item => item.id === singleLessonData[0])
@@ -143,11 +153,11 @@ export default function LessonEditControl() {
                 <div className='row'>
                     <div className='lesson-text col col-md-6 col-12'>
                         <h4>Lesson Details</h4>
-                        <p className='lesson-detail lesson-comment'>{singleLessonData[4]}</p>
-                        <p className='lesson-detail lesson-name'>{singleLessonData[6]}</p>
-                        <p className='lesson-detail lesson-status'>{singleLessonData[3]}</p>
-                        <p className='lesson-detail lesson-date-time'>{singleLessonData[1]} at {singleLessonData[2]}</p>
-                        <Link href="/"><a>{singleLessonData[7]}</a></Link>
+                        <p className='lesson-detail lesson-comment'>{lessonComment}</p>
+                        <p className='lesson-detail lesson-name'>{lessonName}</p>
+                        <p className='lesson-detail lesson-status'>{lessonStatus}</p>
+                        <p className='lesson-detail lesson-date-time'>{lessonDate} at {lessonTime}</p>
+                        <Link href="/"><a>{lessonLink}</a></Link>
                     </div>
                     <div className="lesson-attachment m-2
                         col col-md-4 col-6
