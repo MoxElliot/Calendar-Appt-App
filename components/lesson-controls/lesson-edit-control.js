@@ -18,7 +18,7 @@ export default function LessonEditControl() {
     const [ lessonDate, setLessonDate ] = useState(singleLessonData[1]);
     const [ lessonTime, setLessonTime ] = useState(singleLessonData[2]);
     const [ lessonLink, setLessonLink ] = useState(singleLessonData[7]);
-    const [ lessonAttachent, setLessonAttachment ] = useState(singleLessonData[5]);
+    //const [ lessonAttachment, setLessonAttachment ] = useState(singleLessonData[5]);
 
     const dispatch = useDispatch();
     
@@ -29,7 +29,7 @@ export default function LessonEditControl() {
         setLessonDate(singleLessonData[1]);
         setLessonTime(singleLessonData[2]);
         setLessonLink(singleLessonData[7]);
-        console.log("in Use Effect");
+       // setLessonAttachment(singleLessonData[5]);
     }, [singleLessonData])
 
     const handleCancelLesson = () => {
@@ -47,6 +47,7 @@ export default function LessonEditControl() {
         newOb.selectedLesson[1] = lessonDate
         newOb.selectedLesson[2] = lessonTime
         newOb.selectedLesson[7] = lessonLink
+        //newOb.selectedLesson[5] = lessonAttachment
         dispatch(editLessonData(newOb))
         console.log("newOb", newOb)
         console.log("handleEditLessonData", singleLessonData)

@@ -33,6 +33,7 @@ export const lessonDataSlice = createSlice({
             console.log("in editLesson recucer, obFromEdit.lessonIndex", obFromEdit.lessonIndex)
             console.log("in editLesson recucer, obFromEdit.selectedLesson", obFromEdit.selectedLesson)
             console.log("in editLesson recucer, newArray", newArray)
+            //state.lessonData.splice(obFromEdit.lessonIndex, 1, obFromEdit.selectedLesson)
             
 
             // newArray[obFromEdit.index] = obFromEdit.selectedLesson
