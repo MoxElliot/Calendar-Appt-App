@@ -17,18 +17,13 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
 
     const dispatch = useDispatch();
 
-    const firstUpdate = 0
-
+    
     useEffect(() => {
-        if(firstUpdate < 1) {
-            console.log("in useEffect if", firstUpdate)
-            ++firstUpdate
-        } else {
+       
             setAttachArray([])
             dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
-            console.log("in useEffect else", firstUpdate)
-        }
+        
     }, [attachClear]);
     
     const handleSearchAttachment = (e) => {

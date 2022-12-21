@@ -11,6 +11,7 @@ export default function LessonEditControl() {
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData);
     const lessonData = useSelector(state => state.lessonData.lessonData);
     const editLesson = useSelector(state => state.lessonControl.editLesson);
+    const attachArray = useSelector(state => state.lessonControl.lessonAttachmentList)
 
     const [isEditOn, setIsEditOn] = useState(false);
     const [ lessonComment, setLessonComment ] = useState(singleLessonData[4]);
@@ -125,7 +126,8 @@ export default function LessonEditControl() {
                             d-flex flex-column">
                             <h5 className='m-0'>Lesson Attachments</h5>
                             <LessonCreateAttachment
-                                lessonAttachment={singleLessonData[5]}/>
+                                lessonAttachment={attachArray}
+                                />
                             
                         </div>
                     </div>
