@@ -51,6 +51,7 @@ export default function LessonEditControl() {
         dispatch(editLessonData(newOb))
         console.log("newOb", newOb)
         console.log("handleEditLessonData", singleLessonData)
+        setIsEditOn(!isEditOn)
     }
 
     if(!editLesson){
