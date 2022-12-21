@@ -9,34 +9,37 @@ export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
 
     // const [selectedLesson, setSelectedLesson] = useState(lessonData)
-    
+    //0:id, 1:date, 2:time, 3:status, 4:detail, 5:attachment, 6:name, 7:link
+
     const dispatch = useDispatch()
 
     const renderedLessons = lessonData.map((val) => {
-        const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
-        if(val.attachment === undefined) {
-        }
+        const rowData = [val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]];
+       
         const rowSelect = () => {
             dispatch(readLesson(rowData))
             return rowData
            }
 
+        // if(val[5]===undefined) {
+        //     val[5] = ["one"]
+        // }
         const lessonRow = 
         <tr key={nanoid()} onClick={rowSelect}>
-            <td>{val.date}</td>
-            <td>{val.time}</td>
-            <td>{val.status}</td>
-            <td>{val.detail}</td>
+            <td>{val[1]}</td>
+            <td>{val[2]}</td>
+            <td>{val[3]}</td>
+            <td>{val[4]}</td>
             
-            <td> 
-                {val.attachment.map((att) => 
+            {/* <td> 
+                {val[5].map((att) => 
                     <p key={att.toString()}>{att}</p>
                 )}
-            </td>
-            <td>{val.name}</td>
+            </td> */}
+            <td>{val[6]}</td>
             <td>   
                 <Link href="https://www.discord.com/">
-                    <a className=''>{val.link}</a>
+                    <a className=''>{val[7]}</a>
                 </Link>
             </td>
         </tr>

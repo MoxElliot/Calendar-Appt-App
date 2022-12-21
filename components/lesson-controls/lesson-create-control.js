@@ -11,6 +11,7 @@ export default function LessonCreateControl () {
     const dayjs = require('dayjs')
     const createLesson = useSelector(state => state.lessonControl.createLesson)
     const attachArray = useSelector(state => state.lessonControl.lessonAttachmentList)
+    console.log("attachArrray in lcc", attachArray)
   
     const [date, setDate] = useState('');
     const [day, setDay] = useState('');
@@ -48,7 +49,7 @@ export default function LessonCreateControl () {
     const onTimeChange = e => setTime(e.target.value);
     const onNameChange = e => setName(e.target.value);
     const onDetailChange = e => setDetail(e.target.value);
-    const onAttachmentChange = () => setAttachment(lessonAttachmentList);
+    const onAttachmentChange = () => setAttachment(attachArray);
     const onStatusChange = (e) => {
         setStatus("Booked");
         setIsAvailChecked(e.target.checked);
@@ -59,18 +60,18 @@ export default function LessonCreateControl () {
        
         for (let i = 0; i <= repeat; i++){
         dispatch(
-            addLesson({
-                id:nanoid(),
+            addLesson([
+                nanoid(),
                 date,
-                day,
-                repeat,
+                // day,
+                // repeat,
                 time,
                 name,
                 detail,
                 attachment,
                 status,
                 link
-            })
+            ])
         )
         const d = 7
         let repeatDate = dayjs(date).add(d, 'd')

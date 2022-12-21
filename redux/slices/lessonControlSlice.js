@@ -5,7 +5,7 @@ export const lessonControlSlice = createSlice({
     initialState: {
         editLesson: false,
         createLesson: true,
-        lessonAttachmentList: [],
+        lessonAttachmentList: ["default"],
         removeIndex:"",
         attachClear:false,
     },

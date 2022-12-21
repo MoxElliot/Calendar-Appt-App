@@ -6,6 +6,7 @@ import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachme
 
 export default function LessonCreateAttachment () {
 
+    //const attachArr = useSelector(state => state.lessonControl.lessonAttachmentList)
 
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
