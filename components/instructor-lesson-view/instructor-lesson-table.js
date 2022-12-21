@@ -28,11 +28,11 @@ export default function InstructorLessonTable() {
             <td>{val.status}</td>
             <td>{val.detail}</td>
             
-            {/* <td> 
+            <td> 
                 {val.attachment.map((att) => 
                     <p key={att.toString()}>{att}</p>
                 )}
-            </td> */}
+            </td>
             <td>{val.name}</td>
             <td>   
                 <Link href="https://www.discord.com/">
@@ -52,7 +52,7 @@ export default function InstructorLessonTable() {
                 <th scope='col'>Lesson Time</th>
                 <th scope='col'>Lesson Status</th>
                 <th scope='col'>Lesson Detail</th>
-                {/* <th scope='col'>Lesson Attachments</th> */}
+                <th scope='col'>Lesson Attachments</th>
                 <th scope='col'>Student Name</th>
                 <th scope='col'>Discord Link</th>
             </tr>

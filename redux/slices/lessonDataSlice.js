@@ -29,9 +29,7 @@ export const lessonDataSlice = createSlice({
         },
         editLessonData(state, action) {
             const obFromEdit = action.payload
-            const newArray = [...state.lessonData];
-            console.log("in editLesson recucer, obFromEdit.lessonIndex", obFromEdit.lessonIndex)
-            let newOb = {id:3, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Will Willson", link:"Discord"}
+            let newOb = {id:"", date: "", time: "", status:"", detail:"", attachment:[""], name:"", link:""}
 
             newOb.id = obFromEdit.selectedLesson[0]
             newOb.date = obFromEdit.selectedLesson[1]
@@ -42,16 +40,8 @@ export const lessonDataSlice = createSlice({
             newOb.name = obFromEdit.selectedLesson[6]
             newOb.link = obFromEdit.selectedLesson[7]
 
-            console.log("in editLesson reducer, newOb", newOb)
-
-            console.log("in editLesson recucer, obFromEdit.selectedLesson", obFromEdit.selectedLesson)
-            console.log("in editLesson recucer, newArray", newArray)
             state.lessonData.splice(obFromEdit.lessonIndex, 1, newOb)
-            
-
-            // newArray[obFromEdit.index] = obFromEdit.selectedLesson
-            // console.log("in editLesson recucer, newArray", newArray)
-            // state.singleLessonData = newArray            
+                       
         }
     },
 });

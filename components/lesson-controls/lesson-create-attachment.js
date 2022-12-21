@@ -4,23 +4,31 @@ import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachme
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 //https://www.pluralsight.com/guides/manipulating-arrays-and-objects-in-state-with-react
 
-export default function LessonCreateAttachment () {
+export default function LessonCreateAttachment ({lessonAttachment}) {
 
 
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
-    const [attachArray, setAttachArray] = useState([]);
+    const [attachArray, setAttachArray] = useState(lessonAttachment);
 
-
+    console.log('in lesson create attachment, lessonAttachment', attachArray)
     const removeIndex = useSelector(state => state.lessonControl.removeIndex)
     const attachClear = useSelector(state => state.lessonControl.attachClear);
 
     const dispatch = useDispatch();
 
+    const firstUpdate = 0
+
     useEffect(() => {
+        if(firstUpdate < 1) {
+            console.log("in useEffect if", firstUpdate)
+            ++firstUpdate
+        } else {
             setAttachArray([])
             dispatch(clearLessonAttachmentList([]))
             dispatch(toggleAttachClear(false))
+            console.log("in useEffect else", firstUpdate)
+        }
     }, [attachClear]);
     
     const handleSearchAttachment = (e) => {
@@ -30,7 +38,8 @@ export default function LessonCreateAttachment () {
         } else {
         setSelectedFile(e.target.files[0].name);
         return attachArray
-    }};
+        }
+    };
     
     const inputRef = useRef(null);
     const resetFileInput = () => {

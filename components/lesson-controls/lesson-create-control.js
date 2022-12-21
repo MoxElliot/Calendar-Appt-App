@@ -223,7 +223,8 @@ export default function LessonCreateControl () {
             </form>
                 <div className='row'>
                     <LessonCreateAttachment
-                        onChange={onAttachmentChange}/>
+                        onChange={onAttachmentChange}
+                        lessonAttachment={[]}/>
                     <form className="lessonControlBtn col">
                         <button 
                             className='btn btn-primary'
