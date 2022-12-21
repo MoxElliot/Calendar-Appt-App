@@ -61,15 +61,15 @@ export default function LessonCreateControl () {
         dispatch(
             addLesson({
                 id:nanoid(),
-                date,
-                day,
-                repeat,
-                time,
-                name,
-                detail,
-                attachment,
-                status,
-                link
+                date: date,
+                // day,
+                // repeat,
+                time: time,
+                status: status,
+                detail: detail,
+                attachment: attachment,
+                name: name,
+                link: link
             })
         )
         const d = 7
