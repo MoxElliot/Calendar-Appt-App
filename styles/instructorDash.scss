@@ -19,12 +19,10 @@ $calandar-background:#92a8d1;
         padding: 1rem;
         @include standard-border;
 
-        .viewSelect {
-           
+        .viewSelect { 
             margin-bottom: .5rem;
             display: flex;
             flex-direction: column;
-            
             
             .lessonViewSelectHeader {
                 font-weight: bold;
@@ -64,6 +62,7 @@ $calandar-background:#92a8d1;
             }
             .lesson-attachment{
               @include standard-border;
+              width:fit-content;
               padding:1rem;
               min-width:195px;
             }
@@ -72,7 +71,43 @@ $calandar-background:#92a8d1;
             }
           
             .lesson-buttons {
-             max-width: 185px;
+              @include standard-border;
+              max-width: 185px;
+            }
+          }
+          .lessonDetailEditContainer {
+            background-color: $calandar-background;
+            height: fit-content;
+            width: fit-content;
+            max-width: 75vw;
+            min-width: 280px;
+            @include standard-border;
+            padding:1rem;
+            .lesson-text {
+              width:fit-content;
+              .lesson-text-input{
+                padding: .1rem;
+              }
+            }
+            .lesson-attachment{
+              max-width:395px;
+              margin: auto;
+              @include standard-border;
+
+              .lessonControlAttachment{
+                margin:2rem;
+                min-width:295px;
+                .lessonAttachControlBtn {
+                  @include standard-border;
+                }
+              }
+            }
+            .lesson-detail {
+              margin:0 0 0 1rem;
+            }
+            .lesson-buttons {
+              @include standard-border;
+              max-width: 185px;
             }
           }
         .lessonCreateContainer {

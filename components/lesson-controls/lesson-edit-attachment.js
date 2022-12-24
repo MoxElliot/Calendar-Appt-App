@@ -96,7 +96,7 @@ export default function LessonEditAttachment ({lessonAttachment}) {
                     )})}
                  
             <button 
-                className='btn p-0 w-75'
+                className='lessonAttachControlBtn btn p-0 w-75'
                 onClick={handleAddAttachment}  
             >
                 <label className='bi bi-plus'>Add Attachment</label>
