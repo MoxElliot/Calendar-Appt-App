@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { cancelLesson, editLessonData } from '../../redux/slices/lessonDataSlice';
-import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear, setAttachementList } from '../../redux/slices/lessonControlSlice';
+import { setAttachementList } from '../../redux/slices/lessonControlSlice';
 import LessonEditAttachment from './lesson-edit-attachment';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -37,11 +37,9 @@ export default function LessonEditControl() {
     }, [singleLessonData])
 
     useEffect(() => {
-        console.log("in updateLesson useEffect")
        
     }, [lessonAttachmentList])
 
-    console.log("in edit control attachArray", lessonAttachmentList)
     
     const handleCancelLesson = () => {
         const index = lessonData.findIndex(item => item.id === singleLessonData[0])

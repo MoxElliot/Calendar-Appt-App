@@ -9,13 +9,10 @@ export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
 
-    console.log("in instructor-lesson-table lessonAttachmentList", lessonAttachmentList)
-    // const [selectedLesson, setSelectedLesson] = useState(lessonData)
-    
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("in instructor-lesson-table useEffect lessonData", lessonData)
+
     }, [lessonAttachmentList])
     
 
