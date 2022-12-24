@@ -135,7 +135,7 @@ export default function LessonEditControl() {
                             d-flex flex-column">
                             <h5 className='m-0'>Lesson Attachments</h5>
                             <LessonEditAttachment
-                                lessonAttachment={singleLessonData[5]}
+                                lessonAttachment={lessonAttachmentList}
                                 />
                             
                         </div>
