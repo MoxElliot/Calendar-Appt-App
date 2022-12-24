@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { cancelLesson, editLessonData } from '../../redux/slices/lessonDataSlice';
-import LessonCreateAttachment from './lesson-create-attachment';
+import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear, setAttachementList } from '../../redux/slices/lessonControlSlice';
+import LessonEditAttachment from './lesson-edit-attachment';
 import { nanoid } from '@reduxjs/toolkit';
 
 export default function LessonEditControl() {
@@ -11,7 +12,7 @@ export default function LessonEditControl() {
     const singleLessonData = useSelector(state => state.lessonData.singleLessonData);
     const lessonData = useSelector(state => state.lessonData.lessonData);
     const editLesson = useSelector(state => state.lessonControl.editLesson);
-    const attachArray = useSelector(state => state.lessonControl.lessonAttachmentList)
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
 
     const [isEditOn, setIsEditOn] = useState(false);
     const [ lessonComment, setLessonComment ] = useState(singleLessonData[4]);
@@ -32,8 +33,16 @@ export default function LessonEditControl() {
         setLessonTime(singleLessonData[2]);
         setLessonLink(singleLessonData[7]);
         setLessonAttachment(singleLessonData[5]);
+        dispatch(setAttachementList(singleLessonData[5]))
     }, [singleLessonData])
 
+    useEffect(() => {
+        console.log("in updateLesson useEffect")
+       
+    }, [lessonAttachmentList])
+
+    console.log("in edit control attachArray", lessonAttachmentList)
+    
     const handleCancelLesson = () => {
         const index = lessonData.findIndex(item => item.id === singleLessonData[0])
         dispatch(cancelLesson(index))
@@ -49,7 +58,7 @@ export default function LessonEditControl() {
         newOb.selectedLesson[1] = lessonDate
         newOb.selectedLesson[2] = lessonTime
         newOb.selectedLesson[7] = lessonLink
-        newOb.selectedLesson[5] = lessonAttachment
+        newOb.selectedLesson[5] = lessonAttachmentList
         dispatch(editLessonData(newOb))
         setIsEditOn(!isEditOn)
     }
@@ -125,8 +134,8 @@ export default function LessonEditControl() {
                         <div className="lesson-attachment m-2
                             d-flex flex-column">
                             <h5 className='m-0'>Lesson Attachments</h5>
-                            <LessonCreateAttachment
-                                lessonAttachment={attachArray}
+                            <LessonEditAttachment
+                                lessonAttachment={singleLessonData[5]}
                                 />
                             
                         </div>
@@ -172,7 +181,7 @@ export default function LessonEditControl() {
                             col col-md-4 col-6
                             d-flex flex-column">
                             <h5 className='m-0'>Lesson Attachments</h5>
-                            {singleLessonData[5].map((att) => 
+                            {lessonAttachmentList.map((att) => 
                                 <Link 
                                     className='bi bi-paperclip'
                                     href="/"

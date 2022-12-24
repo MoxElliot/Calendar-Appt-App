@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addLesson } from '../../redux/slices/lessonDataSlice'
 import LessonCreateAttachment from './lesson-create-attachment';
-import { clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices/lessonControlSlice';
+import { clearLessonAttachmentList, toggleAttachClear, setAttachementList } from '../../redux/slices/lessonControlSlice';
 
 // const lessonDayArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
@@ -29,6 +29,7 @@ export default function LessonCreateControl () {
 
     useEffect(()=>{
         setAttachment(attachArray)
+        
     }, [attachArray])
 
     

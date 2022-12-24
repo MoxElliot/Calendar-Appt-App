@@ -7,15 +7,21 @@ import { nanoid } from 'nanoid';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
 
+    console.log("in instructor-lesson-table lessonAttachmentList", lessonAttachmentList)
     // const [selectedLesson, setSelectedLesson] = useState(lessonData)
     
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("in instructor-lesson-table useEffect lessonData", lessonData)
+    }, [lessonAttachmentList])
+    
 
     const renderedLessons = lessonData.map((val) => {
         const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
-        if(val.attachment === undefined) {
-        }
+        
         const rowSelect = () => {
             dispatch(readLesson(rowData))
             return rowData

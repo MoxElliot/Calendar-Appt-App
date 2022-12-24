@@ -1,29 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear } from '../../redux/slices/lessonControlSlice';
+import { updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear, setAttachementList } from '../../redux/slices/lessonControlSlice';
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 //https://www.pluralsight.com/guides/manipulating-arrays-and-objects-in-state-with-react
 
-export default function LessonCreateAttachment ({lessonAttachment}) {
+export default function LessonEditAttachment ({lessonAttachment}) {
 
 
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
-    const [attachArray, setAttachArray] = useState(lessonAttachment);
+    const [attachArray, setAttachArray] = useState([]);
 
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+    
+    console.log('in lesson edit attachment, lessonAttachmentList', lessonAttachmentList)
     const removeIndex = useSelector(state => state.lessonControl.removeIndex)
-    const attachClear = useSelector(state => state.lessonControl.attachClear);
+    //const attachClear = useSelector(state => state.lessonControl.attachClear);
 
     const dispatch = useDispatch();
 
-    
+    useEffect(() => {
+        setAttachArray(lessonAttachment)
+        
+    }, [])
+
+
     useEffect(() => {
        
-            setAttachArray([])
-            dispatch(clearLessonAttachmentList([]))
-            dispatch(toggleAttachClear(false))
+        dispatch(setAttachementList(attachArray))
         
-    }, [attachClear]);
+    }, [attachArray]);
     
     const handleSearchAttachment = (e) => {
         e.preventDefault()
@@ -55,10 +61,13 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
 
     const handleRemoveAttachment = (e) => {
         e.preventDefault()
-        attachArray.splice(e.target.id, 1)
-        setAttachArray(attachArray)
         removeIndex = e.target.id
-        dispatch(removeLessonAttachment(removeIndex))
+        //const attachToRemove = attachArray.slice(removeIndex, removeIndex+1)
+        let removedAttachArray = attachArray.filter((element, index) => {
+            return index != removeIndex
+        })
+        setAttachArray(removedAttachArray)
+        //dispatch(removeLessonAttachment(removeIndex))
     };
 
     return ( 
