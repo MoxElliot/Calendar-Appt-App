@@ -37,7 +37,7 @@ export default function LessonEditControl() {
     }, [singleLessonData])
 
     useEffect(() => {
-       
+       setLessonAttachment(lessonAttachmentList)
     }, [lessonAttachmentList])
 
     
@@ -179,7 +179,7 @@ export default function LessonEditControl() {
                             col col-md-4 col-6
                             d-flex flex-column">
                             <h5 className='m-0'>Lesson Attachments</h5>
-                            {lessonAttachmentList.map((att) => 
+                            {lessonAttachment.map((att) => 
                                 <Link 
                                     className='bi bi-paperclip'
                                     href="/"
