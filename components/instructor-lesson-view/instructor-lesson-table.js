@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
@@ -6,13 +7,18 @@ import { nanoid } from 'nanoid';
 
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
+    const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+    }, [lessonAttachmentList])
     
-    const dispatch = useDispatch()
 
     const renderedLessons = lessonData.map((val) => {
         const rowData = [val.id, val.date, val.time, val.status, val.detail, val.attachment, val.name, val.link];
-        if(val.attachment === undefined) {
-        }
+        
         const rowSelect = () => {
             dispatch(readLesson(rowData))
             return rowData
