@@ -25,7 +25,7 @@ export default function InstructorLessonTable() {
            }
 
         const lessonRow = 
-        <tr key={nanoid()} onClick={rowSelect}>
+        <tr className='lesson-table-body-row' key={nanoid()} onClick={rowSelect}>
             <td>{val.date}</td>
             <td>{val.time}</td>
             <td>{val.status}</td>
@@ -48,9 +48,9 @@ export default function InstructorLessonTable() {
 
 
     return (
-    <table className="table table-hover ">
-        <thead>
-            <tr >
+    <table className="lesson-table-content table table-hover ">
+        <thead className="lesson-table-head">
+            <tr className='lesson-table-head-row'>
                 <th scope='col'>Lesson Date</th>
                 <th scope='col'>Lesson Time</th>
                 <th scope='col'>Lesson Status</th>
@@ -60,7 +60,7 @@ export default function InstructorLessonTable() {
                 <th scope='col'>Discord Link</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody className="lesson-table-body">
             {renderedLessons}
         </tbody>
         

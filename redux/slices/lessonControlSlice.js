@@ -8,6 +8,7 @@ export const lessonControlSlice = createSlice({
         lessonAttachmentList: [],
         removeIndex:"",
         attachClear:false,
+        lessonFilter:'ALL'
     },
     reducers: {
         showEditLesson(state, action) {
@@ -36,9 +37,12 @@ export const lessonControlSlice = createSlice({
         toggleAttachClear(state, action) {
             state.attachClear = action.payload
            
+        },
+        lessonFilterControl(state, action) {
+            state.lessonFilter = action.payload
         }
     },
 });
 
-export const { showEditLesson, showCreateLesson, setAttachementList, updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear } = lessonControlSlice.actions;
+export const { showEditLesson, showCreateLesson, setAttachementList, updateLessonAttachmentList, removeLessonAttachment, clearLessonAttachmentList, toggleAttachClear, lessonFilterControl } = lessonControlSlice.actions;
 export default lessonControlSlice.reducer;
