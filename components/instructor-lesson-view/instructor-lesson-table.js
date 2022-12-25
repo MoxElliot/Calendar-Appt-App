@@ -8,6 +8,9 @@ import { nanoid } from 'nanoid';
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+    const filters = useSelector(state => state.lessonControl.lessonFilters)
+
+    console.log("in instructor-lesson-table filters", filters)
 
     const dispatch = useDispatch();
 
@@ -25,7 +28,7 @@ export default function InstructorLessonTable() {
            }
 
         const lessonRow = 
-        <tr key={nanoid()} onClick={rowSelect}>
+        <tr className='lesson-table-body-row' key={nanoid()} onClick={rowSelect}>
             <td>{val.date}</td>
             <td>{val.time}</td>
             <td>{val.status}</td>
@@ -43,14 +46,45 @@ export default function InstructorLessonTable() {
                 </Link>
             </td>
         </tr>
-        return lessonRow 
+
+        switch(filters) {
+            case 'AVAILABLE':
+                if(val.status === 'Available'){
+                    return lessonRow
+                };
+                break;
+            case 'BOOKED':
+                if(val.status === 'Booked') {
+                    return lessonRow
+                };
+                break;
+            case 'REQUESTED':
+                if(val.status === 'Requested') {
+                    return lessonRow
+                };
+                break;
+            case 'CANCELED':
+                if(val.status === 'Canceled') {
+                    return lessonRow
+                };
+                break;
+            default:
+                return lessonRow
+        }
+
+
+        // if (val.status !=='Booked'){
+        //     return lessonRow 
+        // } else {
+        //     return null
+        // }
     })
 
 
     return (
-    <table className="table table-hover ">
-        <thead>
-            <tr >
+    <table className="lesson-table-content table table-hover ">
+        <thead className="lesson-table-head">
+            <tr className='lesson-table-head-row'>
                 <th scope='col'>Lesson Date</th>
                 <th scope='col'>Lesson Time</th>
                 <th scope='col'>Lesson Status</th>
@@ -60,7 +94,7 @@ export default function InstructorLessonTable() {
                 <th scope='col'>Discord Link</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody className="lesson-table-body">
             {renderedLessons}
         </tbody>
         
