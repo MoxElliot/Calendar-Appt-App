@@ -8,6 +8,9 @@ import { nanoid } from 'nanoid';
 export default function InstructorLessonTable() {
     const lessonData = useSelector((state) => state.lessonData.lessonData)
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
+    const filters = useSelector(state => state.lessonControl.lessonFilters)
+
+    console.log("in instructor-lesson-table filters", filters)
 
     const dispatch = useDispatch();
 
@@ -43,7 +46,38 @@ export default function InstructorLessonTable() {
                 </Link>
             </td>
         </tr>
-        return lessonRow 
+
+        switch(filters) {
+            case 'AVAILABLE':
+                if(val.status === 'Available'){
+                    return lessonRow
+                };
+                break;
+            case 'BOOKED':
+                if(val.status === 'Booked') {
+                    return lessonRow
+                };
+                break;
+            case 'REQUESTED':
+                if(val.status === 'Requested') {
+                    return lessonRow
+                };
+                break;
+            case 'CANCELED':
+                if(val.status === 'Canceled') {
+                    return lessonRow
+                };
+                break;
+            default:
+                return lessonRow
+        }
+
+
+        // if (val.status !=='Booked'){
+        //     return lessonRow 
+        // } else {
+        //     return null
+        // }
     })
 
 

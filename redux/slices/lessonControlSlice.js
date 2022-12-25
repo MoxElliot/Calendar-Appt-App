@@ -8,7 +8,7 @@ export const lessonControlSlice = createSlice({
         lessonAttachmentList: [],
         removeIndex:"",
         attachClear:false,
-        lessonFilter:'ALL'
+        lessonFilters:'ALL'
     },
     reducers: {
         showEditLesson(state, action) {
@@ -39,7 +39,7 @@ export const lessonControlSlice = createSlice({
            
         },
         lessonFilterControl(state, action) {
-            state.lessonFilter = action.payload
+            state.lessonFilters = action.payload
         }
     },
 });

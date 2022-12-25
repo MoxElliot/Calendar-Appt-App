@@ -6,12 +6,12 @@ export default function LessonViewSelect () {
 
     const dispatch = useDispatch();
     
-    const filters = useSelector(state => state.lessonControl.lessonFilter)
+    const filters = useSelector(state => state.lessonControl.lessonFilters)
     
     const handleFilter = (filter) => {
         dispatch(lessonFilterControl(filter))
     }
-    
+
     console.log("handleFilter Value", filters)
 
     return (    
