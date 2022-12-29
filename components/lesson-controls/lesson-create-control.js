@@ -13,7 +13,7 @@ export default function LessonCreateControl () {
     const attachArray = useSelector(state => state.lessonControl.lessonAttachmentList)
   
     const [date, setDate] = useState('');
-    const [day, setDay] = useState('');
+    // const [day, setDay] = useState('');  //used for eventual repeat lesson by day of weekfeature //
     const [toggleRepeat, setToggleRepeat] = useState(false)
     const [repeat, setRepeat] = useState(0);
     const [time, setTime] = useState('');
@@ -39,10 +39,10 @@ export default function LessonCreateControl () {
         setIsRepeatChecked(e.target.checked)
         if (toggleRepeat === true) {
             document.getElementById("lessonRepeat").disabled=true;
-            // document.getElementById("repeatDaySelect").hidden=true
+            // document.getElementById("repeatDaySelect").hidden=true //used for eventual repeat lesson by day of weekfeature //
         } else {
             document.getElementById("lessonRepeat").disabled=false
-            // document.getElementById("repeatDaySelect").hidden=false
+            // document.getElementById("repeatDaySelect").hidden=false //used for eventual repeat lesson by day of weekfeature //
         }
     }
     const onRepeatChange = e => setRepeat(e.target.value);
@@ -63,8 +63,8 @@ export default function LessonCreateControl () {
             addLesson({
                 id:nanoid(),
                 date: date,
-                // day,
-                // repeat,
+                // day, //used for eventual repeat lesson by day of weekfeature //
+                // repeat, //used for eventual repeat lesson by day of weekfeature //
                 time: time,
                 status: status,
                 detail: detail,
@@ -80,7 +80,7 @@ export default function LessonCreateControl () {
         }
         
         setDate('')
-        setDay('')
+        // setDay('') //used for eventual repeat lesson by day of weekfeature //
         setRepeat(0)
         setTime('')
         setName('')
@@ -96,7 +96,8 @@ export default function LessonCreateControl () {
 
     if(!createLesson){
         return null;
-    } 
+    }
+    //used for eventual repeat lesson by day of weekfeature // 
     // const lessonDayRadio = lessonDayArr.map((dayOfWeek, i)=> (
     //                 <label 
                         
@@ -164,7 +165,7 @@ export default function LessonCreateControl () {
                 </div>
                 {/* <div className='mx-5' id="repeatDaySelect" hidden>
                     {lessonDayRadio}
-                </div> */}
+                    </div> * used for eventual repeat lesson by day of weekfeature */}
             </form>
             
             <div className="lessonControlBottom row">

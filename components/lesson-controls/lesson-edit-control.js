@@ -105,21 +105,35 @@ export default function LessonEditControl() {
                                         }}
                                     />
                                 </label>
-                                <label className='lesson-text-input'>
+                                <label 
+                                    className='lesson-text-input'
+                                    htmlFor='status-select'>
                                     Status:
-                                    <input 
-                                        type='text' 
+                                    <select 
+                                        id='status-select'
+                                        name='status-select' 
                                         className='lesson-detail lesson-status'
                                         value={lessonStatus}
                                         onChange={(e) => {
                                             setLessonStatus(e.currentTarget.value);
                                         }}
-                                    />
+                                    >
+                                        <option  
+                                            defaultValue
+                                            style={{display:"none"}}
+                                            >
+                                                -- Select a Status --
+                                            </option>
+                                        <option value='available'>Available</option>
+                                        <option value='booked'>Booked</option>
+                                        <option value='requested'>Requested</option>
+                                        <option value='canceled'>Canceled</option>
+                                    </select>
                                 </label>
                                 <label className='lesson-text-input'>
                                     Date:
                                     <input 
-                                        type='text' 
+                                        type='date' 
                                         className='lesson-detail lesson-date-time'
                                         value={lessonDate} 
                                         onChange={(e) => {
@@ -131,7 +145,7 @@ export default function LessonEditControl() {
                                 <label className='lesson-text-input'>
                                     Time:
                                     <input 
-                                        type='text' 
+                                        type='time' 
                                         className='lesson-detail lesson-date-time'
                                         value={lessonTime}   
                                         onChange={(e) => {
@@ -143,6 +157,7 @@ export default function LessonEditControl() {
                                     Link:
                                     <input 
                                         type='text'
+                                        className='lesson-detail lesson-link'
                                         value={lessonLink}
                                         onChange={(e) => {
                                             setLessonLink(e.currentTarget.value);
