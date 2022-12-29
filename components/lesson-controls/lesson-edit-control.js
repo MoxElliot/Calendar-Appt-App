@@ -6,6 +6,9 @@ import { cancelLesson, editLessonData } from '../../redux/slices/lessonDataSlice
 import { setAttachementList } from '../../redux/slices/lessonControlSlice';
 import LessonEditAttachment from './lesson-edit-attachment';
 import { nanoid } from '@reduxjs/toolkit';
+import validator from 'validator';
+
+// https://us06web.zoom.us/j/83072918518?pwd=L0dacTNUaXhwcUFJeFZUaThkUWFUUT09
 
 export default function LessonEditControl() {
 
@@ -22,8 +25,18 @@ export default function LessonEditControl() {
     const [ lessonTime, setLessonTime ] = useState(singleLessonData[2]);
     const [ lessonLink, setLessonLink ] = useState(singleLessonData[7]);
     const [ lessonAttachment, setLessonAttachment ] = useState(singleLessonData[5]);
+    const [ errorMessage, setErrorMessage ] = useState('');
 
     const dispatch = useDispatch();
+
+    const validate = (value) => {
+        if(validator.isURL(value)) {
+            setErrorMessage('URL is Valid');
+            setLessonLink(value);
+        } else {
+            setErrorMessage('URL is not Valid');
+        }
+    };
     
     useEffect(() => {
         setLessonComment(singleLessonData[4])
@@ -45,6 +58,11 @@ export default function LessonEditControl() {
         const index = lessonData.findIndex(item => item.id === singleLessonData[0])
         dispatch(cancelLesson(index))
     };
+
+    const handleValidateLessonLink = (link) => {
+        validate(link);
+
+    }
 
     const handleEditLessonData = () => {
 
@@ -100,6 +118,7 @@ export default function LessonEditControl() {
                                         type='text' 
                                         className='lesson-detail lesson-name'
                                         value={lessonName}
+                                        required
                                         onChange={(e) => {
                                             setLessonName(e.currentTarget.value);
                                         }}
@@ -114,6 +133,7 @@ export default function LessonEditControl() {
                                         name='status-select' 
                                         className='lesson-detail lesson-status'
                                         value={lessonStatus}
+                                        required
                                         onChange={(e) => {
                                             setLessonStatus(e.currentTarget.value);
                                         }}
@@ -124,10 +144,10 @@ export default function LessonEditControl() {
                                             >
                                                 -- Select a Status --
                                             </option>
-                                        <option value='available'>Available</option>
-                                        <option value='booked'>Booked</option>
-                                        <option value='requested'>Requested</option>
-                                        <option value='canceled'>Canceled</option>
+                                        <option value='Available'>Available</option>
+                                        <option value='Booked'>Booked</option>
+                                        <option value='Requested'>Requested</option>
+                                        <option value='Canceled'>Canceled</option>
                                     </select>
                                 </label>
                                 <label className='lesson-text-input'>
@@ -135,7 +155,8 @@ export default function LessonEditControl() {
                                     <input 
                                         type='date' 
                                         className='lesson-detail lesson-date-time'
-                                        value={lessonDate} 
+                                        value={lessonDate}
+                                        required 
                                         onChange={(e) => {
                                             setLessonDate(e.currentTarget.value);
                                         }}   
@@ -148,6 +169,7 @@ export default function LessonEditControl() {
                                         type='time' 
                                         className='lesson-detail lesson-date-time'
                                         value={lessonTime}   
+                                        required
                                         onChange={(e) => {
                                             setLessonTime(e.currentTarget.value);
                                         }} 
@@ -160,9 +182,15 @@ export default function LessonEditControl() {
                                         className='lesson-detail lesson-link'
                                         value={lessonLink}
                                         onChange={(e) => {
-                                            setLessonLink(e.currentTarget.value);
+                                            handleValidateLessonLink(e.currentTarget.value)
                                         }}
                                     />
+                                    <span style={{
+                                        fontWeight: 'bold',
+                                        color: 'red',
+                                    }}>
+                                        {errorMessage}
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -208,7 +236,7 @@ export default function LessonEditControl() {
                             <p className='lesson-detail lesson-name'>{lessonName}</p>
                             <p className='lesson-detail lesson-status'>{lessonStatus}</p>
                             <p className='lesson-detail lesson-date-time'>{lessonDate} at {lessonTime}</p>
-                            <Link href="/"><a>{lessonLink}</a></Link>
+                            <Link href={lessonLink}><a>Lesson Link</a></Link>
                         </div>
                         <div className="lesson-attachment m-2
                             col col-md-4 col-6
