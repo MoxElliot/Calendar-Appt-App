@@ -7,15 +7,15 @@ $lessonTable-color: #c9eec6;
 $calandar-background:#92a8d1;
 
 .dashContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    margin-bottom: 4rem;
+    
+    
+    // margin-top: 1rem;
+    // padding-bottom: 1rem;
+    // margin-bottom: 4rem;
     
     .lessonContainer {
         background-color: $lessonView-color;
-        width: 90%;
+        width: 100%;
         margin-top: 1rem;
         padding: 1rem;
         @include standard-border;
@@ -24,8 +24,10 @@ $calandar-background:#92a8d1;
             margin-bottom: .5rem;
             display: flex;
             flex-direction: column;
+            align-items:center;
             
             .lessonViewSelectHeader {
+                align-self:flex-start;
                 font-weight: bold;
                 margin-bottom: .2rem;
             }
@@ -44,13 +46,11 @@ $calandar-background:#92a8d1;
         }
 
     .lesson-table-container {
-      @include standard-border;
+      border: 2px solid $background-border;
       background-color: $lessonTable-color;
-      max-height: 15rem;
-      overflow: auto;
+      max-height: 20rem;
         .lesson-table-content {
-          
-
+      
           .lesson-table-head {
             position:sticky;
             top: 0px;
@@ -70,9 +70,18 @@ $calandar-background:#92a8d1;
       }
     }
 
-    .lessonControlContainer {
+    .lesson-control-container {
         margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         
+        .lessonControlToggle {
+          background-color: $lessonComp-color;
+          align-self:center;
+          flex-basis: 20%;
+          margin-left: 2rem;
+        }
         .lessonDetailContainer {
             background-color: $calandar-background;
             height: fit-content;
@@ -134,55 +143,93 @@ $calandar-background:#92a8d1;
               max-width: 185px;
             }
           }
-        .lessonCreateContainer {
-            display: flex;
-            margin-top: 1rem;
-            display: flex;
-            justify-content: space-between;
-            background-color: $lesson-control-background;
-            @include standard-border;
-            padding: .3rem;
+        .lesson-create-control {
+          @include standard-border;
+          margin-top: 1rem;
+          display: flex;  
+          background-color: $lesson-control-background;
+          padding: .3rem;
+          width: fit-content;
+          
+            .lesson-control-left {
+              flex: none;
 
-            .lessonControlP{
+              .lessonControlP {
                 padding-bottom:.2rem;
                 padding-left:.4rem;
                 margin: 0;
                 text-decoration: underline;
                 font-weight: bold;
-            }
-            .lessonControlLeft {
-                
-                #lessonControlEle {
-                    padding-bottom: .5rem;
-                    .lesson-date-input {
-                      padding-left: 1rem;
-                    }
-                    .lesson-control-radio{
-                      padding-left: 1rem;
-                    }
-                    .studentName {
-                        margin-left: 1rem;
-                    }
-                }
-                .lessonCheckbox {
-                    display: flex;
-                    flex-direction: row;
-                }
-            }
-            .lessonControlRight {
-              
-                width:fit-content;
+              }    
+              .lesson-control-left__form {
+                  
+                  .lesson-control-left__date {
+                    margin:1rem; 
 
+                    .lesson-control-left__date-label{
+                      margin-right:.5rem;
+                      font-weight: bold;
+                    } 
+                  }
+
+                  .lesson-control-left__time {
+                    margin:1rem;
+
+                    .lesson-control-left__time-label {
+                      margin-right:.5rem;
+                      font-weight: bold;
+                    }
+                  } 
+                  
+                  .lesson-control-left__repeat {
+                    margin: 1rem;
+
+                    .lesson-control-left__repeat-checkbox {
+                      margin-right:.5rem;
+                    }
+
+                    .lesson-control-left__repeat-label {
+                      margin-right:.5rem;
+                      font-weight: bold;
+                    }
+                  }
+
+                  .lesson-control-left__name {
+                    margin:1rem;
+
+                    .lesson-control-left__name-checkbox {
+                      margin-right:.5rem;
+                    }
+                    .lesson-control-left__name-label {
+                      margin-right:.5rem;
+                      font-weight: bold;
+                    }
+                  }
+                }
+                
+            }
+
+            .lesson-control-right {
+              flex: none;
+              margin: 1rem;
+                .lesson-control-right__form {
+                  
+                  .lesson-control-right__details-label {
+                    margin-right:.5rem;
+                    font-weight: bold;
+                  }
+                }
                 .lessonControlAttachment{
                   @include standard-border;
                   min-width:295px;
-
+                  margin: 1rem;
                 }
             
                 .lessonControlBtn {
                    align-self: end;
                    flex-basis: 1;
                 }
+              
              }
           }
       }

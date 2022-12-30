@@ -12,7 +12,6 @@ export default function LessonViewSelect () {
         dispatch(lessonFilterControl(filter))
     }
 
-    console.log("handleFilter Value", filters)
 
     return (    
         <div className="lesson-view-select-filter">

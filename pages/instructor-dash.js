@@ -12,7 +12,7 @@ export default function InstructorDash() {
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />
-        <div className="dashContainer">
+        <div className="dashContainer container">
             <InstructorLessonView />
         </div>
         <div className={instructorMess.dashContainer}>

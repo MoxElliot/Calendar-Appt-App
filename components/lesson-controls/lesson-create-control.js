@@ -79,19 +79,21 @@ export default function LessonCreateControl () {
         date =  $y + "-" + ($M+1) +"-" + $D
         }
         
-        setDate('')
+        setDate('');
         // setDay('') //used for eventual repeat lesson by day of weekfeature //
-        setRepeat(0)
-        setTime('')
-        setName('')
-        setDetail('')
-        setAttachment([])
-        setStatus('Available')
-        setLink('Discord')
+        setRepeat(0);
+        setTime('');
+        setName('');
+        setDetail('');
+        setAttachment([]);
+        setStatus('Available');
+        setLink('Discord');
         setIsAvailChecked(false);
         setIsRepeatChecked(false);
-        dispatch(clearLessonAttachmentList([]))
-        dispatch(toggleAttachClear(true))
+        setToggleRepeat(false);
+        setIsRepeatChecked(false);
+        dispatch(clearLessonAttachmentList([]));
+        dispatch(toggleAttachClear(true));
     }
 
     if(!createLesson){
@@ -117,42 +119,52 @@ export default function LessonCreateControl () {
               
     //         ));
     return (
-        <div className='lessonCreateContainer container'>
-        <div className="lessonControlLeft col mx-2">
-            <form id="lessonControlEle" method="post" encType="multipart/form-data">
+        <div className='lesson-create-control'>
+            <div className="lesson-control-left col mx-2">
                 <p className="lessonControlP">
-                    Set New Lesson Date -or- Select Repeat Option
+                    Create a Lesson
                 </p>
-                <p  className="lessonControlP mx-2">Lesson Date</p>
-                <div className='lesson-date-input mx-5
-                    container 
-                    d-flex-column justify-content-center align-items-center'>
-                    <div className="row w-50" >        
-                    <input 
-                        type="date" 
-                        name="lesson-date"
-                        id="lesson-date"
-                        value={date}
-                        onChange={onDateChange} 
+                <form className="lesson-control-left__form" method="post" encType="multipart/form-data">
+                    <div className='lesson-control-left__date'>
+                        <label className="lesson-control-left__date-label">
+                            Lesson Date: 
+                        </label>
+                        <input 
+                            type="date" 
+                            name="lesson-date"
+                            id="lesson-date"
+                            value={date}
+                            onChange={onDateChange} 
+                        />  
+                    </div>
+
+                    <div className='lesson-control-left__time'>
+                        
+                        <label className="lesson-control-left__time-label">
+                            Set New Lesson Time
+                        </label>
+                            
+                        <input 
+                            type="time" 
+                            name="lesson-time"
+                            id="lesson-time"
+                            value={time}
+                            onChange={onTimeChange} 
                         />
                     </div>
-                    
-                </div>
-            </form>
-            <form 
-                id="lessonControlEle"
-                >
-                <div className='mx-5'>
-                    <label className="lessonCheckbox" id="lessonControlP">
+                
+                    <div className='lesson-control-left__repeat'>
                         <input 
-                            id="repeatLesson" 
-                            name="repeatLesson"
-                            checked={isRepeatChecked}
-                            value={toggleRepeat}
-                            onChange={onToggleRepeatChange}
-                            type="checkbox"
-                            />
-                        <p className='lessonControlP px-2'>Weeks to repeat lesson:</p>
+                                className='lesson-control-left__repeat-checkbox' 
+                                name="repeatLesson"
+                                checked={isRepeatChecked}
+                                value={toggleRepeat}
+                                onChange={onToggleRepeatChange}
+                                type="checkbox"
+                        />
+                        <label className='lesson-control-left__repeat-label'>
+                        Weeks to repeat lesson:
+                        </label>
                         <input 
                             disabled
                             size="4"
@@ -161,43 +173,19 @@ export default function LessonCreateControl () {
                             value={repeat}
                             onChange={onRepeatChange}
                         />
-                    </label>
-                </div>
-                {/* <div className='mx-5' id="repeatDaySelect" hidden>
-                    {lessonDayRadio}
-                    </div> * used for eventual repeat lesson by day of weekfeature */}
-            </form>
-            
-            <div className="lessonControlBottom row">
-            <form className='col-6'>
-                <p className="lessonControlP ">
-                    Set New Lesson Time
-                </p>
-                <div className='lesson-time-input 
-                    container mx-3
-                    d-flex-column justify-content-center align-items-center'>
-                    <div className="row w-50" >        
-                    <input 
-                        type="time" 
-                        name="lesson-time"
-                        id="lesson-time"
-                        value={time}
-                        onChange={onTimeChange} 
-                        />
                     </div>
-                </div>
-            </form>
-                <form className="lessonControlEle col-4" > 
-                    <label className="lessonCheckbox" id="lessonControlP">
+                    {/* <div className='mx-5' id="repeatDaySelect" hidden>
+                        {lessonDayRadio}
+                        </div> * used for eventual repeat lesson by day of weekfeature */}
+                    <div className="lesson-control-left__name">
                         <input 
                             type="checkbox" 
-                            id="lessonStatus"
+                            className='lesson-control-left__name-checkbox'
                             name="lessonStatus"
                             checked={isAvailChecked}
                             onChange={onStatusChange}
-                            />
-                        <p className='lessonControlP'>Only Available to:</p>
-                    </label>
+                        />
+                        <label className='lesson-control-left__name-label '>Only Available to:</label>
                         <input 
                             type="text" 
                             placeholder='Student Name'
@@ -206,40 +194,41 @@ export default function LessonCreateControl () {
                             className='studentName mx-3'
                             value={name}
                             onChange={onNameChange}
-                            />
-                </form>
-                
+                        />
+                    </div>
+                </form> 
+                <div className="lessonControlBtn col">
+                    <button 
+                        className='btn btn-primary'
+                        id="lessonSubmit"
+                        name="lessonSubmit"
+                        onClick={onCreateLessonClick}
+                    >
+                        Create Lessson
+                    </button>
+                </div> 
             </div>
-        </div>
-        <div className='lessonControlRight col col-5'>
-            <div className=' container'>
-            <form className='lessonControlDetail'>
-                <p className='lessonControlP'>Lesson Details</p>
-                <textarea 
-                    rows="3"
-                    cols="30"
-                    name="lessonDetail"
-                    value={detail}
-                    onChange={onDetailChange}
-                />
-            </form>
+
+            <div className='lesson-control-right col'>
+                
+                <form className='lesson-control-right__form'>
+                    <p className='lesson-control-right__details-label'>Lesson Details</p>
+                    <textarea 
+                        rows="3"
+                        cols="30"
+                        name="lessonDetail"
+                        value={detail}
+                        onChange={onDetailChange}
+                    />
+                </form>
+
                 <div className='row'>
                     <LessonCreateAttachment
                         onChange={onAttachmentChange}
                         lessonAttachment={[]}/>
-                    <form className="lessonControlBtn col">
-                        <button 
-                            className='btn btn-primary'
-                            id="lessonSubmit"
-                            name="lessonSubmit"
-                            onClick={onCreateLessonClick}
-                        >
-                            Create Lessson
-                        </button>
-                    </form>
                 </div>
+
             </div>
-        </div>
         </div>
     )
 }

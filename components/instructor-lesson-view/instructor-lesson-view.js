@@ -10,14 +10,11 @@ export default function InstructorLessonView () {
 
     const dispatch = useDispatch()
 
-    const handleEditLesson = (e) => {
-        e.preventDefault()
+    const handleEditLesson = () => {
         dispatch(showEditLesson(true))
-        dispatch(showCreateLesson(false))
-       
+        dispatch(showCreateLesson(false)) 
     }
     const handleCreateLesson = (e) => {
-        e.preventDefault()
         dispatch(showCreateLesson(true))
         dispatch(showEditLesson(false))
     }
@@ -29,10 +26,13 @@ export default function InstructorLessonView () {
                     <p className="lessonViewSelectHeader">Instructor Lesson View</p>
                     <LessonViewSelect />
                 </div>
-                <div className="lesson-table-container">
+                <div className="lesson-table-container overflow-auto">
                     <InstructorLessonTable />
                 </div>
-                <div className="lessonControlContainer">
+
+                
+                <div className="lesson-control-container">
+                    
                 <div 
                     className='btn-group lessonControlToggle'
                     role="group"
@@ -41,28 +41,29 @@ export default function InstructorLessonView () {
                     <input 
                         className='btn-check p-1 m-1'
                         type="radio"
-                        name="toggleCreate"
-                        id="toggleCreate"
+                        name="btnradio"
+                        id="btnradio1"
                         autoComplete='off'
+                        defaultChecked
                         onClick={handleCreateLesson}
                     />
                     <label 
-                        className='btn btn-primary'
-                        htmlFor="toggleCreate"
+                        className='btn btn-outline-primary'
+                        htmlFor="btnradio1"
                     >
                         Create Lesson
                     </label>
                     <input 
                         className='btn-check p-1 m-1'
                         type="radio"
-                        name="toggleEdit"
-                        id="toggleEdit"
+                        name="btnradio"
+                        id="btnradio2"
                         autoComplete='off'
                         onClick={handleEditLesson}
                     />
                     <label 
-                        className='btn btn-primary'
-                        htmlFor="toggleEdit"
+                        className='btn btn-outline-primary'
+                        htmlFor="btnradio2"
                     >
                         Edit Lesson
                     </label>
