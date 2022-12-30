@@ -41,8 +41,8 @@ export default function InstructorLessonTable() {
             </td>
             <td>{val.name}</td>
             <td>   
-                <Link href="https://www.discord.com/">
-                    <a className=''>{val.link}</a>
+                <Link href={val.link}>
+                    <a className=''>Lesson Link</a>
                 </Link>
             </td>
         </tr>
@@ -91,7 +91,7 @@ export default function InstructorLessonTable() {
                 <th scope='col'>Lesson Detail</th>
                 <th scope='col'>Lesson Attachments</th>
                 <th scope='col'>Student Name</th>
-                <th scope='col'>Discord Link</th>
+                <th scope='col'>Lesson Link</th>
             </tr>
         </thead>
         <tbody className="lesson-table-body">
