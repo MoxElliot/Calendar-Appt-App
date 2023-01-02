@@ -85,7 +85,7 @@ export default function LessonEditControl() {
     
     if(singleLessonData === "Select a Lesson") {
         return (
-            <div className="lessonDetailContainer container">
+            <div className="lesson-detail-container container">
                 <p> Select a Lesson to Edit...</p>
             </div>
         )
@@ -94,7 +94,7 @@ export default function LessonEditControl() {
         <>
             { isEditOn ? 
             (
-                <div className="lessonDetailEditContainer container">
+                <div className="lesson-detail-edit-container container">
                     <div className='row'>
                         <div className= 'col'>
                             <div className='lesson-text col col-md-6 col-12'>
@@ -228,12 +228,12 @@ export default function LessonEditControl() {
                 </div> 
             ) : 
             (
-                <div className="lessonDetailContainer container">
+                <div className="lesson-detail-edit-container container">
                     <div className='row'>
                         <div className='lesson-text col col-md-6 col-12'>
                             <h4>Lesson Details</h4>
                             <p className='lesson-detail lesson-comment'>{lessonComment}</p>
-                            <p className='lesson-detail lesson-name'>{lessonName}</p>
+                            <p className='lesson-detail'>For:</p><p className='lesson-detail lesson-name'>{lessonName}</p>
                             <p className='lesson-detail lesson-status'>{lessonStatus}</p>
                             <p className='lesson-detail lesson-date-time'>{lessonDate} at {lessonTime}</p>
                             <Link href={lessonLink}><a>Lesson Link</a></Link>

@@ -82,10 +82,11 @@ $calandar-background:#92a8d1;
           flex-basis: 20%;
           margin-left: 2rem;
         }
-        .lessonDetailContainer {
+        .lesson-detail-container {
             background-color: $calandar-background;
             height: fit-content;
             width: fit-content;
+            margin-top:1rem;
             max-width: 75vw;
             min-width: 280px;
             @include standard-border;
@@ -108,8 +109,9 @@ $calandar-background:#92a8d1;
               max-width: 185px;
             }
           }
-          .lessonDetailEditContainer {
+          .lesson-detail-edit-container {
             background-color: $calandar-background;
+            margin-top: 1rem;
             height: fit-content;
             width: fit-content;
             max-width: 75vw;
@@ -117,9 +119,13 @@ $calandar-background:#92a8d1;
             @include standard-border;
             padding:1rem;
             .lesson-text {
-              width:fit-content;
+              
               .lesson-text-input{
                 padding: .1rem;
+              }
+              .lesson-detail {
+                margin: .3rem;
+                width: fit-content;
               }
             }
             .lesson-attachment{
@@ -219,10 +225,22 @@ $calandar-background:#92a8d1;
                     font-weight: bold;
                   }
                 }
-                .lessonControlAttachment{
+                .lesson-control-attachment{
                   @include standard-border;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
                   min-width:295px;
                   margin: 1rem;
+                  
+                  .lesson-control-attachment__text {
+                    font-weight: bold;
+                  }
+                  .lesson-control-attachment__btn {
+                    padding:.3rem;
+                    margin-top: .5rem;
+                  }
                 }
             
                 .lessonControlBtn {
