@@ -233,14 +233,26 @@ export default function LessonEditControl() {
                         <div className='lesson-text col col-md-6 col-12'>
                             <h4>Lesson Details</h4>
                             <p className='lesson-detail lesson-comment'>{lessonComment}</p>
-                            <p className='lesson-detail'>For:</p><p className='lesson-detail lesson-name'>{lessonName}</p>
-                            <p className='lesson-detail lesson-status'>{lessonStatus}</p>
-                            <p className='lesson-detail lesson-date-time'>{lessonDate} at {lessonTime}</p>
-                            <Link href={lessonLink}><a>Lesson Link</a></Link>
+                            <div className='lesson-detail'>
+                                <label className='lesson-detail__label'>For:</label>
+                                <p className='lesson-detail__p'>{lessonName}</p>
+                            </div>
+                            <div className='lesson-detail'>
+                                <label className='lesson-detail__label'>Status:</label>
+                                <p className='lesson-detail__p'>{lessonStatus}</p>
+                            </div>
+                            <div className='lesson-detail'>
+                                <label className='lesson-detail__label'>Date:</label>
+                                <p className='lesson-detail__p'>{lessonDate} at {lessonTime}</p>
+                            </div>
+                            <div className='lesson-detail'>
+                                <label className='lesson-detail__label'>Lesson Link:</label>
+                                <Link href={lessonLink}><a>Lesson Link</a></Link>
+                            </div>
+                            
                         </div>
-                        <div className="lesson-attachment m-2
-                            col col-md-4 col-6
-                            d-flex flex-column">
+                        <div className="lesson-attachment
+                            col col-md-4 col-6">
                             <h5 className='m-0'>Lesson Attachments</h5>
                             {lessonAttachment.map((att) => 
                                 <Link 
@@ -253,28 +265,22 @@ export default function LessonEditControl() {
                             )}
                         </div>
                     </div>
-                    <div className="lesson-details-buttons row p-0">
-                        <div className='col-6 p-0'>
-                            <button className='lesson-buttons 
-                                d-flex justify-content-center
-                                btn  
-                                w-100 p-0'
+                    <div className="lesson-detail__buttons row">
+                        
+                            <button className='lesson-buttons btn btn-primary'
                                 onClick = {() => setIsEditOn(!isEditOn)}
                                 >
-                                <label className='bi bi-pencil px-2'>Edit Lesson</label>
+                                <label className=''>Edit Lesson</label>
                             </button>
-                        </div>
-                        <div className='col-6 p-0'>
+                        
+                        
                             <button 
-                                className='lesson-buttons 
-                                d-flex justify-content-center
-                                btn 
-                                w-100 p-0'
+                                className='lesson-buttons btn btn-primary'
                                 onClick = {handleCancelLesson}
                             > 
-                                <label className='bi bi-trash px-2'>Cancel Lesson</label>
+                                <label className=''>Cancel Lesson</label>
                             </button>
-                        </div>
+                        
                     </div>
                 </div> 
             )}

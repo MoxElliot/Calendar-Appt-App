@@ -123,31 +123,55 @@ $calandar-background:#92a8d1;
               .lesson-text-input{
                 padding: .1rem;
               }
+              .lesson-comment {
+                margin-bottom: .3rem;
+              }
               .lesson-detail {
-                margin: .3rem;
                 width: fit-content;
+                display: inline-flex;
+                .lesson-detail__label {
+                  margin-right:.3rem;
+                  font-weight: 600;
+                }
+                .lesson-detail__p {
+                  margin-bottom: .3rem;
+                }
               }
             }
             .lesson-attachment{
+              @include standard-border;
+              display: flex;
+              flex-direction:column;
+              align-items:center;
+              align-self:center;
               max-width:395px;
               margin: auto;
-              @include standard-border;
-
+              
               .lessonControlAttachment{
                 margin:2rem;
                 min-width:295px;
+
                 .lessonAttachControlBtn {
                   @include standard-border;
                 }
               }
             }
+            .lesson-detail__buttons {
+              display: flex;
+              flex-direction:row;
+              justify-content:center;
+
+              .lesson-buttons {
+                @include standard-border;
+                max-width: 185px;
+                padding:0;
+                margin:.5rem 0 0 .3rem;
+              }
+            }
             .lesson-detail {
               margin:0 0 0 1rem;
             }
-            .lesson-buttons {
-              @include standard-border;
-              max-width: 185px;
-            }
+            
           }
         .lesson-create-control {
           @include standard-border;
