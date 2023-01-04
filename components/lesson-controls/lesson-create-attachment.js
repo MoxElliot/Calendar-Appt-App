@@ -59,6 +59,7 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
         setAttachArray(attachArray)
         removeIndex = e.target.id
         dispatch(removeLessonAttachment(removeIndex))
+        console.log("in handle")
     };
 
     return ( 
