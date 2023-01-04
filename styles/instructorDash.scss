@@ -109,6 +109,7 @@ $calandar-background:#92a8d1;
               max-width: 185px;
             }
           }
+
           .lesson-detail-edit-container {
             background-color: $calandar-background;
             margin-top: 1rem;
@@ -119,16 +120,15 @@ $calandar-background:#92a8d1;
             @include standard-border;
             padding:1rem;
             .lesson-text {
-              
-              .lesson-text-input{
-                padding: .1rem;
-              }
+            
               .lesson-comment {
                 margin-bottom: .3rem;
               }
               .lesson-detail {
                 width: fit-content;
-                display: inline-flex;
+                display: flex;
+                margin:0 0 0 1rem;
+
                 .lesson-detail__label {
                   margin-right:.3rem;
                   font-weight: 600;
@@ -141,19 +141,14 @@ $calandar-background:#92a8d1;
             .lesson-attachment{
               @include standard-border;
               display: flex;
-              flex-direction:column;
-              align-items:center;
-              align-self:center;
-              max-width:395px;
+              flex-direction: column;
+              align-items: center;
+              padding: .5rem;
               margin: auto;
-              
-              .lessonControlAttachment{
-                margin:2rem;
-                min-width:295px;
 
-                .lessonAttachControlBtn {
-                  @include standard-border;
-                }
+              .lesson-attachment__text {
+                font-weight:600;
+                margin-bottom:.5rem;
               }
             }
             .lesson-detail__buttons {
@@ -162,10 +157,64 @@ $calandar-background:#92a8d1;
               justify-content:center;
 
               .lesson-buttons {
-                @include standard-border;
-                max-width: 185px;
-                padding:0;
-                margin:.5rem 0 0 .3rem;
+                margin:.5rem 1rem 0 1rem;
+              }
+            }
+          }
+
+          .lesson-detail-edit-container__edit-on {
+            background-color: $calandar-background;
+            margin-top: 1rem;
+            max-width: 75vw;
+            min-width: 280px;
+            @include standard-border;
+            padding:1rem;
+            .lesson-text {
+              
+              .lesson-text-input{
+                padding: .1rem;
+                font-weight: 600;
+
+                .lesson-detail {
+                  width: fit-content;
+                  display: flex;
+                }
+              }
+              
+            }
+            .lesson-attachment{
+              @include standard-border;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: .5rem;
+              max-width: fit-content;
+              margin: 3rem;
+
+              .lesson-attachment__text {
+                font-weight:600;
+                margin-bottom:.3rem;
+              }
+              
+              .lessonControlAttachment{
+                margin:2rem;
+                min-width:295px;
+
+                .lessonAttachControlBtn {
+                  margin-top: 1rem;
+                  align-self: center;
+                }
+              }
+            }
+
+            .lesson-detail__buttons {
+              display: flex;
+              flex-direction:row;
+              justify-content:center;
+
+              .lesson-buttons {
+                margin:.5rem 1rem 0 1rem;
+                
               }
             }
             .lesson-detail {
@@ -173,6 +222,7 @@ $calandar-background:#92a8d1;
             }
             
           }
+
         .lesson-create-control {
           @include standard-border;
           margin-top: 1rem;

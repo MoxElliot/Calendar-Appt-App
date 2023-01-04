@@ -73,7 +73,7 @@ export default function LessonEditAttachment ({lessonAttachment}) {
             d-flex flex-column'
             method="post" encType="multipart/form-data">
     
-            <p className='lessonControlP m-0'>Lesson Attachments</p>
+            <p className='lessonControlP lesson-attachment__text'>Lesson Attachments</p>
             <input 
                 type='file' 
                 name='file'
@@ -96,7 +96,7 @@ export default function LessonEditAttachment ({lessonAttachment}) {
                     )})}
                  
             <button 
-                className='lessonAttachControlBtn btn p-0 w-75'
+                className='lessonAttachControlBtn btn btn-primary'
                 onClick={handleAddAttachment}  
             >
                 <label className='bi bi-plus'>Add Attachment</label>

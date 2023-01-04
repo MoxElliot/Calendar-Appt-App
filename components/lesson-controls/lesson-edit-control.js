@@ -94,10 +94,10 @@ export default function LessonEditControl() {
         <>
             { isEditOn ? 
             (
-                <div className="lesson-detail-edit-container container">
+                <div className="lesson-detail-edit-container__edit-on container">
                     <div className='row'>
                         <div className= 'col'>
-                            <div className='lesson-text col col-md-6 col-12'>
+                            <div className='lesson-text col'>
                                 <h4>Lesson Details</h4>
                                 <label className='lesson-text-input'>
                                     Details:
@@ -105,7 +105,7 @@ export default function LessonEditControl() {
                                         type='text'
                                         rows="3"
                                         cols="30" 
-                                        className='lesson-detail lesson-comment'
+                                        className='lesson-detail'
                                         value={lessonComment}
                                         onChange={(e) => {
                                             setLessonComment(e.currentTarget.value);
@@ -116,7 +116,7 @@ export default function LessonEditControl() {
                                     Name:
                                     <input 
                                         type='text' 
-                                        className='lesson-detail lesson-name'
+                                        className='lesson-detail'
                                         value={lessonName}
                                         required
                                         onChange={(e) => {
@@ -131,7 +131,7 @@ export default function LessonEditControl() {
                                     <select 
                                         id='status-select'
                                         name='status-select' 
-                                        className='lesson-detail lesson-status'
+                                        className='lesson-detail'
                                         value={lessonStatus}
                                         required
                                         onChange={(e) => {
@@ -154,7 +154,7 @@ export default function LessonEditControl() {
                                     Date:
                                     <input 
                                         type='date' 
-                                        className='lesson-detail lesson-date-time'
+                                        className='lesson-detail'
                                         value={lessonDate}
                                         required 
                                         onChange={(e) => {
@@ -167,7 +167,7 @@ export default function LessonEditControl() {
                                     Time:
                                     <input 
                                         type='time' 
-                                        className='lesson-detail lesson-date-time'
+                                        className='lesson-detail'
                                         value={lessonTime}   
                                         required
                                         onChange={(e) => {
@@ -179,7 +179,7 @@ export default function LessonEditControl() {
                                     Link:
                                     <input 
                                         type='text'
-                                        className='lesson-detail lesson-link'
+                                        className='lesson-detail'
                                         value={lessonLink}
                                         onChange={(e) => {
                                             handleValidateLessonLink(e.currentTarget.value)
@@ -194,35 +194,30 @@ export default function LessonEditControl() {
                                 </label>
                             </div>
                         </div>
-                        <div className='col lesson-attachment p-2 m-2
-                                d-flex flex-column'>
+                        <div className='lesson-attachment col col-4'>
                             <LessonEditAttachment
                                 lessonAttachment={lessonAttachmentList}
                             />
                         </div>
                     </div>
-                    <div className="lesson-details-buttons row p-0">
-                        <div className='col-6 p-0'>
+                    <div className="lesson-detail__buttons">
+                        
                             <button 
                                 className='lesson-buttons 
-                                d-flex justify-content-center
-                                btn 
-                                w-100 p-0'
+                                btn btn-primary'
                                 onClick = {handleEditLessonData}
                             > 
                                 <label className='bi bi-pencil px-2'>Save</label>
                             </button>
-                        </div>
-                        <div className='col-6 p-0'>
+                        
+                        
                             <button className='lesson-buttons 
-                                d-flex justify-content-center
-                                btn  
-                                w-100 p-0'
+                                btn btn-primary'
                                 onClick = {() => setIsEditOn(!isEditOn)}
                                 >
                                 <label className='bi bi-trash px-2'>Cancel</label>
                             </button>
-                        </div>
+                        
                         
                     </div>
                 </div> 
@@ -253,7 +248,7 @@ export default function LessonEditControl() {
                         </div>
                         <div className="lesson-attachment
                             col col-md-4 col-6">
-                            <h5 className='m-0'>Lesson Attachments</h5>
+                            <p className='lesson-attachment__text'>Lesson Attachments</p>
                             {lessonAttachment.map((att) => 
                                 <Link 
                                     className='bi bi-paperclip'
@@ -265,12 +260,12 @@ export default function LessonEditControl() {
                             )}
                         </div>
                     </div>
-                    <div className="lesson-detail__buttons row">
+                    <div className="lesson-detail__buttons">
                         
                             <button className='lesson-buttons btn btn-primary'
                                 onClick = {() => setIsEditOn(!isEditOn)}
                                 >
-                                <label className=''>Edit Lesson</label>
+                                <label className='bi bi-pencil px-2'>Edit Lesson</label>
                             </button>
                         
                         
@@ -278,7 +273,7 @@ export default function LessonEditControl() {
                                 className='lesson-buttons btn btn-primary'
                                 onClick = {handleCancelLesson}
                             > 
-                                <label className=''>Cancel Lesson</label>
+                                <label className='bi bi-trash px-2'>Cancel Lesson</label>
                             </button>
                         
                     </div>
