@@ -94,7 +94,7 @@ export default function LessonEditControl() {
         <>
             { isEditOn ? 
             (
-                <div className="lesson-detail-edit-container__edit-on container">
+                <div className="lesson-detail-container__edit-on container">
                     <div className='row'>
                         <div className= 'col'>
                             <div className='lesson-text col'>
@@ -223,7 +223,7 @@ export default function LessonEditControl() {
                 </div> 
             ) : 
             (
-                <div className="lesson-detail-edit-container container">
+                <div className="lesson-detail-container__edit-off container">
                     <div className='row'>
                         <div className='lesson-text col col-md-6 col-12'>
                             <h4>Lesson Details</h4>

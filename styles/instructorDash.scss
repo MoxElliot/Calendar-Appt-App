@@ -110,7 +110,7 @@ $calandar-background:#92a8d1;
             }
           }
 
-          .lesson-detail-edit-container {
+          .lesson-detail-container__edit-off {
             background-color: $calandar-background;
             margin-top: 1rem;
             height: fit-content;
@@ -162,7 +162,7 @@ $calandar-background:#92a8d1;
             }
           }
 
-          .lesson-detail-edit-container__edit-on {
+          .lesson-detail-container__edit-on {
             background-color: $calandar-background;
             margin-top: 1rem;
             max-width: 75vw;
@@ -234,12 +234,11 @@ $calandar-background:#92a8d1;
             .lesson-control-left {
               flex: none;
 
-              .lessonControlP {
+              .lesson-text {
                 padding-bottom:.2rem;
                 padding-left:.4rem;
                 margin: 0;
-                text-decoration: underline;
-                font-weight: bold;
+                font-weight: 500;
               }    
               .lesson-control-left__form {
                   

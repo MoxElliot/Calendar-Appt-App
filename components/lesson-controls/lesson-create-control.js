@@ -121,9 +121,9 @@ export default function LessonCreateControl () {
     return (
         <div className='lesson-create-control'>
             <div className="lesson-control-left col mx-2">
-                <p className="lessonControlP">
-                    Create a Lesson
-                </p>
+                <h4 className="lesson-text">
+                    Create Lesson
+                </h4>
                 <form className="lesson-control-left__form" method="post" encType="multipart/form-data">
                     <div className='lesson-control-left__date'>
                         <label className="lesson-control-left__date-label">
