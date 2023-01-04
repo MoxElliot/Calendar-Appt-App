@@ -10,8 +10,6 @@ export default function InstructorLessonTable() {
     const lessonAttachmentList = useSelector(state => state.lessonControl.lessonAttachmentList)
     const filters = useSelector(state => state.lessonControl.lessonFilters)
 
-    console.log("in instructor-lesson-table filters", filters)
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -82,7 +80,7 @@ export default function InstructorLessonTable() {
 
 
     return (
-    <table className="lesson-table-content table table-hover ">
+    <table className="lesson-table-content table table-striped table-hover ">
         <thead className="lesson-table-head">
             <tr className='lesson-table-head-row'>
                 <th scope='col'>Lesson Date</th>

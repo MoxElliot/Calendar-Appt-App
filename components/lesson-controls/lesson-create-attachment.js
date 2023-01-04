@@ -62,12 +62,11 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
     };
 
     return ( 
-        <form className='lessonControlAttachment m-2 p-2
-            col col-md-4 col-6
-            d-flex flex-column'
+        <form className='lesson-control-attachment m-2 p-2
+            col col-md-4 col-6'
             method="post" encType="multipart/form-data">
     
-            <p className='lessonControlP m-0'>Lesson Attachments</p>
+            <p className='lesson-control-attachment__text m-0'>Lesson Attachments</p>
             <input 
                 type='file' 
                 name='file'
@@ -90,7 +89,7 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
                     )})}
                  
             <button 
-                className='btn p-0 w-75'
+                className='lesson-control-attachment__btn btn btn-primary'
                 onClick={handleAddAttachment}  
             >
                 <label className='bi bi-plus'>Add Attachment</label>
