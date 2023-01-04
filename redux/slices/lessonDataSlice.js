@@ -1,14 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const date = new Date();
+const lessonDate = (d) => (date.getMonth()+1) + "/" + (date.getDate()+d) + "/" + date.getFullYear();
+
 const lessonDataArr = [
-    {id:0, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf", "Opening.sgf"], name:"Tim Timson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:1, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"John Johnson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:2, date: "xx/xx/xxx", time: "xx:xx", status:"Requested", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Sam Samson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:3, date: "xx/xx/xxx", time: "xx:xx", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Will Willson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:4, date: "xx/xx/xxx", time: "xx:xx", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf", "Opening.sgf"], name:"Tim Timson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:5, date: "xx/xx/xxx", time: "xx:xx", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"John Johnson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:6, date: "xx/xx/xxx", time: "xx:xx", status:"Requested", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Sam Samson", link:"https://us06web.zoom.us/meeting/83072918518"},
-    {id:7, date: "xx/xx/xxx", time: "xx:xx", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Will Willson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:0, date: lessonDate(0), time: "1:00PM", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf", "Opening.sgf"], name:"Tim Timson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:1, date: lessonDate(3), time: "2:00PM", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"John Johnson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:2, date: lessonDate(5), time: "1:00PM", status:"Requested", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Sam Samson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:3, date: lessonDate(5), time: "3:00PM", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Will Willson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:4, date: lessonDate(5), time: "4:00PM", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf", "Opening.sgf"], name:"Tim Timson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:5, date: lessonDate(6), time: "1:00PM", status:"Booked", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"John Johnson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:6, date: lessonDate(6), time: "3:00PM", status:"Requested", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Sam Samson", link:"https://us06web.zoom.us/meeting/83072918518"},
+    {id:7, date: lessonDate(6), time: "5:00PM", status:"Available", detail:"Arma virumque canō, Trōiae quī prīmus ab ōrīs", attachment:["Lāvīniaque.sgf"], name:"Will Willson", link:"https://us06web.zoom.us/meeting/83072918518"},
     ]
 
 
