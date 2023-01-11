@@ -1,19 +1,18 @@
+@import './index.scss';
 $dashboard-color: #21df10;
 $messageView-color: #3fb427;
 $messageComp-color: #3384aa;
+$messageTable-color: #c9eec6;
 
 .dashContainer {
     
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    margin-bottom: 4rem;
+ 
 
     
     .messageContainer {
+        @include standard-border;
         background-color: $messageView-color;
-        width: 90%;
+        width: 100%;
         margin-top: 1rem;
         padding: 1rem;
 
@@ -49,20 +48,34 @@ $messageComp-color: #3384aa;
             }
         }
 
-        .messageTable {
-
-            border-collapse: collapse;
+        .message-table-container {
+            border: 2px solid $background-border;
+            background-color: $messageTable-color;
+            max-height: 20rem;
             margin-bottom: .5rem;
-              th {
-                padding: .1rem;
-                border: 1px solid black;
-              }
+
+            .message-table-content {
+                .message-table-head {
+                    position:sticky;
+                    top: 0px;
+                    margin: 0;
+
+                    .message-table-head-row {
+                        border-bottom: 2px solid black;
+
+                        th {
+                           background:#ccc;
+
+                        }
+                }
+            }
                 
               td {
                 padding: .1rem;
                 text-align: center;
                 border: 1px solid black;
               }
+            }
         }
 
         .messageControl {

@@ -3,7 +3,6 @@ $dashboard-color: #21df10;
 $lessonView-color: #3fb427;
 $lessonComp-color: #3384aa;
 $lessonTable-color: #c9eec6;
-
 $calandar-background:#92a8d1;
 
 .dashContainer {
@@ -14,11 +13,11 @@ $calandar-background:#92a8d1;
     // margin-bottom: 4rem;
     
     .lessonContainer {
+        @include standard-border;
         background-color: $lessonView-color;
         width: 100%;
         margin-top: 1rem;
         padding: 1rem;
-        @include standard-border;
 
         .viewSelect { 
             margin-bottom: .5rem;
@@ -56,9 +55,9 @@ $calandar-background:#92a8d1;
             top: 0px;
             margin: 0;
             .lesson-table-head-row {
-              border-bottom: 1px solid black;
+              border-bottom: 2px solid black;
               th{
-                background:#ccc
+                background:#ccc;
               }
             }
           }

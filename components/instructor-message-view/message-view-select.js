@@ -1,9 +1,9 @@
-import instructorMess from '../../styles/instructorMess.module.scss';
+
 
 export default function MessageViewSelect () {
     return (    
-        <div className={instructorMess.radioContainer}>
-            <form className={instructorMess.radioForm}>
+        <div className="radioContainer">
+            <form className="radioForm">
                 <label>
                     <input  type='radio'
                             value='Show All'
@@ -24,8 +24,8 @@ export default function MessageViewSelect () {
                 </label>
             </form>
             
-            <div className={instructorMess.messageViewNewMessageContainer}>
-                <button className={instructorMess.messageViewNewMessage}>
+            <div className="messageViewNewMessageContainer">
+                <button className="messageViewNewMessage">
                     New Message
                 </button>
             </div>
