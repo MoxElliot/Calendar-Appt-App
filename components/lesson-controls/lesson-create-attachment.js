@@ -69,6 +69,7 @@ export default function LessonCreateAttachment ({lessonAttachment}) {
     
             <p className='lesson-control-attachment__text m-0'>Lesson Attachments</p>
             <input 
+                className="lesson-control-attachment__input"
                 type='file' 
                 name='file'
                 ref={inputRef} 
