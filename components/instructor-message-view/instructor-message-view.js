@@ -1,4 +1,3 @@
-
 import React from 'react';
 import MessageViewSelect from './message-view-select';
 import InstructormessageTable from './instructor-message-table';

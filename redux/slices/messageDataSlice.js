@@ -8,7 +8,8 @@ export const messageDataSlice = createSlice({
         {id:1, date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Tournament Games", message:"<Unread> Arma virumque canō, Trōiae quī prīmus ab ōrīs"},
         {id:2, date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Review Games/Problems", message:"<Read, Replied> Arma virumque canō, Trōiae quī prīmus ab ōrīs"},
         {id:3, date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Review OGS League", message:"<Read, No Reply> Arma virumque canō, Trōiae quī prīmus ab ōrīs"},
-        {id:4,date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Play w/ 35pt komi", message:"<Unread> Arma virumque canō, Trōiae quī prīmus ab ōrīs"}
+        {id:4,date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Play w/ 35pt komi", message:"<Unread> Arma virumque canō, Trōiae quī prīmus ab ōrīs"},
+        {id:5,date: "xx/xx/xxx at xx:xx", name:"Student name", subject:"Play w/ 35pt komi", message:"<Unread> Arma virumque canō, Trōiae quī prīmus ab ōrīs"}
     ],
     reducers: {
         addNewMessageData: (state, action) => {
@@ -25,6 +26,6 @@ export const messageDataSlice = createSlice({
     },
 });
 
-export const { addMessageData } = messageDataSlice.actions;
+export const { addNewMessageData } = messageDataSlice.actions;
 
 export default messageDataSlice.reducer;

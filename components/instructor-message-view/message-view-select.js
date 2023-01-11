@@ -24,11 +24,6 @@ export default function MessageViewSelect () {
                 </label>
             </form>
             
-            <div className="messageViewNewMessageContainer">
-                <button className="messageViewNewMessage">
-                    New Message
-                </button>
-            </div>
         </div>
     )
 }

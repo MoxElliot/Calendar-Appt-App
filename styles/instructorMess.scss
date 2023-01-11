@@ -3,17 +3,26 @@ $dashboard-color: #21df10;
 $messageView-color: #3fb427;
 $messageComp-color: #3384aa;
 $messageTable-color: #c9eec6;
+$new-message-container-color: #555555;
 
 .dashContainer {
     
- 
 
+    .new-message-modal__container {
+        @include standard-border;
+        background-color: $messageTable-color;
+        width: 400px;
+        height: 200px;
+        margin: 1rem;
+        padding: 1rem;
     
+    }
+
     .messageContainer {
         @include standard-border;
         background-color: $messageView-color;
         width: 100%;
-        margin-top: 1rem;
+        margin:1rem 0 2rem 0;
         padding: 1rem;
 
         .viewSelect {
@@ -39,12 +48,7 @@ $messageTable-color: #c9eec6;
                     justify-content: space-between;
                 }
 
-                .messageViewNewMessageContainer {
-                    width: 100px;
-                    .messageViewNewMessage {
-                        width: 100%;
-                    }
-                }
+                
             }
         }
 
@@ -82,30 +86,41 @@ $messageTable-color: #c9eec6;
            
             max-width: 70%;
             
-            .messageViewControlContainer {
+            .message-view-control__container {
                 padding: .4rem;
 
-                .messageViewControl {
+                .message-view-control {
                     display: flex;
+                    flex-direction: row;
                     justify-content: space-between;
                     .showMessageDD {
                         display: flex;
-                        
+                        flex-direction: row;
                         .showMessagePageDisplay {
+                            display: flex;
                             margin-left: 1rem;
                         }
                     }
 
-                    .messageViewSubmitContainer {
+                    .message-view-control__delete-container {
                         width: 110px;
 
-                        .messageViewSubmit {
+                        .message-view-control__delete-button {
+                            width: 100%;
+                        }
+                    }
+                    .message-view-control__new-container {
+                        width: 100px;
+
+                        .message-view-control__new-button {
                             width: 100%;
                         }
                     }
                 }
             }
         }
+
+        
             
     }
 
