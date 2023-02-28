@@ -5,6 +5,7 @@ $calComponent-color: #999999;
 $calItem-color: #123456;
 $calItemInner-color: #c9328f;
 $calandar-background:#92a8d1;
+$lessonComp-color: #3384aa;
 
 .instContainer {
   min-width: 370px;
@@ -49,83 +50,254 @@ $calandar-background:#92a8d1;
   .calendarControlContainer{
     margin-top: 3rem;
     
-    .lessonDetailContainer {
-      background-color: $calandar-background;
-      height: fit-content;
-      width: fit-content;
-      max-width: 75vw;
-      min-width: 280px;
-      @include standard-border;
-      padding:1rem;
-      .lesson-text {
-        width:fit-content;
+ 
+      .lessonControlToggle {
+        background-color: $lessonComp-color;
+        align-self:center;
+        flex-basis: 20%;
+        margin-left: 2rem;
       }
-      .lesson-attachment{
-        border: 1px solid black;
-        border-radius: 1rem;
-        min-width:195px;
-      }
-      .lesson-detail {
-        margin:0 0 0 1rem;
-      }
-    
-      .lesson-buttons {
-      max-width: 185px;
-      }
-    }
-    
-    .lessonCreateContainer {
-      display: flex;
-      width: 100%;
-      height: 35%;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      @include standard-border;
-      border-radius: 2rem;
-      padding: .3rem;
+      .lesson-detail-container {
+          background-color: $calandar-background;
+          height: fit-content;
+          width: fit-content;
+          margin-top:1rem;
+          max-width: 75vw;
+          min-width: 280px;
+          @include standard-border;
+          padding:1rem;
+          .lesson-text {
+            width:fit-content;
+          }
+          .lesson-attachment{
+            @include standard-border;
+            width:fit-content;
+            padding:1rem;
+            min-width:195px;
+          }
+          .lesson-detail {
+            margin:0 0 0 1rem;
+          }
+        
+          .lesson-buttons {
+            @include standard-border;
+            max-width: 185px;
+          }
+        }
 
-      .lessonControlP{
-        padding-bottom:.2rem;
-        padding-left:.4rem;
-        margin: 0;
-        text-decoration: underline;
-        font-weight: bold;
-      }
-      .lessonControlLeft {
+        .lesson-detail-container__edit-off {
+          background-color: $calandar-background;
+          margin-top: 1rem;
+          height: fit-content;
+          width: fit-content;
+          max-width: 75vw;
+          min-width: 280px;
+          @include standard-border;
+          padding:1rem;
+          .lesson-text {
           
-          #lessonControlEle {
-              padding-bottom: .5rem;
-              .lesson-date-input {
-                padding-left: 1rem;
+            .lesson-comment {
+              margin-bottom: .3rem;
+            }
+            .lesson-detail {
+              width: fit-content;
+              display: flex;
+              margin:0 0 0 1rem;
+
+              .lesson-detail__label {
+                margin-right:.3rem;
+                font-weight: 600;
               }
-              .lesson-control-radio{
-                padding-left: 1rem;
+              .lesson-detail__p {
+                margin-bottom: .3rem;
               }
-              .studentName {
-                margin-left: 1rem;
             }
           }
-          
-          .studentSelect {
-              display: flex;
-              flex-direction: row;
-          }
-      }
-      .lessonControlRight {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+          .lesson-attachment{
+            @include standard-border;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: .5rem;
+            margin: auto;
 
-        .lessonControlAttachment{
+            .lesson-attachment__text {
+              font-weight:600;
+              margin-bottom:.5rem;
+            }
+          }
+          .lesson-detail__buttons {
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+
+            .lesson-buttons {
+              margin:.5rem 1rem 0 1rem;
+            }
+          }
+        }
+
+        .lesson-detail-container__edit-on {
+          background-color: $calandar-background;
+          margin-top: 1rem;
+          max-width: 75vw;
+          min-width: 280px;
           @include standard-border;
-          min-width:195px;
+          padding:1rem;
+          .lesson-text {
+            
+            .lesson-text-input{
+              padding: .1rem;
+              font-weight: 600;
+
+              .lesson-detail {
+                width: fit-content;
+                display: flex;
+              }
+            }
+            
+          }
+          .lesson-attachment{
+            @include standard-border;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: .5rem;
+            max-width: fit-content;
+            margin: 3rem;
+
+            .lesson-attachment__text {
+              font-weight:600;
+              margin-bottom:.3rem;
+            }
+            
+            .lessonControlAttachment{
+              margin:2rem;
+              min-width:295px;
+
+              .lessonAttachControlBtn {
+                margin-top: 1rem;
+                align-self: center;
+              }
+            }
+          }
+
+          .lesson-detail__buttons {
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+
+            .lesson-buttons {
+              margin:.5rem 1rem 0 1rem;
+              
+            }
+          }
+          .lesson-detail {
+            margin:0 0 0 1rem;
           }
           
-        .lessonControlBtn {
-            align-self: flex-end;
         }
-      }
+
+      .lesson-create-control {
+        @include standard-border;
+        margin-top: 1rem;
+        display: flex;  
+        background-color: $lesson-control-background;
+        padding: .3rem;
+        width: fit-content;
+        
+          .lesson-control-left {
+            flex: none;
+
+            .lesson-text {
+              padding-bottom:.2rem;
+              padding-left:.4rem;
+              margin: 0;
+              font-weight: 500;
+            }    
+            .lesson-control-left__form {
+                
+                .lesson-control-left__date {
+                  margin:1rem; 
+
+                  .lesson-control-left__date-label{
+                    margin-right:.5rem;
+                    font-weight: bold;
+                  } 
+                }
+
+                .lesson-control-left__time {
+                  margin:1rem;
+
+                  .lesson-control-left__time-label {
+                    margin-right:.5rem;
+                    font-weight: bold;
+                  }
+                } 
+                
+                .lesson-control-left__repeat {
+                  margin: 1rem;
+
+                  .lesson-control-left__repeat-checkbox {
+                    margin-right:.5rem;
+                  }
+
+                  .lesson-control-left__repeat-label {
+                    margin-right:.5rem;
+                    font-weight: bold;
+                  }
+                }
+
+                .lesson-control-left__name {
+                  margin:1rem;
+
+                  .lesson-control-left__name-checkbox {
+                    margin-right:.5rem;
+                  }
+                  .lesson-control-left__name-label {
+                    margin-right:.5rem;
+                    font-weight: bold;
+                  }
+                }
+              }
+              
+          }
+
+          .lesson-control-right {
+            flex: none;
+            margin: 1rem;
+              .lesson-control-right__form {
+                
+                .lesson-control-right__details-label {
+                  margin-right:.5rem;
+                  font-weight: bold;
+                }
+              }
+              .lesson-control-attachment{
+                @include standard-border;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-width:295px;
+                margin: 1rem;
+                
+                .lesson-control-attachment__text {
+                  font-weight: bold;
+                }
+                .lesson-control-attachment__btn {
+                  padding:.3rem;
+                  margin-top: .5rem;
+                }
+              }
+          
+              .lessonControlBtn {
+                 align-self: end;
+                 flex-basis: 1;
+              }
+            
+           }
+        
     }
   }
 }
